@@ -1,0 +1,95 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+<Layout title="Inversió al Japó" description="Com invertir en el mercat japonès des d'Espanya" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <span style="color: var(--color-muted);">Finances</span>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Inversió</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Finances · Mercats</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Inversió</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 560px; margin-bottom: 3rem;">
+      El Japó és la tercera economia del món. El Nikkei 225 va superar el seu màxim de 1989 el 2024. Però la inversió directa des d'Espanya requereix considerar el risc divisa i l'accés als mercats.
+    </p>
+
+    <div class="info-block">
+      <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;">El factor ien: risc i oportunitat</p>
+      <p style="font-size: 0.875rem; color: var(--color-muted);">
+        El ien cotitza al voltant de mínims de 30 anys enfront l'euro. Si inverteixes ara en actius japonesos i el ien es normalitza (+20–30% vers l'euro), obtens un doble retorn: apreciació de l'actiu + apreciació de la divisa. El risc és que el ien continuï dèbil o s'enfonsi més.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 3rem;">
+      <p class="label" style="margin-bottom: 1.5rem;">Accés a la borsa japonesa des d'Espanya</p>
+      <div>
+        {[
+          {
+            via: "ETFs en euros (recomanat per a la majoria)",
+            desc: "La manera més senzilla i eficient. ETFs que repliquen l'índex MSCI Japan o Nikkei 225, cotitzats a borses europees en euros o amb cobertura de divisa. Accessible amb qualsevol broker europeu.",
+            opcions: "iShares Core MSCI Japan ETF (IJPA · Euronext Amsterdam), Xtrackers MSCI Japan UCITS ETF (XDJP · Deutsche Börse), Lyxor Japan TOPIX UCITS ETF"
+          },
+          {
+            via: "ETFs amb cobertura de divisa (EUR hedged)",
+            desc: "Repliquen la borsa japonesa però eliminen el risc de canvi €/¥. Si creus que el ien es mantindrà dèbil o s'afeblirà més, aquesta opció protegeix el retorn. Si creus que el ien es recuperarà, les perds la plusvàlua de divisa.",
+            opcions: "iShares MSCI Japan EUR Hedged UCITS ETF (IJPE), Xtrackers MSCI Japan Hedged Equity UCITS ETF"
+          },
+          {
+            via: "Accions individuals (TSE)",
+            desc: "La Tokyo Stock Exchange permet compra directa a través de brokers amb accés a mercats internacionals. Interactive Brokers (el millor per a accions japoneses), DeGiro (accés limitat). Les ordres es liquiden en iens.",
+            opcions: "Toyota (7203.T), Sony Group (6758.T), Keyence (6861.T), Fast Retailing/Uniqlo (9983.T), Nintendo (7974.T)"
+          },
+          {
+            via: "REITs japonesos (J-REITs)",
+            desc: "Fons d'inversió immobiliaris cotitzats a la TSE. Reparteixen dividends en iens. Accessible via Interactive Brokers. Una alternativa indirecta per exposar-se al mercat immobiliari japonès.",
+            opcions: "Nippon Prologis REIT (3283.T), Japan Real Estate Investment (8952.T), ETF: iShares Japan Real Estate ETF"
+          },
+        ].map(v => (
+          <div style="padding: 1.5rem 0; border-bottom: 1px solid var(--color-border);">
+            <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">{v.via}</h4>
+            <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.65; margin-bottom: 0.625rem;">{v.desc}</p>
+            <div style="background: var(--color-subtle); padding: 0.625rem 0.875rem; border: 1px solid var(--color-border);">
+              <p style="font-size: 0.8125rem; color: var(--color-fg); font-weight: 600; margin-bottom: 0.25rem;">Exemples:</p>
+              <p style="font-size: 0.8125rem; color: var(--color-muted);">{v.opcions}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section style="margin-bottom: 3rem;">
+      <p class="label" style="margin-bottom: 1.5rem;">Inversió immobiliària</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        <div class="card" style="background: var(--color-bg); pointer-events: none;">
+          <h4 style="font-size: 1rem; margin-bottom: 0.75rem;">Akiya (cases rurals)</h4>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.65;">
+            Model: comprar barat, renovar i llogar com a holiday rental. Rendibilitat potencial alta si l'execució és bona. Molt treball de gestió remota. Veure secció Akiya per al detall complet.
+          </p>
+        </div>
+        <div class="card" style="background: var(--color-bg); pointer-events: none;">
+          <h4 style="font-size: 1rem; margin-bottom: 0.75rem;">Pisos a Tokyo / Osaka</h4>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.65;">
+            El mercat urbà japonès s'ha apreciat notablement des de 2020. A Tokyo, Shibuya i Shinjuku el preu per m² ha superat els màxims de la bombolla dels 80. Menys accessible per a estrangers no residents per als crèdits hipotecaris.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="label" style="margin-bottom: 1.5rem;">NISA japonès: no disponible per a no-residents</p>
+      <div class="info-block neutral">
+        <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+          El NISA (Nippon Individual Savings Account) és el compte d'estalvi/inversió defiscalitzat del Japó, equivalent a l'ISA britànic o el PEA francès. Ofereix inversió en ETFs i accions japoneses sense tributar les plusvàlues. <strong>Requereix residència japonesa</strong> (zairyu card). No accessible per a turistes o no-residents. Si mai obtens la residència permanent al Japó, és una eina excel·lent.
+        </p>
+      </div>
+    </section>
+
+  </div>
+</Layout>

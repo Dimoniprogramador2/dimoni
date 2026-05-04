@@ -1,0 +1,82 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="Abu Dhabi — Visites" description="Llocs a visitar a Abu Dhabi" section="abu-dhabi">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/abu-dhabi" style="color: var(--color-muted);">Abu Dhabi</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Visites</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">24–25 juliol · Calor extrem</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Visites</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 560px; margin-bottom: 2rem;">
+      Dos dies de juliol a Abu Dhabi signifiquen temperatures de 47–50°C i humitat alta. Estratègia: matins molt aviat per exteriors, migdia i tarda en espais climatitzats, vespre de nou a l'exterior.
+    </p>
+
+    <div class="info-block" style="margin-bottom: 3rem;">
+      <p style="font-size: 0.875rem; color: var(--color-muted);">
+        <strong>Consell clau:</strong> No sortir a l'exterior entre les 11h i les 17h. Hidratació constant. Crema solar SPF50+ fins i tot en el cotxe. L'A/C dels taxis/Careem és potent però el cop de calor en sortir pot ser desagradable. Portar roba lleugera però que cobreixi.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 3rem;">
+      <p class="label" style="margin-bottom: 1.5rem;">Dia 1 — 24 juliol (proposta)</p>
+      <div style="border: 1px solid var(--color-border);">
+        {[
+          { hora: "7:00–9:00", lloc: "Sheikh Zayed Grand Mosque", indoor: false, desc: "La mesquita més gran del món (juntament amb les de Meca i Medina). Capacitat per a 41,000 persones. Entrada gratuïta. Visita matinal per evitar calor i llum favorable per fotos. Portar cobertura. Reservar entrada online." },
+          { hora: "9:30–13:00", lloc: "Louvre Abu Dhabi", indoor: true, desc: "Museu dissenyat per Jean Nouvel. Cúpula perforada que crea pluja de llum. Col·lecció trans-cultural única: des de l'antiguitat fins al s.XX. Entrada ~€15. Perfecte en les hores més càlides." },
+          { hora: "13:00–15:00", lloc: "Dinar + descans hotel", indoor: true, desc: "Cuina emiratí: harees (blat amb xai), machbous (arròs amb espècies), luqaimat (bunyols de mel). Restaurants recomanats: Al Fanar, Li Beirut, Beirut Sur Mer." },
+          { hora: "15:00–18:00", lloc: "The Galleria / Yas Mall", indoor: true, desc: "Centres comercials de primer nivell. Compres lliures d'impostos. Marks & Spencer, Zara, marques locals. Perfecte per les hores de màxima calor." },
+          { hora: "18:30–20:30", lloc: "Corniche Beach", indoor: false, desc: "El passeig marítim de 8km d'Abu Dhabi. A la tarda-nit ja es pot passejar. Vistes al skyline. Platges públiques i privades (Corniche Beach: ~€5/persona)." },
+          { hora: "21:00", lloc: "Sopar al Heritage Village o Marina", indoor: false, desc: "Heritage Village: reconstrucció de l'Abu Dhabi tradicional. Marina Mall area: restaurants amb vistes al mar. Temps fresc relatiu (35–38°C a la nit)." },
+        ].map((h, i) => (
+          <div style={`display: grid; grid-template-columns: 100px 1fr; gap: 1.25rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === 5 ? 'border-bottom: none;' : ''}`}>
+            <div>
+              <p style="font-size: 0.8125rem; font-weight: 700; color: var(--color-accent);">{h.hora}</p>
+              <span class:list={['tag', { accent: !h.indoor }]} style="margin-top: 0.375rem;">
+                {h.indoor ? 'indoor' : 'exterior'}
+              </span>
+            </div>
+            <div>
+              <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;">{h.lloc}</p>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{h.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <p class="label" style="margin-bottom: 1.5rem;">Dia 2 — 25 juliol (proposta)</p>
+      <div style="border: 1px solid var(--color-border);">
+        {[
+          { hora: "8:00–12:00", lloc: "Yas Island", indoor: true, desc: "Warner Bros World Abu Dhabi o Ferrari World. Warner Bros és el parc temàtic cobert més gran del món. Perfecte per a famílies amb nens. Ferrari World: Rollercoaster Formula Rossa (el més ràpid del món) + exposicions. Reservar online." },
+          { hora: "12:00–14:00", lloc: "Dinar a Yas Island", indoor: true, desc: "Múltiples opcions de restauració al parc o als centres comercials adjacents (Yas Mall). Temps: fresc a l'interior." },
+          { hora: "14:00–17:00", lloc: "Emirates Palace / ADNEC zona", indoor: true, desc: "Emirates Palace: l'hotel més luxós del golf. Entrada per a no-hotelats possible al lobby i cafeteria (compra obligatoria). Arquitectura impressionant. Probablement el café més car de la vida (gold cappuccino)." },
+          { hora: "17:30–19:30", lloc: "Qasr Al Hosn", indoor: false, desc: "El fort més antic d'Abu Dhabi (s.XVIII). Museu sobre la historia dels EAU. Millor al vespre quan la temperatura baixa lleugerament." },
+          { hora: "20:00", lloc: "Night Market / souk de la Medina Zayed", indoor: false, desc: "Mercat nocturn. Especieries, or, perfums, records. L'Gold Souk té joieries en or de 22k a preus molt competitius. Negociar es pot fer però menys que a Marroc." },
+          { hora: "22:00+", lloc: "Preparació vol a Japó", indoor: true, desc: "Vol a la nit o matinada. Verificar hora exacta. Aeroport AUH: arribar 3h abans per vols internacionals llargs. Duty-free excel·lent a AUH (perfums, alcohol, tabac)." },
+        ].map((h, i) => (
+          <div style={`display: grid; grid-template-columns: 100px 1fr; gap: 1.25rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === 5 ? 'border-bottom: none;' : ''}`}>
+            <div>
+              <p style="font-size: 0.8125rem; font-weight: 700; color: var(--color-accent);">{h.hora}</p>
+              <span class:list={['tag', { accent: !h.indoor }]} style="margin-top: 0.375rem;">
+                {h.indoor ? 'indoor' : 'exterior'}
+              </span>
+            </div>
+            <div>
+              <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;">{h.lloc}</p>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{h.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</Layout>

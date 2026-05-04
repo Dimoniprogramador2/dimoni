@@ -1,0 +1,54 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  section?: 'japo' | 'abu-dhabi' | '';
+}
+const { title, description = 'Guia de viatge personal', section = '' } = Astro.props;
+---
+<!doctype html>
+<html lang="ca">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>{title} — dimoni.cat</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <header style="border-bottom: 1px solid var(--color-border); position: sticky; top: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); z-index: 50;">
+      <div class="container" style="display: flex; align-items: center; justify-content: space-between; height: 3.5rem;">
+        <a href="/" style="font-weight: 800; font-size: 1rem; letter-spacing: -0.03em;">
+          dimoni<span class="accent">.</span>cat
+        </a>
+        <nav style="display: flex; gap: 2rem; align-items: center;">
+          <a
+            href="/japo"
+            class:list={['label', { accent: section === 'japo' }]}
+            style="font-size: 0.6875rem;"
+          >Japó 2026</a>
+          <a
+            href="/abu-dhabi"
+            class:list={['label', { accent: section === 'abu-dhabi' }]}
+            style="font-size: 0.6875rem;"
+          >Abu Dhabi</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer style="border-top: 1px solid var(--color-border); margin-top: 6rem;">
+      <div class="container" style="display: flex; align-items: center; justify-content: space-between; padding-top: 1.5rem; padding-bottom: 1.5rem;">
+        <span class="label">dimoni.cat</span>
+        <span class="label">viatge 2026</span>
+      </div>
+    </footer>
+  </body>
+</html>

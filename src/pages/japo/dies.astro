@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const dies = [
+  { data: "23 jul", lloc: "Barcelona → Abu Dhabi", tipus: "trànsit", resum: "Vol nocturn BCN–AUH. Sortida vespre. Arriba matí del 24." },
+  { data: "24 jul", lloc: "Abu Dhabi", tipus: "escala", resum: "Gran Mesquita Sheikh Zayed (matí), Louvre Abu Dhabi, Corniche. Calor extrem: activitats d'interior a la tarda." },
+  { data: "25 jul", lloc: "Abu Dhabi → Tokyo", tipus: "trànsit", resum: "Matí: Yas Island (Ferrari World si queда temps). Tard/nit: vol AUH–NRT. 9h de vol." },
+  { data: "26 jul", lloc: "Tokyo", tipus: "destinació", resum: "Arribada Narita. Activar JR Pass. Narita Express a Shinjuku. Hotel, descansar. Vespre: Shibuya Scramble de nit." },
+  { data: "27 jul", lloc: "Tokyo — Asakusa + Akihabara", tipus: "destinació", resum: "Matí: Senso-ji (7h). Carrer Nakamise. Dinar local. Tarda: Akihabara (electrònica, retro gaming). Vespre: ramen al barri." },
+  { data: "28 jul", lloc: "Tokyo — Harajuku + Meiji + Shibuya", tipus: "destinació", resum: "Meiji Jingu matí. Carrer Takeshita (Harajuku). Omotesando (compres). Tarda: Shibuya Crossing, Sky Viewing de nit." },
+  { data: "29 jul", lloc: "Tokyo — Shinjuku + Ginza", tipus: "destinació", resum: "Shinjuku Gyoen (parc, fresc rellatiu). Kabukicho. Tarda: Ginza (compres de luxe, Uniqlo). Sopar a Tsukiji Market." },
+  { data: "30 jul", lloc: "Tokyo — Yanaka + teamLab", tipus: "destinació", resum: "Matí: barri de Yanaka (passejada). Dinar. Reserva: teamLab Borderless Azabudai." },
+  { data: "31 jul", lloc: "Tokyo — Skytree + resta pendent", tipus: "destinació", resum: "Skytree (preferiblement tarda per vistes a la posta). Flexibel: mapa Camera (càmeres), Shibuya Sky. Preparar maletes per a Nikko." },
+  { data: "1 ago", lloc: "Nikko (excursió)", tipus: "excursió", resum: "Tren Nikko des de Shinjuku (2h). Tosho-gu, cascades, llac Chuzenji. Tornada a Tokyo vespre." },
+  { data: "2 ago", lloc: "Tokyo → Kyoto", tipus: "trànsit", resum: "Shinkansen Nozomi BCN–KYO (2h15). Hotel a Kyoto. Tarda: primer passeig per Gion." },
+  { data: "3 ago", lloc: "Kyoto — Fushimi Inari + Nishiki", tipus: "destinació", resum: "Matí molt aviat: Fushimi Inari (6:30h, molt millor). Retorn. Nishiki Market esmorzar/dinar. Tarda: Philosopher's Path." },
+  { data: "4 ago", lloc: "Kyoto — Arashiyama + Kinkaku-ji", tipus: "destinació", resum: "Matí: Arashiyama (bosc bambú). Tenryu-ji. Dinar. Tarda: Kinkaku-ji. Vespre: Hanamikoji (Gion) a les 18h." },
+  { data: "5 ago", lloc: "Nara (excursió) + tornada Kyoto", tipus: "excursió", resum: "Tren Kintetsu Nara (45 min). Parc dels cérvols, Todai-ji, Kasuga Taisha. Tornada Kyoto. Sopar kaiseki." },
+  { data: "6 ago", lloc: "Kyoto → Osaka", tipus: "trànsit", resum: "Shinkansen 15 min. Hotel a Osaka. Tarda: Dotonbori, Namba, sopar al carrer (takoyaki, kushikatsu)." },
+  { data: "7 ago", lloc: "Osaka — Den Den Town + Shinsekai", tipus: "destinació", resum: "Matí: Den Den Town (electrònica). Kuromon Ichiba (mercat). Tarda: Shinsekai. Vespre: Osaka Castle al posta de sol." },
+  { data: "8 ago", lloc: "Osaka — dia lliure / compres", tipus: "destinació", resum: "Shinsaibashi (compres de luxe). Amèrica-mura (vintage). Possibilitat de visita a Universal Studios Japan (reservar amb antelació)." },
+  { data: "9 ago", lloc: "Hiroshima + Miyajima", tipus: "excursió", resum: "Shinkansen Osaka–Hiroshima (45 min). Memorial de la Pau, museu (2-3h). Ferry Miyajima. Torii. Tornada a Osaka vespre (o nit a Hiroshima)." },
+  { data: "10 ago", lloc: "Osaka → Tokyo", tipus: "trànsit", resum: "Shinkansen Hikari/Nozomi (~2h30). Hotel Tokyo diferent zona (ex: Asakusa o Roppongi). Tarda: zones pendents." },
+  { data: "11 ago", lloc: "Tokyo — Roppongi + Mori Museum", tipus: "destinació", resum: "Mori Art Museum (Roppongi Hills). Vistes 52ª planta. Hamarikyu Gardens (jardí clàssic). Odaiba a la nit (Rainbow Bridge)." },
+  { data: "12 ago", lloc: "Tokyo — compres finals", tipus: "destinació", resum: "Últimes compres: Ginza (rellotges, moda), Akihabara. Organitzar equipatge: enviament de maletes pesades per Yamato (kuroneko) directament a l'aeroport." },
+  { data: "13 ago", lloc: "Tokyo — últim dia", tipus: "destinació", resum: "Matí relaxat. Esmorzar a local de barri. Visita pendent o descans. Vespre: sopar de comiat al restaurant desitjat (reservar amb antelació)." },
+  { data: "14 ago", lloc: "Tokyo → Barcelona", tipus: "trànsit", resum: "Narita Express o Limousine Bus a l'aeroport. Sortida NRT. Vol de tornada." },
+];
+
+const tipusBg: Record<string, string> = {
+  trànsit: 'var(--color-subtle)',
+  escala: 'var(--color-subtle)',
+  excursió: '#fff8f0',
+  destinació: 'var(--color-bg)',
+};
+---
+<Layout title="Dia a dia" description="Planificació dia a dia del viatge al Japó" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Dia a dia</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">23 juliol – 14 agost · 23 dies</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Dia a dia</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 560px; margin-bottom: 3rem;">
+      Planificació orientativa. Deixar flexibilitat: el Japó sempre sorprèn i els millors moments no estan al pla.
+    </p>
+
+    <div style="border: 1px solid var(--color-border);">
+      {dies.map((dia, i) => (
+        <div style={`display: grid; grid-template-columns: 70px 120px 80px 1fr; gap: 1rem; padding: 0.875rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; background: ${tipusBg[dia.tipus] || 'var(--color-bg)'}; ${i === dies.length - 1 ? 'border-bottom: none;' : ''}`}>
+          <span style="font-size: 0.8125rem; font-weight: 700; color: var(--color-accent); padding-top: 0.125rem;">{dia.data}</span>
+          <p style="font-size: 0.875rem; font-weight: 600; line-height: 1.3;">{dia.lloc}</p>
+          <span class:list={['tag', { accent: dia.tipus === 'destinació' }]}>{dia.tipus}</span>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{dia.resum}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</Layout>

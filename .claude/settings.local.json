@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.kirai.net)",
+      "WebFetch(domain:kirainet.com)",
+      "WebFetch(domain:www.kirainet.com)",
+      "Bash(npm --version)",
+      "Bash(npm create *)",
+      "Bash(cp *)",
+      "Bash(npm install *)",
+      "Bash(npx astro *)",
+      "Bash(npm run *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git rm *)"
+    ]
+  }
+}

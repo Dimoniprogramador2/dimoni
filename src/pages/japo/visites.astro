@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="Visites" description="Llocs a visitar al Japó" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Visites</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Llocs a visitar · Per ciutats</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Visites</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 560px; margin-bottom: 3rem;">
+      Selecció dels llocs principals de la ruta. Juliol-agost és la temporada de major calor i humitat al Japó. Planificar les visites a l'exterior al matí (7–10h) i a la tarda (16h en endavant).
+    </p>
+
+    <div class="divider"></div>
+
+    {[
+      {
+        ciutat: "Tokyo",
+        llocs: [
+          { nom: "Senso-ji (Asakusa)", desc: "El temple budista més antic de Tokyo (645 dC). La porta Kaminarimon i el carrer Nakamise. Millor visitar de bon matí (7–8h) per evitar la multitud." },
+          { nom: "Meiji Jingu", desc: "Santuari xintoista al cor d'un bosc de 70 hectàrees. Construït el 1920 en honor a l'Emperador Meiji. Tranquil fins i tot en agost." },
+          { nom: "Shibuya Scramble Crossing", desc: "L'encreuament més ocupat del món. Mirador des del Mag's Park (gratuït) o des de Starbucks Shibuya Sky. Millor a la nit." },
+          { nom: "Shinjuku Gyoen", desc: "El parc nacional de Tokyo. 58 hectàrees. Jardins japonesos, francesos i anglesos. L'aire condicionat del parc és el cel en agost. Entrada: ¥500." },
+          { nom: "Yanaka", desc: "El barri on el temps s'ha aturat. Carrerons de l'era Edo, cementeris, botigues artesanals. El Tokyo autèntic lluny dels turistes." },
+          { nom: "teamLab Borderless", desc: "Instal·lació d'art digital immersiu. Nou museu a Azabudai Hills (2024). Reservar online amb molta antelació. ~¥3,200/persona." },
+          { nom: "Observatori Tokyo Skytree", desc: "634m d'alçada, l'estructura més alta del Japó. Vistes fins al Mont Fuji en dia clar. ~¥3,100. Reserva online recomanada." },
+        ]
+      },
+      {
+        ciutat: "Nikko (excursió des de Tokyo)",
+        llocs: [
+          { nom: "Tosho-gu", desc: "Santuari xintoista del s.XVII dedicat a Tokugawa Ieyasu. Decoració exuberant i daurada única al Japó. UNESCO World Heritage. Entrada: ¥1,600." },
+          { nom: "Kegon Waterfall", desc: "97m d'alçada. Una de les tres cascades més belles del Japó. Baixada en ascensor des del mirador superior. Prop del llac Chuzenji." },
+          { nom: "Llac Chuzenji", desc: "A 1,269m d'altitud. Temperatures molt menors que Tokyo en pleno agost. Volt en barca, senderisme al voltant." },
+        ]
+      },
+      {
+        ciutat: "Kyoto",
+        llocs: [
+          { nom: "Fushimi Inari Taisha", desc: "El temple dels 10,000 torii taronja. El camí complet (4h) porta fins a la cima. Anar al alba (6h) per la foscor i els pocs visitants." },
+          { nom: "Kinkaku-ji (Pavelló Daurat)", desc: "Impossible no visitar-lo. Molt turístic. Anar en primera hora d'obertura (9h). Entrada: ¥500." },
+          { nom: "Arashiyama", desc: "Bosc de bambú, temple Tenryu-ji (jardí Zen amb estang), travessa en rikshaw. A la tarda llum màgica al bambú." },
+          { nom: "Gion", desc: "El districte de les geishes. Hanamikoji-dori al vespre: possibilitat de veure maiko (geishes aprenents) quan es desplacen. Respecte i discreció." },
+          { nom: "Philosopher's Path", desc: "Passeig de 2km vora un canal. Connecta diversos temples menors: Nanzen-ji, Eikan-do, Ginkaku-ji. Millor al matí o tarda-nit." },
+          { nom: "Nishiki Market", desc: "El 'cuina de Kyoto'. Carrer cobert amb parades de productes locals: tofu, tsukemono (encurtits), wagashi (dolços). Ideal per esmorzar." },
+        ]
+      },
+      {
+        ciutat: "Nara (excursió des de Kyoto)",
+        llocs: [
+          { nom: "Nara Koen (Parc dels cérvols)", desc: "1,200 cérvols lliures pels parcs i temples. Els cérvols fan reverències per menjar (shika senbei, ¥200). Els cérvols en brama (tardor), però a l'agost ja estan per allà." },
+          { nom: "Todai-ji", desc: "El temple de fusta més gran del món. Alberga el Buddha de bronze més gran del Japó (15m). Entrada: ¥800." },
+          { nom: "Kasuga Taisha", desc: "Santuari xintoista amb 3,000 llanternes de pedra i bronze. Interior del bosc ancestral. Molt menys turístic que Todai-ji." },
+        ]
+      },
+      {
+        ciutat: "Osaka",
+        llocs: [
+          { nom: "Dotonbori", desc: "El cor d'Osaka: cartells de neó gegants, canals, gastronomia de carrer. El famós rètol de Glico i el cranc gegant. Millor a la nit." },
+          { nom: "Osaka Castle", desc: "Reconstrucció moderna (1931) però imponent. El parc al voltant és excel·lent per passejar." },
+          { nom: "Shinsekai", desc: "Barri popular dels anys 50. Torri (torre local de steel), kushikatsu (brochetes), locals de shogi. El Osaka de classe treballadora." },
+          { nom: "Kuromon Ichiba", desc: "El mercat d'Osaka des de 1885. Peix fresc, ostres, tonyina, fruita local. Menjar al mateix mercat." },
+        ]
+      },
+      {
+        ciutat: "Hiroshima + Miyajima",
+        llocs: [
+          { nom: "Memorial de la Pau (Genbaku Dome)", desc: "La cúpula de la bomba atòmica, l'únic edifici que va quedar dret. UNESCO. Silenci i respecte absoluts. Entrar-hi és una experiència que no s'oblida." },
+          { nom: "Museu Memorial de la Pau", desc: "Documentació molt completa i impactant. Visita de 2-3h mínims. Reservar entrades online (¥200). Portar mocadors." },
+          { nom: "Shrine d'Itsukushima (Miyajima)", desc: "El torii 'flotant' és una de les tres vistes més belles del Japó. Ferry des d'Hiroshima (25 min). Cérvols lliures a l'illa (com a Nara). Atardecer des del torii és màgic." },
+        ]
+      },
+    ].map(c => (
+      <section style="margin-bottom: 3.5rem;">
+        <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">{c.ciutat}</h2>
+        <div style="border: 1px solid var(--color-border);">
+          {c.llocs.map((l, i) => (
+            <div style={`display: grid; grid-template-columns: 200px 1fr; gap: 1.5rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-border); ${i === c.llocs.length - 1 ? 'border-bottom: none;' : ''}`}>
+              <p style="font-size: 0.9375rem; font-weight: 600;">{l.nom}</p>
+              <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.65;">{l.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+
+  </div>
+</Layout>
