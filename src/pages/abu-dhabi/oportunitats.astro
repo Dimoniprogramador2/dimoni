@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 ---
-<Layout title="Abu Dhabi — Oportunitats" description="Oportunitats de compra i negoci a Abu Dhabi" section="abu-dhabi">
+<Layout title="Abu Dhabi — Oportunitats" description="Compres, negoci i oportunitats a Abu Dhabi" section="abu-dhabi">
   <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
 
     <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
@@ -13,38 +13,108 @@ import Layout from '../../layouts/Layout.astro';
     <p class="label" style="margin-bottom: 1.25rem;">Compres · Negoci · Fiscalitat</p>
     <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Oportunitats</h1>
     <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 560px; margin-bottom: 3rem;">
-      Abu Dhabi és molt més que una escala: és una de les jurisdiccions fiscalment més avantejoses del món i un hub comercial de primer nivell. En dos dies es pot explorar i comprar, i entendre el potencial per a negoci futur.
+      Abu Dhabi és molt més que una escala: una de les jurisdiccions fiscalment més avantejoses del món i un hub comercial de primer nivell. En dos dies es pot explorar, comprar, i entendre el potencial per a negoci futur.
     </p>
 
     <div class="divider"></div>
 
     <section style="margin-bottom: 3rem;">
-      <p class="label" style="margin-bottom: 1.5rem;">Compres lliures d'impostos</p>
-      <div>
+      <p class="label" style="margin-bottom: 1.5rem;">Or i joieria — comparativa mundial</p>
+
+      <div class="info-block" style="margin-bottom: 1.5rem;">
+        <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;">Preus de l'or (maig 2026)</p>
+        <p style="font-size: 0.875rem; color: var(--color-muted);">
+          Or 24K: <strong>556 AED/gram</strong> (~€135/g) · Or 22K: <strong>514 AED/gram</strong> (~€125/g) · Or 18K: <strong>423 AED/gram</strong> (~€103/g). El preu base és el preu spot internacional (igual a tot arreu). La diferència és la mà d'obra (making charge), que als EAU és molt inferior a Europa.
+        </p>
+      </div>
+
+      <div style="border: 1px solid var(--color-border); margin-bottom: 1.5rem; overflow: hidden;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: 0.75rem 1rem; background: var(--color-subtle); border-bottom: 1px solid var(--color-border);">
+          {["País / Mercat", "Preu or 22K/g", "Mà d'obra", "Total anell simple"].map(h => (
+            <span class="label">{h}</span>
+          ))}
+        </div>
+        {[
+          { pais: "Abu Dhabi / Gold Souk", preu: "~€125", ma: "€10–30/g", total: "€135–155/g", millor: true },
+          { pais: "Dubai (Gold Souk)", preu: "~€126", ma: "€12–35/g", total: "€138–161/g", millor: false },
+          { pais: "Espanya (joyeria)", preu: "~€125", ma: "€50–200/g", total: "€175–325/g", millor: false },
+          { pais: "Itàlia (Vicenza / Arezzo)", preu: "~€125", ma: "€40–150/g", total: "€165–275/g", millor: false },
+          { pais: "Índia (sector informal)", preu: "~€123", ma: "€5–15/g", total: "€128–138/g", millor: false },
+        ].map((r, i) => (
+          <div style={`display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: 0.75rem 1rem; border-bottom: 1px solid var(--color-border); ${r.millor ? 'background: #fff8f8;' : ''} ${i === 4 ? 'border-bottom: none;' : ''}`}>
+            <span style="font-size: 0.875rem; font-weight: 600;">{r.pais} {r.millor ? '⭐' : ''}</span>
+            <span style="font-size: 0.875rem; color: var(--color-muted);">{r.preu}</span>
+            <span style="font-size: 0.875rem; color: var(--color-muted);">{r.ma}</span>
+            <span style="font-size: 0.875rem; color: var(--color-accent); font-weight: 600;">{r.total}</span>
+          </div>
+        ))}
+      </div>
+
+      <p class="label" style="margin-bottom: 1rem;">Millors llocs per comprar or a Abu Dhabi</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border); margin-bottom: 1rem;">
+        {[
+          { nom: "Madinat Zayed Gold Centre", desc: "El Gold Souk principal d'Abu Dhabi. 100+ botigues. El lloc de referència. Negociar sempre: el preu final pot ser 10–15% inferior al primer preu demanat." },
+          { nom: "Damas Jewellery", desc: "Cadena emiratí de 100+ anys. Qualitat garantida i disseny contemporani. Menys negociació però qualitat uniforme. Presència als grans centres comercials." },
+          { nom: "Malabar Gold & Diamonds", desc: "Una de les joieries més grans del golf. Especializats en joieria de casament i peces tradicionals. Qualitat certificada 916 BIS." },
+          { nom: "Pure Gold (Aeroport AUH)", desc: "Al duty-free de l'aeroport. Convenient per a l'última compra. Preus lleugerament superiors al Gold Souk però sense la pressió del temps." }
+        ].map(v => (
+          <div class="card" style="background: var(--color-bg); pointer-events: none;">
+            <h4 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.5rem;">{v.nom}</h4>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="info-block neutral">
+        <p style="font-size: 0.875rem; color: var(--color-muted);">
+          <strong>Consell de compra:</strong> Demanar sempre el preu per gram de l'or (gold rate) i el preu de la mà d'obra (making charge) per separat. El gold rate és fix i públic cada dia. La mà d'obra és negociable, especialment si compres diverses peces. Demanar el certificat de puresa (hallmark) inclòs. Conservar la factura per a la duanera a Espanya.
+        </p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 3rem;">
+      <p class="label" style="margin-bottom: 1.5rem;">Perfums d'Oud — els millors del món</p>
+      <div class="info-block" style="margin-bottom: 1.5rem;">
+        <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;">Què és l'oud</p>
+        <p style="font-size: 0.875rem; color: var(--color-muted);">
+          L'oud (عود) és la resina formada a l'interior del tree Aquilaria quan és infectat per un fong. La resina és la substància natural més cara del món per kg (fins a $10,000/kg per qualitats excepcionals). El perfum d'oud és la base de la perfumeria àrab i és molt diferent dels occidentals: més fosc, fumós, profund i persistent. Dura 12–24h a la pell.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
         {[
           {
-            cat: "Or i joieria",
-            desc: "El Gold Souk al mercat de la Medina Zayed. Or de 22k i 24k a preus molt competitius (el preu de l'or és global però la mà d'obra és molt barata). La qualitat i el control son rigorosos a tot l'emirat. Comparar preus entre botigues: la diferència és la mà d'obra. Calcular en grams: comprovar el preu del dia per gram d'or (en AED) i sumar la mà d'obra (shabakah).",
+            marca: "Arabian Oud",
+            origen: "Aràbia Saudita · Disponible a tots els malls",
+            destacats: "Kalemat (¥), Ajwad, Oud Al Maha. Línea premium: Supreme Rose, Ghala Zayed. Preus: AED 195–609 per les línies principals.",
+            notes: "La marca d'oud amb més presència regional. Bones entrades al món de l'oud. Kalemat és el best-seller per alguna raó."
           },
           {
-            cat: "Perfums i oud",
-            desc: "Els EAU son el centre mundial del perfum àrab. L'oud (fusta de resina d'agarwood) és l'ingredient més car del món per kg. Fragàncies originals a preus molt inferiors als europeus. Botigues: Arabian Oud, Ajmal, Swiss Arabian. El duty-free de l'aeroport AUH és excel·lent per perfumeria occidental (Chanel, Dior, Tom Ford) a preus duty-free reals.",
+            marca: "Ajmal",
+            origen: "EAU / Índia · Des de 1951",
+            destacats: "Dahn Al Oudh Moattaq (oud pur), Evoke (oud occidental), Wisal. Preus: AED 50–500+.",
+            notes: "Un dels perfumistes àrabs més respectats. El Dahn Al Oudh és oud pur (no mesclat), l'experiència màxima. Molt intens, per a coneixedors."
           },
           {
-            cat: "Electrònica",
-            desc: "IVA als EAU: 5% (molt inferior al 21% espanyol). Electronics de consum, telèfons, càmeres. Llocs: Carrefour, Sharaf DG, Virgin Megastore (ara tancat), Lulu Hypermarket. Atenció: el voltatge és 220V (compatible amb Espanya) però les preses son tipus G (britànica). Adaptadors necessaris.",
+            marca: "Swiss Arabian",
+            origen: "EAU · 1974",
+            destacats: "Shaghaf Oud (oud + safrà + rosa + vainilla, molt accessible), Watar by Oud. Preus: AED 130–400.",
+            notes: "El pont entre l'oud clàssic àrab i el perfum occidental. Shaghaf Oud és perfecte per a qui s'acosta per primera vegada al món de l'oud."
           },
           {
-            cat: "Luxury goods",
-            desc: "Les boutiques de Galleria Maryah Island o Yas Mall: Rolex, Cartier, Louis Vuitton, Hermès. Preus oficials similars a Europa però sense IVA significatiu. Per a Rolex: les llistes d'espera existeixen igual que a Europa. Potser millor fortuna que a Barcelona però no és segur.",
-          },
+            marca: "Abdul Samad Al Qurashi",
+            origen: "Aràbia Saudita · Des de 1852",
+            destacats: "Oud Sultani, Al Oud Al Aqeeq, Maknoon. Preus: AED 300–2,000+.",
+            notes: "La casa de perfums àrabs més antiga del món. Qualitats d'oud excepcionals, alguns d'entre els més cars del món. Per a l'oud de col·leccionista."
+          }
         ].map(v => (
-          <div class="step">
-            <div style="min-width: 2rem;"></div>
-            <div>
-              <h4 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.375rem;">{v.cat}</h4>
-              <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.65;">{v.desc}</p>
-            </div>
+          <div class="card" style="background: var(--color-bg); pointer-events: none;">
+            <h4 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.125rem;">{v.marca}</h4>
+            <p style="font-size: 0.75rem; color: var(--color-accent); margin-bottom: 0.5rem;">{v.origen}</p>
+            <p style="font-size: 0.8125rem; font-weight: 600; margin-bottom: 0.375rem; color: var(--color-fg);">{v.destacats}</p>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{v.notes}</p>
           </div>
         ))}
       </div>
@@ -53,54 +123,265 @@ import Layout from '../../layouts/Layout.astro';
     <div class="divider"></div>
 
     <section style="margin-bottom: 3rem;">
-      <p class="label" style="margin-bottom: 1.5rem;">Abu Dhabi per a negoci i inversió</p>
+      <p class="label" style="margin-bottom: 1.5rem;">Electrònica Apple — Abu Dhabi vs Japó vs Espanya</p>
+
+      <div style="border: 1px solid var(--color-border); margin-bottom: 1.5rem; overflow: hidden;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: 0.75rem 1rem; background: var(--color-subtle); border-bottom: 1px solid var(--color-border);">
+          {["Producte", "Abu Dhabi", "Japó (tax-free)", "Espanya"].map(h => (
+            <span class="label">{h}</span>
+          ))}
+        </div>
+        {[
+          { prod: "iPhone 17 Pro (256GB)", abd: "~€1,020 (5% IVA)", japo: "~€980 (−10%+yen)", es: "~€1,329" },
+          { prod: "MacBook Pro M5 14\"", abd: "~€1,700 (5% IVA)", japo: "~€1,600 (−10%+yen)", es: "~€2,149" },
+          { prod: "MacBook Air M4 13\"", abd: "~€1,100 (5% IVA)", japo: "~€1,050 (−10%+yen)", es: "~€1,399" },
+          { prod: "AirPods Pro 2", abd: "~€230", japo: "~€220", es: "~€279" },
+        ].map((r, i) => (
+          <div style={`display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: 0.875rem 1rem; border-bottom: 1px solid var(--color-border); ${i === 3 ? 'border-bottom: none;' : ''}`}>
+            <span style="font-size: 0.875rem; font-weight: 600;">{r.prod}</span>
+            <span style="font-size: 0.875rem; color: var(--color-muted);">{r.abd}</span>
+            <span style="font-size: 0.875rem; color: var(--color-accent); font-weight: 600;">{r.japo} ⭐</span>
+            <span style="font-size: 0.875rem; color: var(--color-muted);">{r.es}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="info-block neutral">
+        <p style="font-size: 0.875rem; color: var(--color-muted);">
+          <strong>Conclusió:</strong> El Japó guanya en preus Apple gràcies a la combinació de tax-free (−10%) + ien dèbil (−10–15%). Abu Dhabi és millor que Espanya però pitjor que el Japó. Si vols comprar Apple, porta-te'l del Japó. Per a electrònica general (audiòfils, càmeres), el Japó és clarament millor. Abu Dhabi destaca en or, perfums i luxe de marques occidentals en zones duty-free.
+        </p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 3rem;">
+      <p class="label" style="margin-bottom: 1.5rem;">Rolex — on comprar al millor preu del món</p>
+
+      <div style="border: 1px solid var(--color-border); margin-bottom: 1.5rem; overflow: hidden;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 0.75rem 1rem; background: var(--color-subtle); border-bottom: 1px solid var(--color-border);">
+          {["Destinació", "Preu estimat (Submariner Date)", "Veredicte"].map(h => (
+            <span class="label">{h}</span>
+          ))}
+        </div>
+        {[
+          { dest: "Japó (oficial, tax-free)", preu: "¥1,150,000 (~€7,000)", verd: "⭐ El millor preu mundial" },
+          { dest: "Hong Kong", preu: "~€7,200", verd: "Molt competitiu, sense llista" },
+          { dest: "Abu Dhabi / EAU", preu: "~€8,000–8,500", verd: "Millor que Europa però pitjor que Àsia" },
+          { dest: "Suïssa (seu Rolex)", preu: "~€9,500", verd: "No és el país més barat" },
+          { dest: "Espanya", preu: "~€10,200–11,000", verd: "El més car de la llista" },
+        ].map((r, i) => (
+          <div style={`display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 0.875rem 1rem; border-bottom: 1px solid var(--color-border); ${r.dest.includes('Japó') ? 'background: #fff8f8;' : ''} ${i === 4 ? 'border-bottom: none;' : ''}`}>
+            <span style="font-size: 0.875rem; font-weight: 600;">{r.dest}</span>
+            <span style="font-size: 0.875rem; color: var(--color-accent); font-weight: 600;">{r.preu}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted);">{r.verd}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="info-block neutral">
+        <p style="font-size: 0.875rem; color: var(--color-muted);">
+          <strong>Realitat de les llistes d'espera:</strong> Tant al Japó com a Abu Dhabi, els Rolex de gran demanda (Submariner, Daytona, GMT-Master II) estan en llista d'espera als dealers oficials. El mercat gris (grau) existeix a tots dos llocs amb primes del 15–30%. Si l'objectiu és Rolex, el Japó ofereix el millor preu oficial. Però considera l'alternativa: Grand Seiko al Japó és una compra molt més racional i exclusiva.
+        </p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 3rem;">
+      <p class="label" style="margin-bottom: 1.5rem;">Duty-free AUH — la realitat dels preus</p>
+
+      <div class="info-block" style="margin-bottom: 1.5rem;">
+        <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;">No tot el duty-free és barat</p>
+        <p style="font-size: 0.875rem; color: var(--color-muted);">
+          Una anàlisi de l'IATA demostra que només el 37% dels articles duty-free son consistentment més barats que el comerç local. Els operadors aeroportuaris cobren rendes 3–5x superiors als carrers comercials i imposen comissions del 15–25% als venedors, que ho traslladen al preu. La "estalvi" és sovint psicologia, no aritmètica.
+        </p>
+      </div>
+
+      <div style="border: 1px solid var(--color-border); margin-bottom: 1.5rem; overflow: hidden;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 0.75rem 1rem; background: var(--color-subtle); border-bottom: 1px solid var(--color-border);">
+          {["Categoria", "Val la pena?", "Alternativa"].map(h => (
+            <span class="label">{h}</span>
+          ))}
+        </div>
+        {[
+          { cat: "Whisky premium / Alcohol", val: "✓ Sí, clarament", alt: "Millor preu que a Espanya per a Scotch, Bourbon, sake japonès" },
+          { cat: "Perfums internacionals (Dior, Chanel, TF)", val: "✓ Sí (−10–20%)", alt: "El Japó pot ser igual de barat. Comparar preus" },
+          { cat: "Tabac", val: "✓ Sí", alt: "Notable estalvi respecte a Espanya (€5–8 per cartes)" },
+          { cat: "Xocolata / alimentació gourmet", val: "△ Marginal", alt: "Preus similars o lleugerament superiors als supermercats locals" },
+          { cat: "Electrònica (rellotges, càmeres)", val: "✗ No", alt: "Millor al Gold Souk per a or, al Japó per a càmeres" },
+          { cat: "Roba de luxe (Gucci, LV)", val: "✗ No", alt: "Sense diferència significativa respecte a boutiques de la ciutat" },
+        ].map((r, i) => (
+          <div style={`display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 0.875rem 1rem; border-bottom: 1px solid var(--color-border); ${i === 5 ? 'border-bottom: none;' : ''}`}>
+            <span style="font-size: 0.875rem; font-weight: 600;">{r.cat}</span>
+            <span style="font-size: 0.875rem; color: var(--color-accent);">{r.val}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted);">{r.alt}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 3rem;">
+      <p class="label" style="margin-bottom: 1.5rem;">Bancs a Abu Dhabi</p>
+
+      <div class="info-block" style="margin-bottom: 1.5rem;">
+        <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;">Nova iniciativa: compte digital per a turistes</p>
+        <p style="font-size: 0.875rem; color: var(--color-muted);">
+          El Banc Central dels EAU ha llançat (maig 2026) el programa "Tourist Identity": en arribar als EAU com a turista, pots obrir un compte digital a l'ADCB (Abu Dhabi Commercial Bank) en minuts via app, amb biometria i reconeixement facial. Inclou targeta de dèbit digital per a pagaments immediats. Requisit: ser major d'edat i tenir visa de turista vàlida.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {[
+          {
+            banc: "ADCB (Tourist Identity Account)",
+            tipus: "Nou compte turista digital",
+            cost: "Gratuït",
+            notes: "Compte digital instantani per a turistes. Targeta de dèbit virtual inclosa. Útil per a pagaments locals sense comissions de canvi. Tancar en sortir del país o mantenir per a futures visites."
+          },
+          {
+            banc: "Mashreq Bank (no-resident)",
+            tipus: "Compte estalvi no-resident",
+            cost: "Mínim ~AED 5,000 (~€1,200)",
+            notes: "El banc dels EAU més obert a no-residents. Requereix passaport, 2 mesos d'extractes bancaris del país d'origen i prova d'adreça. Procés en 3–5 dies hàbils. Útil si planifiques activitat empresarial als EAU."
+          },
+          {
+            banc: "First Abu Dhabi Bank (FAB)",
+            tipus: "Compte no-resident (seleccionats)",
+            cost: "Mínim AED 25,000 (~€6,000)",
+            notes: "El banc més gran dels EAU. Requereix saldo mínimèlevat i relació de negoci justificada. No accessible per a turistes ocasionals però el millor per a inversors."
+          },
+          {
+            banc: "Wise (alternativa)",
+            tipus: "Compte multidivisa",
+            cost: "Targeta: €9 única",
+            notes: "No és un banc emiratí però permet tenir un compte en AED virtual. La millor solució per a estades curtes: pagaments amb targeta sense comissions de canvi, transferències a Espanya a tipus interbancari."
+          }
+        ].map(v => (
+          <div class="card" style="background: var(--color-bg); pointer-events: none;">
+            <h4 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.25rem;">{v.banc}</h4>
+            <p style="font-size: 0.75rem; color: var(--color-accent); margin-bottom: 0.25rem;">{v.tipus}</p>
+            <p style="font-size: 0.75rem; font-weight: 600; color: var(--color-fg); margin-bottom: 0.625rem;">Cost: {v.cost}</p>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{v.notes}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 3rem;">
+      <p class="label" style="margin-bottom: 1.5rem;">Free Zones — crear empresa als EAU</p>
 
       <div class="info-block neutral" style="margin-bottom: 1.5rem;">
         <p style="font-size: 0.875rem; color: var(--color-muted);">
-          <strong>Context:</strong> Abu Dhabi (i els EAU en general) han eliminat l'impost de societats per a la majoria d'empreses excepte grans corporatives (15% des de 2023 per empreses amb beneficis >AED375,000). L'impost sobre la renda de les persones físiques és 0%. Sense impost de patrimoni. Sense impost de successions.
+          <strong>Què és una Free Zone:</strong> Zones econòmiques especials dels EAU on les empreses estrangeres poden operar amb propietat 100% estrangera, 0% impost de societats durant 15–50 anys (renovables), i repatriació lliure de beneficis. Cada Free Zone té la seva llei pròpia i specialitat sectorial.
         </p>
       </div>
 
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border); margin-bottom: 1.5rem;">
         {[
           {
-            tit: "Free Zones",
-            desc: "Les free zones dels EAU permeten propietat 100% estrangera, 0% impost de societats per 15–50 anys, repatriació lliure de beneficis. Abu Dhabi: ADGM (Abu Dhabi Global Market), twofour54 (media/content), Masdar City (cleantech). Molt usades per a holding d'empreses internacionals."
+            fz: "ADGM (Abu Dhabi Global Market)",
+            sector: "Financer, fons, family offices",
+            cost: "Des de $28,000/any",
+            notes: "Operat sota dret anglosaxó anglès. El preferit de family offices i gestores de fons. FSRA (regulador) reconegut internacionalment. Requereix oficina física."
           },
           {
-            tit: "Residència als EAU",
-            desc: "Visa de residència: possible amb inversió immobiliària (>AED750,000, ~€185,000) o creant una empresa a una free zone. Golden Visa: per a inversors >AED2M o professionals altament qualificats. Permet residir i treballar sense impost sobre la renda."
+            fz: "twofour54",
+            sector: "Media, contingut digital, tech",
+            cost: "Des de AED 15,000/any",
+            notes: "Especialitzat en indústria creativa i tecnologia. Permet visat de residència per al propietari. Molt popular per a creadors de contingut i agències digitals."
           },
           {
-            tit: "Implicació fiscal per a espanyols",
-            desc: "Si obtens residència als EAU però continues vivint a Espanya >183 dies/any, Espanya et considera resident fiscal i et grava per renda mundial. Per canviar la residència fiscal cal demostrar residència efectiva a l'estranger. L'AEAT ha reforçat molt els controls en els últims anys."
+            fz: "Masdar City Free Zone",
+            sector: "Cleantech, energia, sostenibilitat",
+            cost: "Des de AED 10,000/any",
+            notes: "La Free Zone de la ciutat de carbon-neutral. Subvencions per a empreses de tecnologia verda. Accés a fons de venture capital del Govern d'Abu Dhabi."
           },
           {
-            tit: "Inversió immobiliària",
-            desc: "Mercat immobiliari en auge post-pandèmia. Rendiments de lloguer: 5–8% brut a zones prime. No hi ha impost de propietat anual. Quota de transferència: 4% del valor de compra (registre). Àrees obertes a estrangers: Yas Island, Saadiyat, Al Reem Island, Masdar City."
-          },
+            fz: "KIZAD (Khalifa Industrial Zone)",
+            sector: "Industrial, logística, manufactura",
+            cost: "Variable per m²",
+            notes: "Zona industrial amb accés directe al Port Khalifa (un dels més grans del món). Per a empreses de comerç i manufactura que necessiten hub logístic."
+          }
         ].map(v => (
           <div class="card" style="background: var(--color-bg); pointer-events: none;">
-            <h4 style="font-size: 1rem; margin-bottom: 0.75rem;">{v.tit}</h4>
-            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{v.desc}</p>
+            <h4 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.125rem;">{v.fz}</h4>
+            <p style="font-size: 0.75rem; color: var(--color-accent); margin-bottom: 0.375rem;">{v.sector}</p>
+            <p style="font-size: 0.75rem; font-weight: 600; color: var(--color-fg); margin-bottom: 0.625rem;">{v.cost}</p>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{v.notes}</p>
           </div>
         ))}
       </div>
 
-      <div class="info-block">
-        <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;">Compte amb el frau fiscal</p>
+      <p class="label" style="margin-bottom: 1rem;">Procés de constitució (ADGM exemple)</p>
+      <div>
+        {[
+          { num: "01", pas: "Verificació d'activitat", desc: "Definir l'activitat principal. ADGM té una llista d'activitats permeses (financial services, tech, holding companies, etc.). No totes les activitats son permeses sense llicència especial." },
+          { num: "02", pas: "Background check", desc: "ADGM fa una diligència deguda profunda sobre els propietaris (UBO — Ultimate Beneficial Owners). Historial financer, antecedents. Procés que pot durar 2–4 setmanes." },
+          { num: "03", pas: "Oficina física", desc: "Requeriment d'espai físic dins de l'ADGM (Al Maryah Island). Executive Centres ofereixen oficines flexibles des de $1,000/mes. Sense oficina, no hi ha llicència (excepte SPVs)." },
+          { num: "04", pas: "Llicència i registre", desc: "Cost de la llicència: des de $10,300/any. Registre de l'empresa: $3,000–5,000 (única). Total primer any: $28,000–50,000+ depenent de l'activitat." },
+          { num: "05", pas: "Compte bancari empresarial", desc: "Amb la llicència ADGM, els principals bancs dels EAU (FAB, ADCB, ENBD) obren compte empresarial. Procés: 2–4 setmanes. El compte bancari és el major fre operatiu del procés." }
+        ].map(s => (
+          <div class="step">
+            <span class="step-num">{s.num}</span>
+            <div>
+              <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.375rem;">{s.pas}</h4>
+              <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.65;">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="info-block" style="margin-top: 1.5rem;">
         <p style="font-size: 0.875rem; color: var(--color-muted);">
-          Crear una empresa als EAU mentre ets resident fiscal a Espanya pot ser legítim si hi ha activitat real. Però si és una structure artificiosa per evitar impostos, l'AEAT ho pot regularitzar via les normes de transparència fiscal internacional (TFI) o les normes CFC. Assessorat per un advocat fiscalista internacional abans de qualsevol estructura.
+          <strong>Avís fiscal per a residents espanyols:</strong> Tenir una empresa a una Free Zone dels EAU és legítim. Però si el control efectiu de l'empresa s'exerceix des d'Espanya i tu ets el resident espanyol que la gestiona, l'AEAT pot considerar-la resident fiscal a Espanya via les normes CFC (Controlled Foreign Companies) i gravar-la aquí. Cal assessoria fiscal internacional especialitzada.
         </p>
       </div>
     </section>
 
+    <div class="divider"></div>
+
     <section>
-      <p class="label" style="margin-bottom: 1.5rem;">Duty-free a l'aeroport AUH</p>
-      <div class="info-block neutral">
-        <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
-          El duty-free de l'Aeroport Internacional d'Abu Dhabi (AUH) és un dels millors del món. Perfums, alcohol (els EAU permeten venta d'alcohol en zones de turisme i aeroports), tabac, electrònica, xocolata. <strong>Límit d'importació a Espanya (UE):</strong> 1L de licors >22% o 2L menys de 22%, 200 cigarrets, i la franquícia de €430 per compres generals. El duty-free es pot comprar tant a l'anada com a la tornada.
-        </p>
+      <p class="label" style="margin-bottom: 1.5rem;">Inversió immobiliària a Abu Dhabi</p>
+
+      <div style="border: 1px solid var(--color-border); margin-bottom: 1.5rem; overflow: hidden;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: 0.75rem 1rem; background: var(--color-subtle); border-bottom: 1px solid var(--color-border);">
+          {["Zona", "Preu/m²", "Rendiment lloguer", "Accés estrangers"].map(h => (
+            <span class="label">{h}</span>
+          ))}
+        </div>
+        {[
+          { zona: "Saadiyat Island", preu: "€3,800–7,500/m²", rend: "5–6% brut", acc: "Sí" },
+          { zona: "Yas Island", preu: "€2,500–4,200/m²", rend: "7–7.5% brut", acc: "Sí" },
+          { zona: "Al Reem Island", preu: "€2,800–4,500/m²", rend: "6–7% brut", acc: "Sí" },
+          { zona: "Masdar City", preu: "€2,200–3,500/m²", rend: "6.5–7.5% brut", acc: "Sí" },
+          { zona: "Centre (Abu Dhabi Island)", preu: "€3,000–5,000/m²", rend: "5–5.5% brut", acc: "Restriccions" },
+        ].map((r, i) => (
+          <div style={`display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: 0.875rem 1rem; border-bottom: 1px solid var(--color-border); ${i === 4 ? 'border-bottom: none;' : ''}`}>
+            <span style="font-size: 0.875rem; font-weight: 600;">{r.zona}</span>
+            <span style="font-size: 0.875rem; color: var(--color-accent);">{r.preu}</span>
+            <span style="font-size: 0.875rem; color: var(--color-muted);">{r.rend}</span>
+            <span style="font-size: 0.875rem; color: var(--color-muted);">{r.acc}</span>
+          </div>
+        ))}
+      </div>
+
+      <p class="label" style="margin-bottom: 1rem;">Immobiliàries de referència</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {[
+          { nom: "Aldar Properties", desc: "El promotor immobiliari del Govern d'Abu Dhabi. Les millors localitzacions de Yas i Saadiyat. Venda directa sense intermediaris." },
+          { nom: "Sands of Wealth", desc: "Consultora especialitzada en inversors internacionals. Accés a propietats off-plan i resales en zones premium." },
+          { nom: "Engel & Völkers Abu Dhabi", desc: "Agència alemanya de lujo amb presència local sòlida. Especialitzats en inversors europeus. Informe de mercat trimestral." }
+        ].map(v => (
+          <div class="card" style="background: var(--color-bg); pointer-events: none;">
+            <h4 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.5rem;">{v.nom}</h4>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{v.desc}</p>
+          </div>
+        ))}
       </div>
     </section>
 

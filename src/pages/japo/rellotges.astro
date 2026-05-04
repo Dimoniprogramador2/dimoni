@@ -1,0 +1,157 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="Rellotges japonesos" description="Quins rellotges japonesos val la pena comprar al Japó" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Rellotges</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Compres · Rellotgeria japonesa</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Rellotges japonesos</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 560px; margin-bottom: 3rem;">
+      El Japó és, juntament amb Suïssa, el cor mundial de la rellotgeria de qualitat. La diferència: els japonesos prioritzen la innovació mecànica i la relació qualitat-preu sobre el màrqueting. Comprar al Japó, amb tax-free i ien dèbil, és la millor oportunitat del planeta.
+    </p>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 3rem;">
+      <p class="label" style="margin-bottom: 1.5rem;">Grand Seiko — la compra estrella</p>
+      <div class="info-block" style="margin-bottom: 1.5rem;">
+        <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;">Per què Grand Seiko és la millor compra del Japó</p>
+        <p style="font-size: 0.875rem; color: var(--color-muted);">
+          Grand Seiko és exclusivament japonès (distribuït per Seiko fora del Japó amb marge brutal). Al Japó pagues el preu de fàbrica. Amb tax-free (−10%) i ien dèbil (−15–20% vs il·lusió del preu europeu), el diferencial és del 25–35% respecte a comprar-lo a Barcelona.
+        </p>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {[
+          {
+            model: "SBGA211 (Snowflake)",
+            preu: "¥660,000 (~€4,000)",
+            mov: "Spring Drive",
+            notes: "El més icònic. Esfera texturada com el bosc de Shinshu en neu. Spring Drive: la fusió única de mecànica i quartz. Cap altre fabricant al món fa el Spring Drive."
+          },
+          {
+            model: "SBGP001 (44GS)",
+            preu: "¥280,000 (~€1,700)",
+            mov: "Quartz 9F",
+            notes: "El moviment quartz de major precisió del món (±10 seg/any). Disseny clàssic 44GS del 1967 revisitat. Opció excel·lent preu-qualitat."
+          },
+          {
+            model: "SLGH005 (White Birch)",
+            preu: "¥1,100,000 (~€6,600)",
+            mov: "Hi-Beat 36000",
+            notes: "Alta rellotgeria. Esfera inspirada en el bedoll blanc de Hokkaido. Col·lecció Elegance. Per a qui vol l'equivalent japonès d'un Lange & Söhne."
+          },
+          {
+            model: "SBGR315 (Sport)",
+            preu: "¥330,000 (~€2,000)",
+            mov: "Hi-Beat 36000",
+            notes: "Rellotge esportiu formal. 200m WR, bezel rotatiu. El 'Submariner japonès' per excel·lència. Molt demandat, pot requerir llista d'espera."
+          }
+        ].map(v => (
+          <div class="card" style="background: var(--color-bg); pointer-events: none;">
+            <h4 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.25rem;">{v.model}</h4>
+            <p style="font-size: 0.8125rem; color: var(--color-accent); font-weight: 600; margin-bottom: 0.25rem;">{v.preu}</p>
+            <p style="font-size: 0.75rem; color: var(--color-muted); margin-bottom: 0.625rem; text-transform: uppercase; letter-spacing: 0.06em;">{v.mov}</p>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{v.notes}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section style="margin-bottom: 3rem;">
+      <p class="label" style="margin-bottom: 1.5rem;">Seiko — edicions JDM exclusives</p>
+      <div>
+        {[
+          {
+            nom: "Seiko Prospex LX (SNR025J1)",
+            desc: "El Diver 200m JDM de major prestigi. Caixa de titani, cristall sapfir, llegible sota l'aigua. Exclusiu al mercat japonès. ¥150,000–200,000. A l'Europa costa el doble si es troba."
+          },
+          {
+            nom: "Seiko Presage 'Cocktail Time' SARY141",
+            desc: "Esfera sunburst inspirada en còctels de l'era Showa. Les versions JDM tenen acabats no disponibles a Europa (esfers multicolor únics). ¥50,000–80,000."
+          },
+          {
+            nom: "Seiko 5 Sports JDM collection",
+            desc: "Colors exclusius del Japó (verd selva, blau nit, beix sorra). Mecànic automàtic, ¥25,000–40,000. La millor entrada al món dels rellotges japonesos de qualitat."
+          },
+          {
+            nom: "Seiko Astron GPS Solar",
+            desc: "El rellotge GPS Solar que s'actualitza automàticament amb satèl·lits GPS. Disponible al món però versions JDM amb GPS triple banda. ¥100,000–200,000."
+          }
+        ].map(v => (
+          <div class="step">
+            <div style="min-width: 2rem;"></div>
+            <div>
+              <h4 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.375rem;">{v.nom}</h4>
+              <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.65;">{v.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section style="margin-bottom: 3rem;">
+      <p class="label" style="margin-bottom: 1.5rem;">Citizen, Orient i Casio</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {[
+          {
+            marca: "Citizen Campanola",
+            desc: "La línia de luxe de Citizen, exclusivament al Japó. Rellotges de butxaca i polsera amb carillons i complicacions musicals. Artesania relativa al preu (¥150,000–500,000). No exportats.",
+            preu: "¥150k–500k"
+          },
+          {
+            marca: "Orient Star",
+            desc: "La línia premium d'Orient. Tourbillon, reserva de marxa indicada, esfera scheletonada. Qualitat comparable a rellotges suïssos de €1,000–2,000 a una fracció del preu. Molt millor al Japó.",
+            preu: "¥50k–200k"
+          },
+          {
+            marca: "Casio G-Shock Col·lector",
+            desc: "Edicions especials japoneses: GW-M5610 (el G-Shock original), col·laboracions amb artistes japonesos, G-Shock 'Frogman' de bussejadors. Colors i edicions no distribuïdes fora del Japó.",
+            preu: "¥15k–100k"
+          }
+        ].map(v => (
+          <div class="card" style="background: var(--color-bg); pointer-events: none;">
+            <h4 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.25rem;">{v.marca}</h4>
+            <p style="font-size: 0.75rem; color: var(--color-accent); font-weight: 600; margin-bottom: 0.625rem;">{v.preu}</p>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section style="margin-bottom: 3rem;">
+      <p class="label" style="margin-bottom: 1.5rem;">Credor — la joia oculta de Seiko</p>
+      <div class="info-block neutral">
+        <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.5rem;">La línia de rellotgeria d'alta complicació de Seiko</p>
+        <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+          Credor és la màxima expressió de la rellotgeria de Seiko, exclusivament al mercat japonès. Tourbillons, minuteria repetidora, carillons horaris. Artesania comparable a manufactures suïsses de primer nivell però quasi desconeguda fora del Japó. Preus: ¥500,000–5,000,000. Disponible a Seiko Boutique Ginza i Grand Seiko Boutique.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <p class="label" style="margin-bottom: 1.5rem;">On comprar</p>
+      <div style="border: 1px solid var(--color-border);">
+        {[
+          { lloc: "Grand Seiko Boutique Ginza", zona: "Tokyo, Ginza", desc: "L'experiència de compra Grand Seiko definitiva. Personal expert, totes les col·leccions, tax-free." },
+          { lloc: "Seiko Boutique Shinjuku", zona: "Tokyo, Shinjuku", desc: "Accés a Seiko, Grand Seiko, Credor i Orient Star. Tax-free. Personal que parla anglès." },
+          { lloc: "Takashimaya / Isetan (Shinjuku)", zona: "Tokyo, Shinjuku", desc: "Grans magatzems amb planta de rellotgeria completa: Grand Seiko, Citizen, Orient Star. Molt còmode i amb tax-free." },
+          { lloc: "Osaka Shinsaibashi Mitsukoshi", zona: "Osaka, Shinsaibashi", desc: "Equivalent a l'Isetan de Tokyo. Menys gent, mateixa selecció. Ideal si estàs a Osaka." },
+          { lloc: "Bic Camera / Yodobashi (dept. rellotges)", zona: "Tokyo, Osaka, Kyoto", desc: "Per a Seiko 5, G-Shock i gama entrada-mitja. Preus competitius i tax-free fàcil." }
+        ].map((v, i) => (
+          <div style={`display: grid; grid-template-columns: 1fr 130px 1.5fr; gap: 1rem; padding: 0.875rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === 4 ? 'border-bottom: none;' : ''}`}>
+            <span style="font-size: 0.9375rem; font-weight: 600;">{v.lloc}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted);">{v.zona}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted);">{v.desc}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</Layout>

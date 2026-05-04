@@ -79,11 +79,37 @@ const etapes = [
       Ruta circular Barcelona → Abu Dhabi → Tokyo → Kyoto → Osaka → Tokyo → Barcelona. Transport intern principal: JR Pass.
     </p>
 
-    <div class="info-block" style="margin-bottom: 3rem;">
-      <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;">JR Pass — Comprar abans de sortir</p>
+    <div class="info-block" style="margin-bottom: 1.5rem;">
+      <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;">JR Pass — Optimització per minimitzar el cost</p>
       <p style="font-size: 0.875rem; color: var(--color-muted);">
-        El Japan Rail Pass cobreix tots els Shinkansen (menys Nozomi i Mizuho en 7-day pass), metros regionals JR i el Narita Express. Comprar des d'Espanya és molt més barat. Per 23 dies amb desplaçaments llargs: 21-day pass (~€650/persona). Validar el primer dia d'ús, no el dia de compra.
+        El Japan Rail Pass cobreix Shinkansen (Hikari, Sakura; <strong>no el Nozomi</strong>), Narita Express i trens JR regionals. Comprar des d'Espanya és molt més barat que al Japó. La clau: <strong>no activar-lo el primer dia</strong> si no cal. Activar-lo el dia que comencen els grans desplaçaments estalvia dies de pass.
       </p>
+    </div>
+
+    <div class="info-block neutral" style="margin-bottom: 3rem;">
+      <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.75rem;">Estratègia JR Pass: 14 dies en comptes de 21</p>
+      <div style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.85;">
+        <p style="margin-bottom: 0.5rem;"><strong>Dies 1–6 a Tokyo (26–31 jul):</strong> El metro de Tokyo és Suica/Pasmo, NO és JR. El JR Pass no és necessari per a la vida quotidiana a Tokyo. Arribar des de Narita: Narita Express (¥3,070) sense JR Pass.</p>
+        <p style="margin-bottom: 0.5rem;"><strong>Activar el JR Pass l'1 d'agost</strong> (dia de l'excursió a Nikko). A partir d'aquí és continu: Nikko, Shinkansen Tokyo→Kyoto (2 ago), Kyoto→Osaka, Osaka→Hiroshima, Hiroshima→Tokyo, fins al 14 d'agost. Total: <strong>14 dies exactes</strong>.</p>
+        <p><strong>Estalvi:</strong> JR Pass 14 dies: ~€500/persona. JR Pass 21 dies: ~€700/persona. Per a família de 4: <strong>estalvi de ~€800</strong> sense perdre cap cobertura necessària.</p>
+      </div>
+      <div style="margin-top: 1rem; border: 1px solid var(--color-border); overflow: hidden;">
+        {[
+          { tram: "Narita Express (aeroport→Tokyo)", preu: "¥3,070 pp", cobert: false },
+          { tram: "Tokyo→Nikko (JR Utsunomiya + bus)", preu: "¥2,520 pp", cobert: true },
+          { tram: "Tokyo→Kyoto (Shinkansen Hikari, 2h40)", preu: "¥13,850 pp", cobert: true },
+          { tram: "Kyoto→Osaka (Shinkansen, 15 min)", preu: "¥1,490 pp", cobert: true },
+          { tram: "Osaka→Hiroshima (Shinkansen, 50 min)", preu: "¥9,440 pp", cobert: true },
+          { tram: "Hiroshima→Tokyo (Shinkansen, 4h)", preu: "¥18,380 pp", cobert: true },
+          { tram: "Tokyo→Narita Express (tornada)", preu: "¥3,070 pp", cobert: true },
+        ].map((t, i) => (
+          <div style={`display: grid; grid-template-columns: 1fr 120px 80px; padding: 0.5rem 0.875rem; border-bottom: 1px solid var(--color-border); font-size: 0.8125rem; ${i === 6 ? 'border-bottom: none;' : ''}`}>
+            <span style="color: var(--color-fg);">{t.tram}</span>
+            <span style="color: var(--color-accent); font-weight: 600;">{t.preu}</span>
+            <span style={`font-weight: 600; ${t.cobert ? 'color: #16a34a;' : 'color: var(--color-muted);'}`}>{t.cobert ? '✓ Pass' : '→ Pagar'}</span>
+          </div>
+        ))}
+      </div>
     </div>
 
     <div class="divider"></div>

@@ -90,5 +90,127 @@ import Layout from '../../../layouts/Layout.astro';
       </div>
     </section>
 
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 3rem;">
+      <p class="label" style="margin-bottom: 1.5rem;">Nikon F6 — la millor càmera de pel·lícula de la història</p>
+      <div class="info-block neutral" style="margin-bottom: 1.5rem;">
+        <p style="font-size: 0.875rem; color: var(--color-muted);">
+          La Nikon F6 (2004–2020) és l'última càmera de pel·lícula SLR professional de Nikon i probablement la millor càmera de film de la història. Discontinuada el 2020, el seu valor de mercat no ha parat de pujar. El Japó és el millor lloc del món per trobar-ne una en bon estat.
+        </p>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border); margin-bottom: 1.5rem;">
+        {[
+          {
+            lloc: "Map Camera (Shinjuku)",
+            desc: "La millor botiga de càmeres de segona mà del Japó. Grading estricte (A+, A, B). Preu Nikon F6 body: ¥200,000–280,000 (~€1,200–1,700). En molt bon estat. Garantia 6 mesos. Fàcil tax-free."
+          },
+          {
+            lloc: "Kitamura Camera (Shinjuku / Osaka)",
+            desc: "Cadena nacional. 5,000+ càmeres usades en inventari. Nikon F6: ¥180,000–250,000. Menys selecció que Map Camera però preus lleugerament inferiors. Sistema de reserva online."
+          },
+          {
+            lloc: "Fujiya Camera (Nakano)",
+            desc: "Botiga especialitzada en càmeres analògiques i vintage. Ambient únic. Menys accessible però preus sovint millors que les grans cadenes. Nikon F6: ¥160,000–220,000."
+          },
+          {
+            lloc: "eBay de venedors japonesos (referència)",
+            desc: "Preu de referència global: $1,400–2,000 USD + enviament ($300). Total: ~€1,600–2,200. Al Japó en persona, pots trobar-ne per ¥160,000–200,000 (~€1,000–1,200) sense els costos d'enviament."
+          }
+        ].map(v => (
+          <div class="card" style="background: var(--color-bg); pointer-events: none;">
+            <h4 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.5rem;">{v.lloc}</h4>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+      <div class="info-block neutral">
+        <p style="font-size: 0.875rem; color: var(--color-muted);">
+          <strong>Consell:</strong> Comprovar el comptador de disparadors (shutter count) abans de comprar. Una F6 en perfecte estat sol tenir menys de 50,000 disparadors. El límit de vida de l'obturador és ~150,000. Demanar a la botiga el número de sèrie per verificar el firmware actualitzat (Nikon va fer la darrera actualització de firmware el 2026).
+        </p>
+      </div>
+    </section>
+
+    <section style="margin-bottom: 3rem;">
+      <p class="label" style="margin-bottom: 1.5rem;">Objectius Nikon i Voigtländer</p>
+      <div>
+        {[
+          {
+            cat: "Nikon AI-S (vintage)",
+            items: [
+              { nom: "Nikkor 50mm f/1.2 AI-S", preu: "¥80,000–120,000", notes: "El 50mm més lluminós de Nikon. Bokeh cremós. Molt valorat per les estetes de la fotografia analògica." },
+              { nom: "Nikkor 105mm f/2.5 AI-S", preu: "¥30,000–50,000", notes: "El retrat clàssic de Nikon. Steve McCurry (Afghan Girl) el va usar. Sharp center, beautiful fall-off." },
+              { nom: "Nikkor 28mm f/2.8 AI-S", preu: "¥15,000–25,000", notes: "Gran angular compacte d'excel·lent qualitat. Molt bo per street photography." }
+            ]
+          },
+          {
+            cat: "Voigtländer (Cosina / Japó)",
+            items: [
+              { nom: "Nokton 50mm f/1.2 Aspherical VM", preu: "¥98,000–120,000", notes: "Per a Leica M. Un dels millors 50mm del mercat. Fabricat a Nagano (Japó). Preu japonès: 20–25% inferior a Europa." },
+              { nom: "Color-Skopar 21mm f/3.5 VM", preu: "¥55,000–70,000", notes: "El gran angular Voigtländer per excel·lència. Compacte, molt sharp, bon contrast. Per a M-mount." },
+              { nom: "Nokton 35mm f/1.2 Aspherical III VM", preu: "¥120,000–140,000", notes: "L'objectiu dels fotògrafs de carrer. El f/1.2 permet treballar en condicions de llum molt baixa. Boníssim per a reportatge i street." },
+              { nom: "APO-Lanthar 50mm f/2 VM", preu: "¥130,000–150,000", notes: "El 50mm apo (apocromàtic) de Voigtländer. La nitidesa és extraordinària. Per a qui vol el millor 50mm del mercat M-mount." }
+            ]
+          }
+        ].map(g => (
+          <div style="margin-bottom: 2rem;">
+            <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem;">{g.cat}</h4>
+            <div style="border: 1px solid var(--color-border);">
+              {g.items.map((o, i) => (
+                <div style={`display: grid; grid-template-columns: 1fr 130px 1.5fr; gap: 1rem; padding: 0.875rem 1.25rem; border-bottom: 1px solid var(--color-border); ${i === g.items.length - 1 ? 'border-bottom: none;' : ''}`}>
+                  <span style="font-size: 0.9375rem; font-weight: 600;">{o.nom}</span>
+                  <span style="font-size: 0.8125rem; color: var(--color-accent); font-weight: 600;">{o.preu}</span>
+                  <span style="font-size: 0.8125rem; color: var(--color-muted);">{o.notes}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section style="margin-bottom: 3rem;">
+      <p class="label" style="margin-bottom: 1.5rem;">Leica al Japó</p>
+      <div class="info-block neutral" style="margin-bottom: 1.5rem;">
+        <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;">La realitat dels preus Leica</p>
+        <p style="font-size: 0.875rem; color: var(--color-muted);">
+          Leica controla els preus globals de manera molt estricta. El preu oficial d'una Leica M11 és pràcticament el mateix a Alemanya, Espanya i al Japó. La diferència al Japó és el tax-free (−10%) i el tipus de canvi del ien (−10–15%). Total d'estalvi real: <strong>20–25% respecte a Espanya</strong>, però no és una ganga radical com amb els productes japonesos. Leica de segona mà al Japó: excel·lent mercat, peces en perfecte estat.
+        </p>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {[
+          {
+            model: "Leica M11 (nova)",
+            preu_japo: "¥1,188,000 (~€7,200)",
+            preu_es: "~€9,200 a Espanya",
+            estalvi: "~€2,000 (22%)",
+            notes: "Comprar nova a la Leica Boutique de Ginza. Tax-free inclòs. Garantia internacional."
+          },
+          {
+            model: "Leica M6 (usada)",
+            preu_japo: "¥200,000–400,000",
+            preu_es: "€2,500–5,000 a Espanya",
+            estalvi: "Molt variable",
+            notes: "El mercat de Leica usada japonesa (Hirose Camera, Map Camera) és excel·lent. Conservació impecable. Verificar obturador i cèl·lula de mesura."
+          }
+        ].map(v => (
+          <div class="card" style="background: var(--color-bg); pointer-events: none;">
+            <h4 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.5rem;">{v.model}</h4>
+            <div style="display: flex; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+              <span style="font-size: 0.8125rem; color: var(--color-accent); font-weight: 600;">Japó: {v.preu_japo}</span>
+              <span style="font-size: 0.8125rem; color: var(--color-muted);">ES: {v.preu_es}</span>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--color-fg); font-weight: 600; margin-bottom: 0.375rem;">Estalvi: {v.estalvi}</p>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{v.notes}</p>
+          </div>
+        ))}
+      </div>
+      <div class="info-block neutral" style="margin-top: 0;">
+        <p style="font-size: 0.875rem; color: var(--color-muted);">
+          <strong>Botigues Leica al Japó:</strong> Leica Store Ginza (oficial, nova i usada), Hirose Camera (Shinjuku, especialitzada en Leica), Map Camera (Shinjuku, gran stock usat). Tots fan tax-free.
+        </p>
+      </div>
+    </section>
+
   </div>
 </Layout>
