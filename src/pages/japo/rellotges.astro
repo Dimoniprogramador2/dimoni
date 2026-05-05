@@ -127,7 +127,6 @@ const altres = [
               <img
                 src={w.img}
                 alt={`Grand Seiko ${w.ref} ${w.nom}`}
-                loading="lazy"
                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
               />
@@ -195,12 +194,11 @@ const altres = [
 
     <section style="margin-bottom: 3rem;">
       <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Credor — la joia oculta</h2>
-      <div style="display: grid; grid-template-columns: 300px 1fr; gap: 0; background: var(--color-border);">
-        <div style="background: var(--color-subtle); height: 280px; overflow: hidden; position: relative;">
+      <div style="display: grid; grid-template-columns: 300px 1fr; min-height: 280px; background: var(--color-border);">
+        <div style="background: var(--color-subtle); overflow: hidden; position: relative;">
           <img
             src="/img/rellotges/credor.jpg"
             alt="Credor Seiko"
-            loading="lazy"
             style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"
             onerror="this.style.display='none';"
           />
@@ -210,7 +208,7 @@ const altres = [
           </div>
         </div>
         <div class="card" style="background: var(--color-bg); pointer-events: none;">
-          <p class="label" style="margin-bottom: 0.75rem;">Exclusiu al mercat japonès · ¥500,000–5,000,000</p>
+          <p class="label" style="margin-bottom: 0.75rem;">Exclusiu al mercat japonès · ¥500,000–5,000,000 <span style="color: var(--color-accent);">~€3,000–€30,000</span></p>
           <p style="font-size: 0.9375rem; line-height: 1.75; color: var(--color-muted);">
             La màxima expressió de la rellotgeria de Seiko. Tourbillons, minuteria repetidora, carillons horaris. Artesania comparable a manufactures suïsses de primer nivell (Patek Philippe, Jaeger-LeCoultre) però absolutament desconeguda fora del Japó.<br/><br/>
             Disponible exclusivament a la <strong>Seiko Boutique Ginza</strong> i al <strong>Grand Seiko Boutique Shinjuku</strong>. No exportat. No existeix distribuïdor europeu. Una de les grans secrets de la rellotgeria mundial.
