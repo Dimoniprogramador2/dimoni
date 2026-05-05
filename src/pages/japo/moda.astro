@@ -1,0 +1,378 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const yukata = [
+  {
+    tipus: "Yukata de cotó estàndard",
+    preu: "¥3,000–8,000",
+    desc: "La versió de festival i ryokan. Lleuger, rentable a màquina. Es ven en bòtiques de souvenirs, grans magatzems (Takashimaya, Isetan) i llocs com Asakusa. Sol venir sense obi.",
+    on: "Asakusa, Kyoto Shijo, Isetan Shinjuku",
+    tag: "Per portar"
+  },
+  {
+    tipus: "Yukata d'artesà (nishijin, aizome)",
+    preu: "¥15,000–60,000",
+    desc: "Teixit a mà o tenyit amb índigo natural. Cada peça és única. Molt diferent de la versió turística: el pes, la caiguda i el color canvien completament l'experiència de portar-lo.",
+    on: "Kyoto Nishiki, Nishijin, tallers tradicionals",
+    tag: "Col·leccionable"
+  },
+  {
+    tipus: "Set complet (yukata + obi + geta)",
+    preu: "¥8,000–20,000",
+    desc: "Ideal per portar al matsuri o per la nit al ryokan. Moltes botigues d'Asakusa fan el set complet amb assessorament per triar la combinació correcta de colors.",
+    on: "Botigues especialitzades Asakusa",
+    tag: "Complet"
+  },
+];
+
+const calcat = [
+  {
+    nom: "Geta",
+    kanji: "下駄",
+    desc: "Sandàlia de fusta amb dos suports verticals (ha). Fan un so inconfusible en caminar sobre pedra. S'usen amb yukata, mai amb kimono formal. La fusta de paulònia és la més lleugera; el pi és més dur. El so varia: quan el primer support toca terra és «ga», el segon «ta» — d'aquí el nom.",
+    on: "Asakusa, botigues de yukata, grans magatzems",
+    preu: "¥3,000–15,000",
+  },
+  {
+    nom: "Zori",
+    kanji: "草履",
+    desc: "Sandàlia plana d'espart, palla o cuir lacat. La versió formal: s'usa amb kimono per a ocasions solemnes. No fan soroll. Les de qualitat alta les porta el núvia el dia del casament. Molt diferent en aparença i propòsit a les geta.",
+    on: "Grans magatzems, botigues de kimono Kyoto",
+    preu: "¥5,000–80,000",
+  },
+  {
+    nom: "Waraji",
+    kanji: "草鞋",
+    desc: "Sandàlies de corda de palla. Les van portar els samurais, els monjos budistes i els rikishi de sumo. Avui les porten els practicants de budo, els monjos a mossegades a Kyoto i als participants de certs matsuri. Durades molt poques hores sobre asfalt.",
+    on: "Botigues de budo, temples (com a record)",
+    preu: "¥500–2,500",
+  },
+  {
+    nom: "Tabi",
+    kanji: "足袋",
+    desc: "Mitja amb separació del dit gros, per poder-les dur amb geta i zori. Les blanques de cotó estàndard s'usen amb kimono formal. Les de colors i estampats es combinen amb geta i yukata. Han entrat en la moda occidental gràcies al toe-shoe del Maison Margiela.",
+    on: "Tots els grans magatzems, Amazon JP",
+    preu: "¥500–3,000",
+  },
+];
+
+const uniqlo = [
+  {
+    categoria: "Per comprar al Japó vs. a Europa",
+    items: [
+      { nom: "UT (Uniqlo T-shirts)", desc: "Col·leccions exclusives del mercat japonès: col·laboracions amb manga, animació, museus japonesos i artistes locals que mai surten a Europa. S'esgoten ràpid.", preu: "¥1,990–2,990" },
+      { nom: "Hana Tajima collection", desc: "Dissenyada per a mides asiàtiques petites (XS–M). Molta més varietat de talles petites. Al Japó trobaràs talles S i XS fàcilment, cosa que a Europa escasseja.", preu: "¥3,990–7,990" },
+      { nom: "Merino wool socks i inner", desc: "El preu al Japó és considerablement inferior. Calcetins de llana merino ¥1,000 vs. €15 a Europa. La qualitat és la mateixa, el marge és diferent.", preu: "¥990–1,990" },
+    ]
+  },
+  {
+    categoria: "Línies que valen la pena",
+    items: [
+      { nom: "UNIQLO U (Christophe Lemaire)", desc: "La col·laboració amb l'exdirector creatiu d'Hermès. Disseny minimalista, talls europeus, colors neutres. S'esgota en dies quan surt. Disponible a les flagship stores.", preu: "¥4,990–14,990" },
+      { nom: "HeatTech Ultra Warm", desc: "La versió extrema del HeatTech. Al Japó trobaràs totes les variants (normal, extra warm, ultra warm) en tots els colors. A Europa, menys stock i varietat.", preu: "¥1,990–2,990" },
+      { nom: "+J (Jil Sander)", desc: "Col·laboració esporàdica que reapareix. Quan és al mercat, val la pena: qualitat suïssa a preu japonès. Vigilar la pàgina web els mesos previs al viatge.", preu: "¥6,990–19,990" },
+    ]
+  },
+  {
+    categoria: "Flagship stores recomanades",
+    items: [
+      { nom: "Ginza 6 · Tokyo", desc: "La flagship global de Uniqlo. 12 plantes. Exposicions d'art integrades, col·leccions exclusives, servei de personalització (brodats, estampats). El millor Uniqlo del planeta.", preu: "—" },
+      { nom: "Shinjuku · Tokyo", desc: "Molt gran, bon stock de UT i col·laboracions. Prop de la zona de compres de Takashimaya Times Square. Piso sencer de moda masculina.", preu: "—" },
+      { nom: "Shinsaibashi · Osaka", desc: "La flagship d'Osaka. Stock diferent al de Tokyo. Alguns UT exclusius per zona geogràfica.", preu: "—" },
+    ]
+  },
+];
+
+const dissenyadors = [
+  {
+    nom: "Issey Miyake",
+    nom_ja: "三宅一生",
+    desc: "El filòsof del teixit. Va revolucionar la moda amb el plissatge permanent (Pleats Please) i la construcció geomètrica (132 5.). El seu llegat viuen els ateliers actuals. A-POC (A Piece of Cloth) va anticipar 20 anys la moda sense desperdici.",
+    comprar: "Maison Issey Miyake Aoyama, Isetan Shinjuku, Pleats Please Ginza",
+    preu: "¥15,000–200,000",
+    icon: "△",
+  },
+  {
+    nom: "Yohji Yamamoto",
+    nom_ja: "山本耀司",
+    desc: "El poeta negre. Defensor del color negre com a resistència estètica. Talls asimètrics, superposicions. Y's és la línia accessible; Y-3 (col·lab Adidas) combina esport i avantguarda. Cada peça porta la seva signatura en blanc sobre negre.",
+    comprar: "Ys Omotesando, Yohji Yamamoto Shibuya, Dover Street Market Ginza",
+    preu: "¥20,000–180,000",
+    icon: "○",
+  },
+  {
+    nom: "Comme des Garçons",
+    nom_ja: "コム・デ・ギャルソン",
+    desc: "El imperi de Rei Kawakubo. No és una marca, és un sistema: CDG Play (accessible, amb cors), CDG Shirt, Junya Watanabe, Noir Kei Ninomiya, Sacai (ex-CDG). Dover Street Market Ginza és la seva catedral: roba + art + instal·lació. Tot canvia cada estació.",
+    comprar: "Dover Street Market Ginza, CDG Aoyama, CDG Omotesando",
+    preu: "¥8,000–500,000",
+    icon: "♥",
+  },
+  {
+    nom: "Sacai",
+    nom_ja: "サカイ",
+    desc: "Chitose Abe, exdissenyadora de CDG. La mestria de la recombinació: dues peces que semblen fusionades en una. Mai simètriques, mai predecibles. Nike, New Balance i adidas han col·laborat amb ella. Les seves NikeLab no s'esgoten mai però posen llista d'espera.",
+    comprar: "Sacai Aoyama, Dover Street Market Ginza, Isetan Shinjuku",
+    preu: "¥40,000–250,000",
+    icon: "◇",
+  },
+  {
+    nom: "Nigo / Human Made",
+    nom_ja: "人間製",
+    desc: "Fundador de BAPE (A Bathing Ape) i ara director creatiu de Kenzo. Human Made és el seu projecte actual: americana vintage japonesa amb una qualitat de fabricació obsessiva. Les peces de col·laboració amb Levi's, Adidas i Louis Vuitton assoleixen preus desorbitants al mercat secundari.",
+    comprar: "Human Made Harajuku, Harajuku Omotesando, Kenzo Ginza",
+    preu: "¥10,000–80,000",
+    icon: "☆",
+  },
+  {
+    nom: "Visvim",
+    nom_ja: "ビズビム",
+    desc: "Hiroki Nakamura. La moda com a arqueologia: cada col·lecció investiga tècniques tèxtils en desús, indumentàries de cultures antigues. Els seus mocassins FBT combinen xamanisme americà i artesania japonesa. Ridículament car, obsessivament construït.",
+    comprar: "Visvim Aoyama, Harajuku",
+    preu: "¥30,000–300,000",
+    icon: "◈",
+  },
+];
+
+const artesania = [
+  {
+    nom: "Aizome · Tintura d'índigo",
+    kanji: "藍染",
+    desc: "El blau japonès per excel·lència. L'índigo japonès (tade-ai) es fermenta en foses de terra durant mesos. El teixit s'impregna repetidament; com més vegades, més profund el color. Tokushima és la capital de l'aizome: les seves fàbriques accepten visites. A Kyoto, el barri de Fushimi té tallers on fas el teu propi mocador.",
+    on: "Kyoto Fushimi, Tokushima, museus del tint a Tokyo",
+    preu: "¥2,000–40,000",
+  },
+  {
+    nom: "Shibori · Tintura per plegament",
+    kanji: "絞り染め",
+    desc: "La tècnica del plec-i-lliga que genera patrons únics impossibles de reproduir industrialment. Cada peça és irrepetible. Arashi shibori (patró diagonal), itajime (plecs geomètrics), ne-maki (espiral). Kyoto és el centre mundial; Arimatsu, prop de Nagoya, n'és la capital artesanal.",
+    on: "Kyoto (Nishiki, Gion), Arimatsu (Nagoya)",
+    preu: "¥5,000–80,000",
+  },
+  {
+    nom: "Nishijin-ori · Seda teixida de Kyoto",
+    kanji: "西陣織",
+    desc: "El teixit més luxós del Japó. Nishijin és el barri teixidor de Kyoto: els telers jacquard fan un soroll constant. La seda s'usa sobretot per als obi (cenyidors del kimono) i els orants dels temples. El Nishijin Textile Center ofereix demostracions diàries i venda directa.",
+    on: "Nishijin Textile Center, Kyoto",
+    preu: "¥10,000–500,000",
+  },
+  {
+    nom: "Boro · La bellesa del pedaç",
+    kanji: "ぼろ",
+    desc: "La filosofia japonesa del Mottainai (no llençar res) aplicada al tèxtil. Peces d'índigo apedaçades durant generacions: cada pegat explica una reparació d'una altra era. Avui és alta moda vintage. Els museus de Tohoku en conserven les millors col·leccions; els col·leccionistes d'Harajuku les venen a preus de galeria.",
+    on: "Harajuku vintage shops, Shimokitazawa, Museu Textil Aomori",
+    preu: "¥20,000–500,000",
+  },
+  {
+    nom: "Katazome · Estampat amb plantilla",
+    kanji: "型染め",
+    desc: "Pasta de resistència (farines d'arròs i segó) s'aplica sobre el teixit a través d'una plantilla tallada a mà. Després el tint i el rentat revelen el disseny. Molt popular per a furoshiki, yukata i wrapping cloth. L'artista Keisuke Serizawa va elevar-ho a art major.",
+    on: "Kyoto, museus i tallers de mèod Ueno Tokyo",
+    preu: "¥3,000–30,000",
+  },
+  {
+    nom: "Kasuri · Ikat japonès",
+    kanji: "絣",
+    desc: "Els fils es tenyeixen abans de teixir, de manera que el patró sorgeix quan s'entrellacen. Mai perfectament definit: l'aparença borrosa dels contorns és la bellesa. El kasuri d'Ehime (Iyo) i el de Kurume (Fukuoka) són els més famosos. Base de molta roba de treball japonesa tradicional.",
+    on: "Ehime, Fukuoka, grans magatzems de Kyoto",
+    preu: "¥8,000–60,000",
+  },
+];
+
+const mercats = [
+  { nom: "Dover Street Market Ginza", barri: "Ginza · Tokyo", desc: "La bíblia de l'avantguarda japonesa. Quatre plantes d'arquitectura efímera que canvia cada estació. CDG, Sacai, Loewe, Nike lab. Cada visita és diferent." },
+  { nom: "Omotesando Hills", barri: "Omotesando · Tokyo", desc: "L'avinguda del disseny. Issey Miyake, Y's, A.P.C., Maison Margiela. L'edifici el va dissenyar Tadao Ando. L'ambient és el contrari de la turística Takeshita Street." },
+  { nom: "Harajuku / Takeshita", barri: "Harajuku · Tokyo", desc: "La cultura de carrer japonesa. Des de lolita gòtic fins a techwear. Botigues de vintage JDM, segona mà de marca, col·laboracions impossibles d'altres països." },
+  { nom: "Shimokitazawa", barri: "Setagaya · Tokyo", desc: "El barri dels estudiants i músics. Milers de botigues de vintage de qualitat a preus raonables. La versió japonesa de Portobello Road però deu vegades millor." },
+  { nom: "Nishiki Market", barri: "Kyoto", desc: "El mercat del carrer curt. A banda de menjar, hi ha botigues d'artesania tèxtil, tenugui (tovalloles de cotó), furoshiki i complementos tradicionals." },
+  { nom: "Amerika-mura", barri: "Osaka", desc: "El centre del vintage americà a Osaka. Levi's vintage, militar surplus, sneakers rares. Molt menys turístic que Harajuku, preus millors." },
+];
+---
+<Layout title="Moda al Japó" description="Yukata, calçat tradicional, Uniqlo, dissenyadors japonesos i artesania tèxtil" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Moda</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Cultura material · Tèxtil i disseny</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Moda al Japó</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 600px; margin-bottom: 3rem; line-height: 1.75;">
+      El Japó és l'únic país on coexisteixen sense fissures la tradició artesanal de sis-cents anys i l'avantguarda global del segle XXI. Des del teler de Nishijin fins al Dover Street Market, la roba japonesa no és mai sols roba.
+    </p>
+
+    <div class="divider"></div>
+
+    <!-- YUKATA -->
+    <section style="margin-bottom: 5rem;">
+      <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem;">
+        <h2 style="font-size: 1.875rem;">Yukata</h2>
+        <span style="font-size: 1.25rem; color: var(--color-muted);">浴衣</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 0.5rem; max-width: 620px; line-height: 1.75;">
+        El kimono d'estiu: cotó, sense folre, portat als festivals (matsuri), als focs artificials (hanabi) i als ryokan. És la prenda tradicional japonesa que qualsevol turista pot posar-se sense faltar al respecte, sempre que sigui en context adequat. Es lliga al cos creuant l'esquerra per sobre la dreta — al revés és exclusivament per als difunts.
+      </p>
+      <p style="font-size: 0.8125rem; color: var(--color-muted); margin-bottom: 2.5rem;">
+        Protocol: <strong style="color: var(--color-fg);">esquerra sobre dreta</strong> sempre · Lligar l'obi a l'esquena · Mai encorbat ni deixant la nuca al descobert en excés · El ryokan el proporciona sempre
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {yukata.map(item => (
+          <div style="background: var(--color-bg); padding: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+              <span class="tag">{item.tag}</span>
+              <span style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent);">{item.preu}</span>
+            </div>
+            <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">{item.tipus}</h3>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65; margin-bottom: 0.75rem;">{item.desc}</p>
+            <p style="font-size: 0.75rem; color: var(--color-muted);"><span style="font-weight: 600; color: var(--color-fg);">On:</span> {item.on}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="info-block neutral" style="margin-top: 1.5rem;">
+        <p style="font-size: 0.875rem; line-height: 1.7; margin: 0;"><strong>Lloguer vs. compra:</strong> A Kyoto, centenars de botigues lloguen yukata per uns ¥3,000–5,000 el dia, amb penat de cabells inclos. Ideal per fer les fotos al barri de Gion sense haver de transportar la prenda. Si t'agrada, compra-ne un per emportar: és dels souvenirs més autèntics i útils que pots trobar.</p>
+      </div>
+    </section>
+
+    <!-- CALÇAT TRADICIONAL -->
+    <section style="margin-bottom: 5rem;">
+      <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem;">
+        <h2 style="font-size: 1.875rem;">Calçat tradicional</h2>
+        <span style="font-size: 1.25rem; color: var(--color-muted);">履物</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2.5rem; max-width: 620px; line-height: 1.75;">
+        El calçat japonès tradicional no és sols estètica: cada model té un context específic, un material amb significat i una forma de caminar que li és pròpia. Confondre geta amb zori és l'equivalent a dur botes de muntanya a una recepció.
+      </p>
+
+      <div style="border: 1px solid var(--color-border);">
+        {calcat.map((c, i) => (
+          <div style={`padding: 1.75rem; ${i < calcat.length - 1 ? 'border-bottom: 1px solid var(--color-border);' : ''}`}>
+            <div style="display: grid; grid-template-columns: 200px 1fr; gap: 2rem;">
+              <div>
+                <div style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem;">
+                  <h3 style="font-size: 1.25rem; font-weight: 800;">{c.nom}</h3>
+                  <span style="font-size: 1rem; color: var(--color-muted);">{c.kanji}</span>
+                </div>
+                <p style="font-size: 0.8125rem; color: var(--color-accent); font-weight: 700;">{c.preu}</p>
+                <p style="font-size: 0.75rem; color: var(--color-muted); margin-top: 0.5rem;">{c.on}</p>
+              </div>
+              <p style="font-size: 0.9rem; color: var(--color-muted); line-height: 1.7; align-self: center;">{c.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- UNIQLO -->
+    <section style="margin-bottom: 5rem;">
+      <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem;">
+        <h2 style="font-size: 1.875rem;">Uniqlo</h2>
+        <span style="font-size: 0.875rem; color: var(--color-muted); font-weight: 600; letter-spacing: 0.1em;">ユニクロ · LifeWear</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2.5rem; max-width: 620px; line-height: 1.75;">
+        Uniqlo al Japó no és el mateix Uniqlo que coneixes. Preus entre un 20–40% inferiors als europeus, col·leccions exclusives del mercat japonès, talles petites impossibles de trobar a Europa i flagship stores que funcionen com a museus del disseny. Val la pena dedicar-hi temps.
+      </p>
+
+      {uniqlo.map(bloc => (
+        <div style="margin-bottom: 2.5rem;">
+          <p class="label" style="margin-bottom: 1rem;">{bloc.categoria}</p>
+          <div style="border: 1px solid var(--color-border);">
+            {bloc.items.map((item, i) => (
+              <div style={`display: grid; grid-template-columns: 1fr 120px; gap: 1.5rem; padding: 1.25rem 1.5rem; align-items: start; ${i < bloc.items.length - 1 ? 'border-bottom: 1px solid var(--color-border);' : ''}`}>
+                <div>
+                  <p style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.35rem;">{item.nom}</p>
+                  <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{item.desc}</p>
+                </div>
+                <p style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent); text-align: right;">{item.preu}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <!-- DISSENYADORS -->
+    <section style="margin-bottom: 5rem;">
+      <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem;">
+        <h2 style="font-size: 1.875rem;">Dissenyadors japonesos</h2>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2.5rem; max-width: 620px; line-height: 1.75;">
+        El Japó ha donat a la moda mundial alguns dels seus pensadors més radicals. Tots comparteixen una obsessió: la tela com a concepte, el tall com a filosofia. Comprar-los al Japó no és sols més barat; és accedir a peces i col·leccions que no arriben mai a Europa.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {dissenyadors.map(dis => (
+          <div style="background: var(--color-bg); padding: 1.75rem;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+              <span style="font-size: 1.5rem; width: 2rem; text-align: center; color: var(--color-accent);">{dis.icon}</span>
+              <div>
+                <h3 style="font-size: 1.125rem; font-weight: 800;">{dis.nom}</h3>
+                <span style="font-size: 0.875rem; color: var(--color-muted);">{dis.nom_ja}</span>
+              </div>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--color-muted); line-height: 1.7; margin-bottom: 1rem;">{dis.desc}</p>
+            <div style="border-top: 1px solid var(--color-border); padding-top: 0.875rem; display: flex; flex-direction: column; gap: 0.35rem;">
+              <p style="font-size: 0.75rem;"><span style="font-weight: 700; color: var(--color-fg);">On comprar: </span><span style="color: var(--color-muted);">{dis.comprar}</span></p>
+              <p style="font-size: 0.75rem; font-weight: 700; color: var(--color-accent);">{dis.preu}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="info-block" style="margin-top: 1.5rem;">
+        <p style="font-size: 0.875rem; line-height: 1.7; margin: 0;"><strong>Dover Street Market Ginza</strong> (Ginza 6, 6a planta) és el lloc imprescindible. Reuneix CDG, Sacai, Issey Miyake, Visvim, Dries Van Noten i col·laboracions exclusives en un espai que canvia completament cada estació. Entrada lliure; no és obligatori comprar res. Tracta-ho com un museu temporal.</p>
+      </div>
+    </section>
+
+    <!-- ARTESANIA TÈXTIL -->
+    <section style="margin-bottom: 5rem;">
+      <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem;">
+        <h2 style="font-size: 1.875rem;">Artesania tèxtil</h2>
+        <span style="font-size: 1.25rem; color: var(--color-muted);">染織</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2.5rem; max-width: 620px; line-height: 1.75;">
+        El Japó conserva tècniques tèxtils que a la resta del món han desaparegut. Moltes estan declarades Tresor Nacional Intangible. Comprar-ne una peça és adquirir un fragment d'una cultura que porta segles perfeccionant la relació entre la mà humana i la tela.
+      </p>
+
+      <div style="border: 1px solid var(--color-border);">
+        {artesania.map((t, i) => (
+          <div style={`padding: 1.75rem; ${i < artesania.length - 1 ? 'border-bottom: 1px solid var(--color-border);' : ''}`}>
+            <div style="display: grid; grid-template-columns: 260px 1fr; gap: 2rem;">
+              <div>
+                <div style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem;">
+                  <h3 style="font-size: 1rem; font-weight: 800;">{t.nom.split('·')[0].trim()}</h3>
+                  <span style="font-size: 0.875rem; color: var(--color-muted);">{t.kanji}</span>
+                </div>
+                <p style="font-size: 0.75rem; color: var(--color-muted); margin-bottom: 0.35rem;">{t.on}</p>
+                <p style="font-size: 0.8125rem; font-weight: 700; color: var(--color-accent);">{t.preu}</p>
+              </div>
+              <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7; align-self: center;">{t.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ON COMPRAR -->
+    <section>
+      <h2 style="font-size: 1.875rem; margin-bottom: 0.5rem;">On comprar · Barris i mercats</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 600px; line-height: 1.75;">
+        Cada barri té la seva especialitat. Cap d'ells és intercanviable.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {mercats.map(m => (
+          <div style="background: var(--color-bg); padding: 1.5rem;">
+            <p style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 0.4rem;">{m.barri}</p>
+            <h3 style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem;">{m.nom}</h3>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{m.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</Layout>
