@@ -1,0 +1,171 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const bashos = [
+  { mes: "Gener", nom: "Hatsu Basho", lloc: "Tokyo · Ryogoku Kokugikan", dates: "Mes 1 · dies 1–15" },
+  { mes: "Març", nom: "Haru Basho", lloc: "Osaka · EDION Arena", dates: "Mes 3 · dies 9–23" },
+  { mes: "Maig", nom: "Natsu Basho", lloc: "Tokyo · Ryogoku Kokugikan", dates: "Mes 5 · dies 11–25" },
+  { mes: "Juliol", nom: "Nagoya Basho", lloc: "Nagoya · Dolphins Arena", dates: "Mes 7 · dies 6–20", nota: "Acaba abans del viatge" },
+  { mes: "Setembre", nom: "Aki Basho", lloc: "Tokyo · Ryogoku Kokugikan", dates: "Mes 9 · dies 14–28", nota: "Comença després del viatge" },
+  { mes: "Novembre", nom: "Kyushu Basho", lloc: "Fukuoka · Fukuoka Kokusai Center", dates: "Mes 11 · dies 9–23" },
+];
+
+const entrades = [
+  { tipus: "Tamari-seki (primera fila, estores)", preu: "¥14,000–38,000", desc: "Els seients dels coneixedors. Asseguts a terra, directament al voltant del ring. S'ha de reservar amb molts mesos d'antelació. Entrades nominals: no es poden revendre." },
+  { tipus: "Masu-seki (palco tradicional)", preu: "¥10,000–16,000", desc: "Boxes de tatami per a 4 persones. El format clàssic: seure a terra, amb coixins, menjar i beure durant tot el dia. Es paga el box sencer, no la plaça individual." },
+  { tipus: "Isu-seki (butaca)", preu: "¥3,800–9,500", desc: "Cadires convencionals de graderia. Menys experiència, però més accessible. Disponibles el dia anterior i el dia del torneig." },
+  { tipus: "Jiyuseki (entrada general)", preu: "¥1,000–2,500", desc: "Entrada barata de peu. Primer vingut, primer servit. Molt bones vistes de peu des de la graderia superior." },
+];
+
+const curiositats = [
+  { titol: "El ring és sagrat", desc: "El dohyo (ring de terra i sorra) és un espai xintoista. Les dones no hi poden pujar — ni si guanyen un premi oficial. Ha causat polèmica quan alcaldesses han pujat per oferir trofeus i les han fet baixar immediatament." },
+  { titol: "Cada moviment és ritual", desc: "Abans de lluitar, els rikishi (lluitadors) fan el shiko (aixecar els peus alternativament), es renten simbòlicament la boca, llencen sal per purificar el ring. Tot el procés pot durar fins a 4 minuts. El combat en si rarament supera els 10 segons." },
+  { titol: "No hi ha categories de pes", desc: "Un rikishi de 90kg pot enfrontar-se a un de 200kg. L'únic que importa és el rang. El yokozuna (gran campió) lluita sempre al final del dia, sempre contra altres dels rangs superiors." },
+  { titol: "La sal és sagrada", desc: "En un torneig de 15 dies es fan servir fins a 45kg de sal per purificar el ring cada dia. Cada lluitador en llença un grapat generós — els grans noms en llencen quantitats exagerades com a exhibició." },
+  { titol: "Els yokozuna no baixen mai", desc: "Quan un rikishi assoleix el rang de yokozuna (el màxim, rarament n'hi ha més de 4 o 5 actius), no pot baixar de rang. Si perd massa, ha de retirar-se. Per això els yokozuna es retiren en la plenitud, no en declivi." },
+  { titol: "Els rikishi viuen als heya", desc: "Tots els lluitadors viuen en cases d'entrenament (heya) des que entren al sumo, sovint amb 14 o 15 anys. Mengen chanko-nabe (olla de guisat) tres cops al dia i dormen la migdiada per engreixar-se. La rutina és monàstica." },
+  { titol: "El topknoll és sagrat", desc: "El moño (chonmage) que porten els rikishi és un pentinat de l'era Edo. Quan un lluitador es retira, la cerimònia és tallar-li el moño davant de tot el poble del sumo — un dels rituals més emotius de l'esport." },
+  { titol: "Guanya qui surt del ring o toca terra", desc: "Règles simples: guanya qui fa sortir l'adversari del dohyo o qui fa que qualsevol part del seu cos (excepte els peus) toqui terra. Hi ha 82 tècniques oficials (kimarite), però les més freqüents es compten amb una mà." },
+];
+---
+<Layout title="Sumo al Japó" description="On veure sumo al Japó, entrades, preus i curiositats" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Sumo</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Cultura japonesa · Esport nacional</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Sumo</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 580px; margin-bottom: 3rem;">
+      El sumo és l'únic esport on l'atleta és alhora religiós, artista i guerrer. Mil anys d'historia condensats en deu segons de combat. És l'experiència japonesa més intensa que pots viure.
+    </p>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.75rem;">
+        <h2 style="font-size: 1.75rem;">Calendari de torneigs (basho)</h2>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 600px;">
+        Hi ha 6 torneigs oficials a l'any, cadascun de 15 dies. Per al viatge del <strong style="color: var(--color-fg);">23 juliol – 14 agost 2026</strong>, el calendari és desfavorable: el basho de Nagoya acaba el ~20 de juliol i el de Tokyo (Aki) comença el ~14 de setembre.
+      </p>
+
+      <div style="border: 1px solid var(--color-border);">
+        {bashos.map((b, i) => (
+          <div style={`display: grid; grid-template-columns: 80px 160px 1fr 1fr; gap: 1rem; padding: 0.875rem 1.25rem; align-items: center; border-bottom: 1px solid var(--color-border); ${i === bashos.length - 1 ? 'border-bottom: none;' : ''} ${b.nota ? 'opacity: 0.5;' : ''}`}>
+            <span style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; color: var(--color-muted);">{b.mes.toUpperCase()}</span>
+            <span style="font-size: 0.9375rem; font-weight: 600;">{b.nom}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted);">{b.lloc}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted);">
+              {b.nota
+                ? <span style="color: var(--color-accent); font-weight: 600;">{b.nota}</span>
+                : b.dates
+              }
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; border: 1px solid var(--color-border); background: var(--color-subtle);">
+        <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+          <strong style="color: var(--color-fg);">Conclusió:</strong> Durant el viatge no hi haurà cap basho oficial actiu. Però el sumo <em>autèntic</em> es pot viure de tres maneres alternatives — i alguna d'elles és fins i tot millor que el torneig.
+        </p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.75rem; margin-bottom: 0.75rem;">Alternatives reals durant el viatge</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 600px;">
+        Tres opcions ordenades per autenticitat. La primera, veure l'entrenament als heya, és una experiència que els turistes que van al basho mai veuen.
+      </p>
+
+      <div style="display: grid; gap: 1px; background: var(--color-border); margin-bottom: 2rem;">
+
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.75rem;">
+            <span class="label" style="color: var(--color-accent);">01 · Recomanat</span>
+            <h3 style="font-size: 1.125rem; font-weight: 700;">Entrenament matinal als heya (estables)</h3>
+          </div>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7; max-width: 640px; margin-bottom: 1rem;">
+            Els rikishi s'entrenen de 6h a 11h cada matí. Alguns heya obren als visitants, de peu i en silenci absolut, veient-los fer shiko, pujar al dohyo i fer combats reals. És el sumo sense filtres: suor, cops, crits del mestre. Infinitament més intens que un torneig amb 8,000 persones.
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            {[
+              { nom: "Arashio Beya", desc: "El més accessible per a turistes. A Nihonbashi, Tokyo. Reserva online al seu web oficial. Gratuït. Puntualitat estricta (abans de les 7:30h)." },
+              { nom: "Miyagino Beya", desc: "L'estable del llegendari Hakuho (el yokozuna més gran de la historia). Visites ocasionals via contacte directe o tours especialitzats." },
+              { nom: "Tours amb guia", desc: "Operadors com Magical Trip o Viator ofereixen visites a heya amb traducció i context (~¥8,000/persona). Reservar amb setmanes d'antelació." },
+              { nom: "Barri de Ryogoku", desc: "El cor del sumo a Tokyo (àrea Sumida). A qualsevol hora del matí veuràs rikishi al carrer. Els restaurants de la zona serveixen chanko-nabe." },
+            ].map(h => (
+              <div style="border: 1px solid var(--color-border); padding: 1rem;">
+                <p style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.375rem;">{h.nom}</p>
+                <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{h.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.75rem;">
+            <span class="label">02</span>
+            <h3 style="font-size: 1.125rem; font-weight: 700;">Museu del Sumo — Ryogoku Kokugikan</h3>
+          </div>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7; max-width: 640px;">
+            Al mateix edifici del gran pavelló de sumo de Tokyo. Exposicions permanents: retrats de tots els yokozuna de la historia, mawashi (cinturons) originals, fotografies i materials dels grans combats. <strong style="color: var(--color-fg);">Entrada gratuïta</strong>. Obert de dilluns a divendres 10h–16:30h (tancat durant els bashos). Perfecte per entendre el context abans de veure l'entrenament.
+          </p>
+        </div>
+
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.75rem;">
+            <span class="label">03</span>
+            <h3 style="font-size: 1.125rem; font-weight: 700;">Exhibicions de sumo per a turistes</h3>
+          </div>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7; max-width: 640px;">
+            Existeixen espectacles teatralitzats amb rikishi reals, explicació del ritual i fotografies. Menys autèntic que els heya, però accessible. Operadors habituals: Sumo Entertainment (Tokyo), alguns hotels de luxe organitzen vetllades privades. Preu aproximat: <strong style="color: var(--color-fg);">¥5,000–12,000/persona</strong>.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.75rem; margin-bottom: 0.75rem;">Entrades al basho (per a referència futura)</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 600px;">
+        Si en algun futur es visita el Japó durant un basho, aquí els preus i tipus d'entrada. El torneig dura 15 dies, de 8h del matí a les 18h. Els grans lluitadors surten de 14h en endavant.
+      </p>
+      <div style="border: 1px solid var(--color-border);">
+        {entrades.map((e, i) => (
+          <div style={`display: grid; grid-template-columns: 280px 120px 1fr; gap: 1.5rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === entrades.length - 1 ? 'border-bottom: none;' : ''}`}>
+            <p style="font-size: 0.875rem; font-weight: 600;">{e.tipus}</p>
+            <p style="font-size: 0.9375rem; font-weight: 800; color: var(--color-accent);">{e.preu}</p>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{e.desc}</p>
+          </div>
+        ))}
+      </div>
+      <p style="font-size: 0.75rem; color: var(--color-muted); margin-top: 0.75rem;">
+        Compra oficial: ticket.sumo.or.jp · Les entrades tamari-seki s'esgoten mesos abans. Les de jiyuseki el dia del torneig.
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section>
+      <h2 style="font-size: 1.75rem; margin-bottom: 2rem;">Coses que val la pena saber</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {curiositats.map(c => (
+          <div style="background: var(--color-bg); padding: 1.5rem;">
+            <h3 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.625rem;">{c.titol}</h3>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.7;">{c.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</Layout>
