@@ -1,55 +1,158 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+const minerals = [
+  { tipus: "Sulfurós (硫黄泉)", efecte: "Pell, respiratori", color: "Blanc lletós o transparent", on: "Hakone, Beppu, Noboribetsu", desc: "Olor a ou podrit inconfusible. Excel·lent per a problemes de pell i vies respiratòries. L'onsen de sofre clàssic japonès." },
+  { tipus: "Bicarbonat sòdic (重曹泉)", efecte: "Suavitza la pell", color: "Transparent o lleugera terbolesa", on: "Kyoto, Arima (Osaka)", desc: "Ara de la pell suau. L'aigua fa escuma lleugerament. L'onsen de l'esteticiesta." },
+  { tipus: "Clorur sòdic (塩化物泉)", efecte: "Escalfa, reté calor", color: "Transparent", on: "Costa del Pacífic, Kinosaki", desc: "L'efecte dura hores. El cos manté la calor llarg temps après. L'onsen hivernal per excel·lència." },
+  { tipus: "Carbònic (炭酸泉)", efecte: "Circulació, pressió arterial", color: "Transparent amb bombolles", on: "Aso (Kumamoto), alguns sento urbans", desc: "L'onsen de les bombolles. Sensació efervescent a la pell. Molt buscats pels japonesos majors." },
+  { tipus: "Ferro (含鉄泉)", efecte: "Anèmia, articulacions", color: "Vermell rovell o groc", on: "Arima (兵庫), nord de Honshū", desc: "Tenyeix la roba i la pell lleugerament. L'Arima 'kin-sen' (font d'or) és el més famós del Japó." },
+  { tipus: "Fang (泥湯)", efecte: "Pell profunda", color: "Marró turba", on: "Beppu (大分), Akan (Hokkaido)", desc: "Immersió en fang mineral calent. Efec­te exfoliant i mineral intens. L'espectacle dels 'jigoku' de Beppu." },
+];
+
+const ofuroRitual = [
+  { pas: "01", titol: "Rentar-se fora de la banyera", desc: "La norma absoluta. Primer dutxa completa assegut a l'escambell baix, amb l'esprai de mà. Cap sabó, cap brutícia ni cap germ entra mai a l'ofuro. Surt de la dutxa completament net." },
+  { pas: "02", titol: "Entrar a l'ofuro", desc: "L'aigua és a 40–42°C. T'hi poses a seure lentament — el cos s'adapta al calor. La postura és vertical, amb les cames doblades. La profunditat (60–70 cm) garanteix que el cos queda submergit fins als muscles." },
+  { pas: "03", titol: "Remull — 10 a 20 minuts", desc: "No és per netejar-se. És el temps de descompressió: el calor dilata els vasos sanguinis, els músculs es relaxen, la pressió arterial baixa. El japonès surt de la feina i va directe a l'ofuro. La família espera." },
+  { pas: "04", titol: "Compartir l'aigua", desc: "La mateixa aigüa serveix per a tota la família. Ordre tradicional: pare, mare, fills per edat. L'equipament modern re-escalfa i filtra l'aigüa automàticament entre usos. L'aigüa rarament es canvia cada dia." },
+  { pas: "05", titol: "La sala de bany japonesa", desc: "Sempre separada del lavabo. El terra és tot drenant: dutxes, escambell baix, esprai de mà, sabonera, xampu. Tot s'utilitza assegut a terra. L'ofuro és al cantó, encastat. La calefacció del sòl és habitual." },
+];
+
+const costruccio = [
+  {
+    element: "La banyera de immersió",
+    subtitol: "El cor del bany japonès",
+    detall: "Profunditat mínima 60 cm, òptima 65–70 cm. Mides habituals: 70×80 cm o 80×100 cm (la planta és petita; la profunditat és tot). Materials:",
+    opcions: [
+      { nom: "Hinoki (檜 — xiprer japonès)", preu: "€3.500–9.000", pros: "Aroma inigualable, antibacterià natural, calenta al tacte", contres: "Manteniment alt (oli cada mes), s'ha de mantenir humit" },
+      { nom: "Acrílica profunda (estil europeu)", preu: "€400–1.200", pros: "Fàcil manteniment, molta varietat", contres: "Sense l'estètica ni l'olor del hinoki" },
+      { nom: "Acer inoxidable (estil sento)", preu: "€800–2.500", pros: "Durabilitat màxima, aspecto industrial elegant", contres: "Freda al tacte inicialment, requereix aïllament" },
+      { nom: "Pedra o pissarra (construcció a mida)", preu: "€2.000–6.000", pros: "Integrada a l'arquitectura, exclusiva", contres: "Construcció complexa, perd calor ràpid sense aïllament" },
+    ]
+  },
+  {
+    element: "La zona de dutxa/rentat",
+    subtitol: "Separada de la banyera, al mateix espai",
+    detall: "L'element que més diferencia un bany japonès del nostre. Tota la zona de dutxa és terra drenant (com una dutxa de obra sense mamparas). Necessites:",
+    opcions: [
+      { nom: "Terra continu amb pendent cap al desguàs", preu: "Part de l'obra", pros: "Tot l'espai és zona de dutxa", contres: "Cal impermeabilització perfecta i pendent ben calculat" },
+      { nom: "Escambell baix japonès (ofuro-isu)", preu: "€20–80", pros: "Imprescindible: es dutxa assegut a terra, a baixa alçada", contres: "—" },
+      { nom: "Esprai de mà amb mànec llarg (baixa alçada)", preu: "€40–150", pros: "L'aixeta principal va a 30–40 cm del terra, estil japonès", contres: "Cal replanejar la instal·lació si parteixes d'un bany existent" },
+    ]
+  },
+  {
+    element: "Sistema de calefacció de l'aigua",
+    subtitol: "El que manté l'onsen a temperatura",
+    detall: "El sistema japonès (furo-kanri) re-escalfa i filtra l'aigüa de la banyera entre usos. A Catalunya tens tres opcions:",
+    opcions: [
+      { nom: "Caldesa a gas amb circuit dedicat (Rinnai, Noritz)", preu: "€800–1.500", pros: "Els mateixos fabricants japonesos d'ofuro. Disponible a Europa. Eficiència alta, re-escalfa ràpid.", contres: "Requereix gas natural o propà" },
+      { nom: "Bomba de calor aerotèrmica", preu: "€1.500–3.500", pros: "La solució més eficient energèticament. Funciona amb electricitat. Ideal si tens plaques solars.", contres: "Instal·lació més complexa" },
+      { nom: "Resistència elèctrica inline", preu: "€200–500", pros: "Senzill d'instal·lar", contres: "Consum alt, lenta per re-escalfar grans volums" },
+    ]
+  },
+];
+
+const pressupost = [
+  { partida: "Obra bàsica (impermeabilització, desguassos, sòl)", preu: "€2.000–5.000" },
+  { partida: "Banyera de immersió (acrílica o acer)", preu: "€600–2.500" },
+  { partida: "Banyera de hinoki (opcional)", preu: "€3.500–9.000" },
+  { partida: "Sistema de calefacció de l'aigua", preu: "€800–3.500" },
+  { partida: "Revestiments (pissarra, bambú, taulell neutre)", preu: "€1.500–4.000" },
+  { partida: "Escambell, esprai baix, accessoris japonesos", preu: "€150–500" },
+  { partida: "TOTAL sense hinoki", preu: "€5.000–15.000" },
+  { partida: "TOTAL amb banyera de hinoki", preu: "€10.000–22.000" },
+];
+
+const destins = [
+  {
+    lloc: "Hakone",
+    distancia: "90 min des de Tokyo (Romancecar o JR)",
+    desc: "La destinació onsen més popular prop de Tokyo. Vistes al Mont Fuji des de molts ryokan. Recomanació: ryokan a Miyanoshita o Gora amb bany privat exterior (rotenburo). Bona excursió d'un o dos dies."
+  },
+  {
+    lloc: "Kinosaki Onsen",
+    distancia: "2h30 de Kyoto (JR Kinosaki Limited Express)",
+    desc: "El poble onsen més bell del Japó. 7 sento públics distribuïts pel poble. La tradició: allotjar-se a un ryokan, vestir yukata i passejar de sento en sento. Atmosfera de l'era Edo perfectament preservada."
+  },
+  {
+    lloc: "Beppu (Kyushu)",
+    distancia: "Fora de la ruta principal",
+    desc: "La capital dels onsen del Japó: 9 tipus d'aigüa termal. Els 'Hells of Beppu' (jigoku) son piscines d'aigüa bullint de colors impressionants. Fang, sofre, cobalt… No apte per als nervis però espectacular."
+  },
+  {
+    lloc: "Onsen al ryokan (durant el viatge)",
+    distancia: "Integrat als hotels",
+    desc: "La major part dels ryokans de qualitat inclouen onsen privat a l'habitació (rotenburo privat) i/o bany comunal. La manera més íntima de viure l'experiència sense desplaçar-te expressament."
+  },
+];
 ---
-<Layout title="Banys japonesos i Toto" description="Onsen, sento i com importar un Toto Washlet" section="japo">
+<Layout title="Banys japonesos" description="Onsen, sento, l'ofuro a casa i com construir un bany japonès a Catalunya" section="japo">
   <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
 
     <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
       <a href="/japo" style="color: var(--color-muted);">Japó</a>
       <span>→</span>
-      <span style="color: var(--color-fg);">Banys i Toto</span>
+      <span style="color: var(--color-fg);">Banys</span>
     </nav>
 
-    <p class="label" style="margin-bottom: 1.25rem;">Cultura · Benestar · Importació</p>
+    <p class="label" style="margin-bottom: 1.25rem;">Cultura · Ritual · Arquitectura</p>
     <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Banys japonesos</h1>
-    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 560px; margin-bottom: 3rem;">
-      El bany al Japó és una institució cultural. Dels onsen volcànics a les latines comunals (sento), el ritual del bany japonès és una de les experiències més autèntiques del viatge. I si t'enamores dels lavabos, t'expliquem com importar un Toto Washlet a Catalunya.
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 580px; margin-bottom: 3rem; line-height: 1.75;">
+      Al Japó, banyar-se no és higiene. És ritual, filosofia i arquitectura. De l'onsen volcànic al racó d'ofuro a l'apartament de Tokyo, l'aigüa calenta estructura la vida quotidiana japonesa d'una manera que cap altra cultura occidental ha replicat.
     </p>
 
     <div class="divider"></div>
 
-    <section style="margin-bottom: 3rem;">
-      <p class="label" style="margin-bottom: 1.5rem;">Onsen — aigüa termal volcànica</p>
-      <div class="info-block" style="margin-bottom: 1.5rem;">
-        <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;">Regla fonamental</p>
-        <p style="font-size: 0.875rem; color: var(--color-muted);">
-          La majoria d'onsen públics prohibeixen l'entrada a persones amb tatuatges. Si en tens, busca onsen privats (kashikiri onsen) on es lloga la banyera per a ús exclusiu. Cada vegada hi ha més onsen que admeten tatuatges (tatuagem OK onsen) — consultar abans.
-        </p>
+    <!-- QUÈ ÉS UN ONSEN -->
+    <section style="margin-bottom: 5rem;">
+      <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem;">
+        <h2 style="font-size: 1.875rem;">L'onsen</h2>
+        <span style="font-size: 1.25rem; color: var(--color-muted);">温泉</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 640px; line-height: 1.75;">
+        Un onsen és un bany d'aigüa termal natural que prové de l'activitat volcànica del subsòl japonès. Perquè una font sigui reconeguda legalment com a onsen, l'aigüa ha de sortir a més de 25°C i contenir almenys un dels 19 minerals designats per la llei japonesa de 1948. Hi ha més de 27.000 fonts termals registrades al Japó.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem;">
+        <div>
+          <p class="label" style="margin-bottom: 1rem;">Com és físicament</p>
+          <div style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.8;">
+            <p style="margin-bottom: 0.875rem;">L'espai exterior (<strong style="color: var(--color-fg);">rotenburo</strong>) és el més desitjat: roques naturals, bambú, vapor que s'eleva a l'aire fred. L'aigüa va de transparent a blanca lletosa o rovellada segons els minerals. L'ambient és silenci, no relaxació forçada.</p>
+            <p style="margin-bottom: 0.875rem;">L'interior (<strong style="color: var(--color-fg);">uchifuro</strong>) sol tenir parets d'estuc blanc o pedra natural, llum tènue i finestres cap al jardí. La ventilació és clau: l'humitat alta és part de l'experiència.</p>
+            <p>La temperatura habitual: <strong style="color: var(--color-fg);">40–44°C</strong> per a onsen estàndard. Els sulfurosos poden arribar a 46°C. Els de carboni (bombolles) solen ser més frescos, 35–38°C.</p>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom: 1rem;">Protocol</p>
+          <ol style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.8; list-style: decimal; padding-left: 1.25rem;">
+            <li style="margin-bottom: 0.5rem;">Roba i objectes als armaris del vestidor.</li>
+            <li style="margin-bottom: 0.5rem;">Dutxa completa a les zones individuals (sabó i xampú sempre inclosos). Entrar-hi net és obligació, no costum.</li>
+            <li style="margin-bottom: 0.5rem;">La tovallola petita va al cap o plegada al cantó. Mai dins de l'aigüa.</li>
+            <li style="margin-bottom: 0.5rem;">Entrar lentament. Submergir-se fins als muscles. El cos triga 2–3 minuts a adaptar-se.</li>
+            <li style="margin-bottom: 0.5rem;">Silenci o veu baixa. El cabell recollit. No submergir el cap.</li>
+            <li>Sortir, assecar-se, beure aigüa. L'onsen deshidrata significativament.</li>
+          </ol>
+          <div class="info-block" style="margin-top: 1rem;">
+            <p style="font-size: 0.8125rem; color: var(--color-muted); margin: 0;"><strong>Tatuatges:</strong> la majoria d'onsen públics els prohibeixen per tradició xintoista. Busca onsen privats de lloguer (<em>kashikiri</em>) o consulta prèviament. Cada vegada hi ha més "tatuagem OK onsen".</p>
+          </div>
+        </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border); margin-bottom: 1.5rem;">
-        {[
-          {
-            lloc: "Hakone",
-            distancia: "90 min des de Tokyo (Romancecar o JR)",
-            desc: "La destinació onsen més popular prop de Tokyo. Vistes al Mont Fuji des de molts ryokan. Recomanació: ryokan a Miyanoshita o Gora amb bany privat exterior (rotenburo). Bona excursió d'un o dos dies."
-          },
-          {
-            lloc: "Kinosaki Onsen",
-            distancia: "2h30 de Kyoto (JR Kinosaki Limited Express)",
-            desc: "El poble onsen més bell del Japó. 7 sento públics distribuïts pel poble. La tradició: allotjar-se a un ryokan, vestir yukata i passejar de sento en sento. Atmosfera de l'era Edo perfectament preservada."
-          },
-          {
-            lloc: "Beppu (Kyushu)",
-            distancia: "Fora de la ruta principal",
-            desc: "La capital dels onsen del Japó: 9 tipus d'aigüa termal (sulfs, fang, blava, vermella...). Els 'Hells of Beppu' (jigoku) son piscines d'aigüa bullint de colors. No apte per als nervis però espectacular."
-          },
-          {
-            lloc: "Onsen a ryokan (durant el viatge)",
-            distancia: "Integrat als hotels",
-            desc: "La major part dels ryokans de qualitat (Hakone, Kinosaki, Kyoto) inclouen onsen privat a l'habitació (rotenburo privat) i/o bany comunal. Prova l'experiència aquí sense haver de desplaçar-te expressament."
-          }
-        ].map(v => (
+      <p class="label" style="margin-bottom: 1rem;">Tipus d'aigüa mineral</p>
+      <div style="border: 1px solid var(--color-border);">
+        {minerals.map((m, i) => (
+          <div style={`display: grid; grid-template-columns: 180px 100px 140px 1fr; gap: 1rem; padding: 0.875rem 1.25rem; align-items: center; ${i < minerals.length - 1 ? 'border-bottom: 1px solid var(--color-border);' : ''}`}>
+            <span style="font-size: 0.875rem; font-weight: 700;">{m.tipus}</span>
+            <span class="tag">{m.efecte}</span>
+            <span style="font-size: 0.75rem; color: var(--color-muted);">{m.color}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{m.desc}</span>
+          </div>
+        ))}
+      </div>
+
+      <p class="label" style="margin-bottom: 1rem; margin-top: 2.5rem;">On anar durant el viatge</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {destins.map(v => (
           <div class="card" style="background: var(--color-bg); pointer-events: none;">
             <h4 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.25rem;">{v.lloc}</h4>
             <p style="font-size: 0.75rem; color: var(--color-accent); margin-bottom: 0.625rem;">{v.distancia}</p>
@@ -57,72 +160,159 @@ import Layout from '../../layouts/Layout.astro';
           </div>
         ))}
       </div>
-
-      <p class="label" style="margin-bottom: 1rem;">Protocol onsen</p>
-      <div class="info-block neutral">
-        <ol style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.85; list-style: decimal; padding-left: 1.25rem;">
-          <li>Deixar la roba i els objectes als armaris del vestidor.</li>
-          <li>Dutxar-se a les zones de dutxa individuals amb sàpun i xampú (sempre proporcionats).</li>
-          <li>Entrar a l'onsen net. Sense tovallola dins de l'aigüa (la petita va plegada al cap o al cantó).</li>
-          <li>Submergir-se lentament. L'aigüa pot ser molt calenta (40–46°C). Sortir si es mareja.</li>
-          <li>No parlà en veu alta. Submergir el cap (el cabell va recollit).</li>
-          <li>Sortir, assecar-se i hidratar-se (l'onsen deshidrata).</li>
-        </ol>
-      </div>
     </section>
 
-    <section style="margin-bottom: 3rem;">
-      <p class="label" style="margin-bottom: 1.5rem;">Sento — bany públic urbà</p>
-      <div style="padding: 1.5rem 0; border-bottom: 1px solid var(--color-border);">
-        <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
-          El sento és el bany públic de barri, una institució que conviu amb la vida quotidiana japonesa des de fa segles. A diferència de l'onsen (aigüa termal natural), el sento utilitza aigüa escalfada però pot tenir sals minerals o herbes. Entrada: ¥500–800. Perfecte per a una nit a qualsevol barri de Tokyo o Kyoto. Buscar: "sento near me" a Google Maps. Recomanació: Daikoku-yu a Sumida (Tokyo), Saratoga Onsen a Kyoto.
-        </p>
+    <!-- SENTO -->
+    <section style="margin-bottom: 5rem;">
+      <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem;">
+        <h2 style="font-size: 1.875rem;">El sento</h2>
+        <span style="font-size: 1.25rem; color: var(--color-muted);">銭湯</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1.5rem; max-width: 640px; line-height: 1.75;">
+        El bany públic de barri. No és aigüa termal: és aigüa municipal escalfada, de vegades amb sals minerals o herbes. Però la funció social és idèntica a l'onsen: un espai neutral on el metge i l'obrer, el vell i el jove, es submergeixen en la mateixa aigüa calenta sense jerarquies.
+      </p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <div style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.8;">
+          <p style="margin-bottom: 0.875rem;">El sento tradicional té un vestidor amb armaris de clau, una sala principal dividida per sexes amb fileres de dutxes individuals a terra (mai de peu) i la banyera comunal al fons. Molts conserven el taulell central on l'attendant veu les dues zones alhora.</p>
+          <p>Els sento moderns (<em>super sento</em>) afegeixen jacuzzi, sauna, aigüa freda, zona de descans. L'entrada: <strong style="color: var(--color-fg);">¥500–800</strong>. El sabó i el xampú es compren o es porten.</p>
+        </div>
+        <div style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.8;">
+          <p style="margin-bottom: 0.875rem;"><strong style="color: var(--color-fg);">Com trobar-ne un:</strong> "銭湯" o "sento near me" a Google Maps. Quasi sempre hi ha un al barri, fins i tot a Tokyo. L'horari habitual és de les 15h a les 24h.</p>
+          <p><strong style="color: var(--color-fg);">Recomanacions:</strong> Daikoku-yu a Sumida (Tokyo, arquitectura Edo preservada), Komachi-no-yu a Kyoto (petit i autèntic), Thermae-yu a Shinjuku (gran i accessible als turistes, obert 24h els cap de setmana).</p>
+        </div>
       </div>
     </section>
 
     <div class="divider"></div>
 
-    <section style="margin-bottom: 3rem;">
-      <p class="label" style="margin-bottom: 1.5rem;">Toto Washlet — importar a Catalunya</p>
-      <div class="info-block" style="margin-bottom: 1.5rem;">
-        <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;">El problema del voltatge</p>
-        <p style="font-size: 0.875rem; color: var(--color-muted);">
-          El Japó usa 100V / 50-60Hz. Espanya usa 230V / 50Hz. Els Toto washlets japonesos no funcionen directament a Espanya sense un transformador de 2kW (els washlets consumeixen 1,200–1,400W). A més, els seients japonesos poden tenir dimensions lleugerament diferents als inodors europeus. <strong>Recomanació:</strong> comprar el model europeu de Toto, fabricat per a 230V i dissenyat per a inodors europeus.
-        </p>
+    <!-- L'OFURO A CASA -->
+    <section style="margin-bottom: 5rem;">
+      <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem;">
+        <h2 style="font-size: 1.875rem;">L'ofuro a casa</h2>
+        <span style="font-size: 1.25rem; color: var(--color-muted);">お風呂</span>
       </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 0.75rem; max-width: 640px; line-height: 1.75;">
+        El japonès no es dutxa. Es banya. Cada nit, sense excepcions. L'ofuro — la banyera domèstica — és petita però profunda: el propòsit no és netejar-se sinó remullar-se. La neteja ve primer, a la zona de dutxa. L'ofuro és la recompensa.
+      </p>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2.5rem; max-width: 640px; line-height: 1.75;">
+        La sala de bany japonesa sempre és separada del lavabo (wc). Que els europeus combinin lavabo i bany dins del mateix espai sembla als japonesos tan estrany com cuinar al bany.
+      </p>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border); margin-bottom: 1.5rem;">
-        {[
-          {
-            opcio: "Comprar Toto model europeu",
-            recomanat: true,
-            desc: "TOTO Europa (eu.toto.com) distribueix la sèrie RW per a 230V. Disponible a través d'importadors a Espanya. Preu: €800–2,500. Compatible amb connexions europees. Garantia europea. La millor opció."
-          },
-          {
-            opcio: "Importar model japonès + transformador",
-            recomanat: false,
-            desc: "Comprar un Toto S7A o S9A al Japó (¥100,000–300,000 + enviament ~¥30,000) i instal·lar un transformador de 2,000VA (€80–150). Funciona però el transformador fa soroll i el servei tècnic és inexistent a Espanya."
-          }
-        ].map(v => (
-          <div class="card" style="background: var(--color-bg); pointer-events: none;">
-            <div style="display: flex; align-items: center; gap: 0.625rem; margin-bottom: 0.625rem;">
-              <h4 style="font-size: 0.9375rem; font-weight: 700;">{v.opcio}</h4>
-              {v.recomanat && <span class="tag accent">Recomanat</span>}
+      <p class="label" style="margin-bottom: 1.5rem;">El ritual — pas a pas</p>
+      <div style="border: 1px solid var(--color-border); margin-bottom: 2.5rem;">
+        {ofuroRitual.map((p, i) => (
+          <div style={`display: grid; grid-template-columns: 60px 1fr; gap: 1.5rem; padding: 1.5rem; align-items: start; ${i < ofuroRitual.length - 1 ? 'border-bottom: 1px solid var(--color-border);' : ''}`}>
+            <span style="font-size: 0.6875rem; font-weight: 800; letter-spacing: 0.1em; color: var(--color-accent);">{p.pas}</span>
+            <div>
+              <p style="font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem;">{p.titol}</p>
+              <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">{p.desc}</p>
             </div>
-            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{v.desc}</p>
           </div>
         ))}
       </div>
 
-      <p class="label" style="margin-bottom: 1rem;">Models europeus Toto recomanats</p>
-      <div style="border: 1px solid var(--color-border);">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <div class="info-block neutral">
+          <p style="font-size: 0.875rem; font-weight: 700; margin-bottom: 0.5rem;">La sala de bany japonesa</p>
+          <ul style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.8; list-style: disc; padding-left: 1.1rem;">
+            <li>Separada 100% del lavabo (wc en un espai propi)</li>
+            <li>Tot el terra és zona humida amb desguàs central</li>
+            <li>Dutxa de mà a baixa alçada (30–40 cm del terra)</li>
+            <li>Escambell baix (<em>ofuro-isu</em>) per dutxar-se assegut</li>
+            <li>Banyera profunda (60–70 cm) integrada a la paret</li>
+            <li>Parets impermeabilitzades fins al sostre</li>
+            <li>Ventilació per evitar humitat crònica</li>
+          </ul>
+        </div>
+        <div class="info-block neutral">
+          <p style="font-size: 0.875rem; font-weight: 700; margin-bottom: 0.5rem;">La tecnologia de l'ofuro</p>
+          <ul style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.8; list-style: disc; padding-left: 1.1rem;">
+            <li>Ompliment automàtic a temperatura programada</li>
+            <li>Re-escalfament entre usos (el mateix bany per a tota la família)</li>
+            <li>Alarma quan l'aigüa és a punt (anunci de veu)</li>
+            <li>Control des del mòbil (models Rinnai/Noritz recents)</li>
+            <li>Funció de mantenir temperatura durant hores</li>
+            <li>Filtratge bàsic de l'aigüa compartida</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- COM CONSTRUIR A CATALUNYA -->
+    <section style="margin-bottom: 5rem;">
+      <h2 style="font-size: 1.875rem; margin-bottom: 0.5rem;">Construir un bany japonès a Catalunya</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 0.5rem; max-width: 640px; line-height: 1.75;">
+        És perfectament viable. No necessites res exòtic ni difícil d'aconseguir: és una qüestió de reorganitzar l'espai i triar els elements correctes. La clau és entendre que un bany japonès no és un bany europeu amb una banyera diferent — és una sala dissenyada per al ritual del remull, on la zona de dutxa i la zona d'immersió conviuen però no es confonen.
+      </p>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2.5rem; max-width: 640px; line-height: 1.75;">
+        Espai mínim recomanat: <strong style="color: var(--color-fg);">4 m²</strong> (idealment 5–6 m²). El lavabo en un espai independent (o almenys separat per una porta).
+      </p>
+
+      {costruccio.map((bloc, bi) => (
+        <div style="margin-bottom: 3rem;">
+          <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.25rem;">
+            <h3 style="font-size: 1.25rem; font-weight: 800;">{bloc.element}</h3>
+          </div>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); margin-bottom: 0.5rem;">{bloc.subtitol}</p>
+          <p style="font-size: 0.875rem; color: var(--color-muted); margin-bottom: 1.25rem; line-height: 1.7;">{bloc.detall}</p>
+          <div style="border: 1px solid var(--color-border);">
+            {bloc.opcions.map((o, i) => (
+              <div style={`display: grid; grid-template-columns: 220px 120px 1fr 1fr; gap: 1rem; padding: 1rem 1.25rem; align-items: start; ${i < bloc.opcions.length - 1 ? 'border-bottom: 1px solid var(--color-border);' : ''}`}>
+                <span style="font-size: 0.875rem; font-weight: 700;">{o.nom}</span>
+                <span style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent);">{o.preu}</span>
+                <span style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;"><strong style="color:var(--color-fg);">✓</strong> {o.pros}</span>
+                <span style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{o.contres ? <><strong style="color:var(--color-accent);">—</strong> {o.contres}</> : '—'}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <p class="label" style="margin-bottom: 1rem;">Pressupost orientatiu (Catalunya, 2025–2026)</p>
+      <div style="border: 1px solid var(--color-border); margin-bottom: 1.5rem;">
+        {pressupost.map((p, i) => (
+          <div style={`display: grid; grid-template-columns: 1fr 160px; gap: 1rem; padding: 0.875rem 1.25rem; ${i < pressupost.length - 1 ? 'border-bottom: 1px solid var(--color-border);' : ''} ${i >= pressupost.length - 2 ? 'font-weight: 700;' : ''}`}>
+            <span style={`font-size: 0.9rem; ${i >= pressupost.length - 2 ? 'color: var(--color-fg);' : 'color: var(--color-muted);'}`}>{p.partida}</span>
+            <span style={`font-size: 0.9rem; text-align: right; ${i >= pressupost.length - 2 ? 'color: var(--color-accent);' : 'color: var(--color-muted);'}`}>{p.preu}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="info-block neutral">
+        <p style="font-size: 0.875rem; font-weight: 700; margin-bottom: 0.5rem;">On comprar la banyera de hinoki a Europa</p>
+        <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.7; margin: 0;">Fabricants europeus especialitzats: <strong style="color: var(--color-fg);">Bartok Design</strong> (Itàlia, envia a Espanya), <strong style="color: var(--color-fg);">Japanese Bath House</strong> (UK), i importadors directes de Japó via Rakuten Global. La fusta de hinoki necessita un tractament amb oli de tung cada 3–4 setmanes el primer any, mensual a partir d'aleshores. S'ha de mantenir lleugerament humida quan no s'usa (deixar-hi una mica d'aigüa) per evitar que s'esquerdi. Dura décadas si es manté correctament.</p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- TOTO -->
+    <section style="margin-bottom: 3rem;">
+      <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem;">
+        <h2 style="font-size: 1.875rem;">Toto Washlet</h2>
+        <span style="font-size: 0.875rem; color: var(--color-muted); font-weight: 600; letter-spacing: 0.1em;">TOTO · ウォシュレット</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1.5rem; max-width: 620px; line-height: 1.75;">
+        El lavabo japonès és un tema a part. El Toto Washlet és estàndard a gairebé tots els lavabos del Japó, dels hotels de luxe als combinis. Si t'enamores de l'experiència, es pot importar a Catalunya.
+      </p>
+
+      <div class="info-block" style="margin-bottom: 1.5rem;">
+        <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;">El problema del voltatge</p>
+        <p style="font-size: 0.875rem; color: var(--color-muted);">
+          El Japó usa 100V / 50-60Hz. Catalunya usa 230V / 50Hz. Els Toto japonesos no funcionen directament a Europa sense transformador de 2kW. <strong>Recomanació:</strong> comprar el model europeu Toto, fabricat per a 230V i dimensions d'inodor europees.
+        </p>
+      </div>
+
+      <div style="border: 1px solid var(--color-border); margin-bottom: 1.5rem;">
         {[
-          { model: "Toto RW 105", preu: "~€900", desc: "El model d'entrada europeu. Bidet integrat, assecador d'aire, seient escalfat, desodoritzador. Compatible 230V." },
-          { model: "Toto RW 305", preu: "~€1,500", desc: "Mig-gamma. Afegeix control de temperatura de l'aigüa instantani, mode d'estalvi energètic i mampara posterior." },
-          { model: "Toto RW 505", preu: "~€2,200", desc: "Alta gamma europeu. Pàncol automàtic (s'obre i tanca sol), detector de presència, neteja automàtica del canonet. El més proper a l'experiència japonesa." },
-          { model: "Toto MH (per a Neorest)", preu: "€4,000+", desc: "Inodor sencer amb washlet integrat. Disseny japonès d'una peça, sense juntures. Requereix instal·lació de fontaner especialitzat." },
+          { model: "Toto RW 105", preu: "~€900", desc: "Model d'entrada europeu. Bidet integrat, assecador d'aire, seient escalfat, desodoritzador. 230V natiu." },
+          { model: "Toto RW 305", preu: "~€1.500", desc: "Mig-gamma. Temperatura instantània, mode estalvi energètic, mampara posterior." },
+          { model: "Toto RW 505", preu: "~€2.200", desc: "Alta gamma europea. Tapa automàtica, detector de presència, neteja automàtica del canonet." },
+          { model: "Toto Neorest (inodor complet)", preu: "€4.000+", desc: "Inodor sencer amb washlet integrat. Disseny japonès d'una peça. Requereix fontaner especialitzat." },
         ].map((v, i) => (
-          <div style={`display: grid; grid-template-columns: 1fr 100px 1.5fr; gap: 1rem; padding: 0.875rem 1.25rem; border-bottom: 1px solid var(--color-border); ${i === 3 ? 'border-bottom: none;' : ''}`}>
+          <div style={`display: grid; grid-template-columns: 160px 100px 1fr; gap: 1rem; padding: 0.875rem 1.25rem; ${i < 3 ? 'border-bottom: 1px solid var(--color-border);' : ''}`}>
             <span style="font-size: 0.9375rem; font-weight: 600;">{v.model}</span>
             <span style="font-size: 0.875rem; color: var(--color-accent); font-weight: 600;">{v.preu}</span>
             <span style="font-size: 0.8125rem; color: var(--color-muted);">{v.desc}</span>
@@ -130,9 +320,9 @@ import Layout from '../../layouts/Layout.astro';
         ))}
       </div>
 
-      <div class="info-block neutral" style="margin-top: 0;">
+      <div class="info-block neutral">
         <p style="font-size: 0.875rem; color: var(--color-muted);">
-          <strong>On comprar a Espanya:</strong> TOTO Europa distribueix via importadors seleccionats. Buscar "Toto washlet distribuidor España" per trobar el punt de venda més proper. A Barcelona: algunes reformes de bany d'alta gamma ja l'instal·len. Si vols veure-ho al viu abans del viatge, els hotels de luxe a Tokyo el tenenu a cada habitació.
+          <strong>On comprar a Catalunya:</strong> TOTO Europa distribueix via importadors seleccionats. A Barcelona algunes empreses de reforma de bany d'alta gamma ja l'instal·len. Si vols provar-lo abans de comprar, tots els hotels de categoria al Japó el tenen a cada habitació.
         </p>
       </div>
     </section>
