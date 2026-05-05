@@ -68,23 +68,23 @@ const altres = [
   {
     marca: "Seiko",
     models: [
-      { ref: "SLA021J1", nom: "Prospex 62MAS Reissue", preu: "¥130,000", img: "/img/rellotges/seiko-62mas.jpg", desc: "Reedició del primer diver Seiko del 1965. JDM exclusiu. Llegenda absoluta de la rellotgeria de bussejadors." },
-      { ref: "SPB143J1", nom: "Prospex Shogun", preu: "¥55,000", img: "/img/rellotges/seiko-shogun.jpg", desc: "Titani, 200m WR, llegible sota l'aigua. Versió JDM amb esfera d'arrodoniment únic." },
-      { ref: "SARY193", nom: "Presage Cocktail 'Grasshopper'", preu: "¥65,000", img: "/img/rellotges/seiko-grasshopper.jpg", desc: "Esfera sunburst verd bosc. Inspirat en el còctel Grasshopper de l'era Showa. Exclusiu al Japó." },
+      { ref: "SLA021J1", nom: "Prospex 62MAS Reissue", preu: "¥130,000", euros: "~€790", img: "/img/rellotges/seiko-62mas.jpg", desc: "Reedició del primer diver Seiko del 1965. JDM exclusiu. Llegenda absoluta de la rellotgeria de bussejadors." },
+      { ref: "SPB143J1", nom: "Prospex Shogun", preu: "¥55,000", euros: "~€335", img: "/img/rellotges/seiko-shogun.jpg", desc: "Titani, 200m WR, llegible sota l'aigua. Versió JDM amb esfera d'arrodoniment únic." },
+      { ref: "SARY193", nom: "Presage Cocktail 'Grasshopper'", preu: "¥65,000", euros: "~€395", img: "/img/rellotges/seiko-grasshopper.jpg", desc: "Esfera sunburst verd bosc. Inspirat en el còctel Grasshopper de l'era Showa. Exclusiu al Japó." },
     ]
   },
   {
     marca: "Casio G-Shock",
     models: [
-      { ref: "GW-M5610U", nom: "Square G-Shock", preu: "¥22,000", img: "/img/rellotges/gshock-m5610.jpg", desc: "El G-Shock original i perfecte. Solar + radio-controlled. Versió japonesa amb cal·libres JIS." },
-      { ref: "MRG-B5000", nom: "MRG Full Metal", preu: "¥220,000", img: "/img/rellotges/gshock-mrg.jpg", desc: "El G-Shock de titani i sapfir. L'extrem del G-Shock: resistència militar amb acabats de rellotgeria suïssa." },
+      { ref: "GW-M5610U", nom: "Square G-Shock", preu: "¥22,000", euros: "~€135", img: "/img/rellotges/gshock-m5610.jpg", desc: "El G-Shock original i perfecte. Solar + radio-controlled. Versió japonesa amb cal·libres JIS." },
+      { ref: "MRG-B5000", nom: "MRG Full Metal", preu: "¥220,000", euros: "~€1,335", img: "/img/rellotges/gshock-mrg.jpg", desc: "El G-Shock de titani i sapfir. L'extrem del G-Shock: resistència militar amb acabats de rellotgeria suïssa." },
     ]
   },
   {
     marca: "Citizen",
     models: [
-      { ref: "NB3020-08E", nom: "Campanola Ecriture", preu: "¥440,000", img: "/img/rellotges/citizen-campanola.jpg", desc: "La línia exclusivament japonesa de Citizen. Rellotge musical amb carillons. Absolutament desconegut fora del Japó." },
-      { ref: "CC9010-64E", nom: "Attesa Act Line", preu: "¥150,000", img: "/img/rellotges/citizen-attesa.jpg", desc: "Titani, Eco-Drive solar, GPS atomic timekeeping. El rellotge professional japonès per excel·lència." },
+      { ref: "NB3020-08E", nom: "Campanola Ecriture", preu: "¥440,000", euros: "~€2,670", img: "/img/rellotges/citizen-campanola.jpg", desc: "La línia exclusivament japonesa de Citizen. Rellotge musical amb carillons. Absolutament desconegut fora del Japó." },
+      { ref: "CC9010-64E", nom: "Attesa Act Line", preu: "¥150,000", euros: "~€910", img: "/img/rellotges/citizen-attesa.jpg", desc: "Titani, Eco-Drive solar, GPS atomic timekeeping. El rellotge professional japonès per excel·lència." },
     ]
   }
 ];
@@ -179,7 +179,10 @@ const altres = [
               </div>
               <div style="padding: 1.25rem; flex: 1;">
                 <h3 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.25rem;">{w.nom}</h3>
-                <p style="font-size: 0.875rem; color: var(--color-accent); font-weight: 700; margin-bottom: 0.5rem;">{w.preu}</p>
+                <div style="display: flex; gap: 0.5rem; align-items: baseline; margin-bottom: 0.5rem;">
+                  <span style="font-size: 0.875rem; color: var(--color-accent); font-weight: 700;">{w.euros}</span>
+                  <span style="font-size: 0.75rem; color: var(--color-muted);">{w.preu}</span>
+                </div>
                 <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{w.desc}</p>
               </div>
             </div>
@@ -193,16 +196,18 @@ const altres = [
     <section style="margin-bottom: 3rem;">
       <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Credor — la joia oculta</h2>
       <div style="display: grid; grid-template-columns: 300px 1fr; gap: 0; background: var(--color-border);">
-        <div style="background: var(--color-subtle); min-height: 280px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; overflow: hidden; position: relative;">
+        <div style="background: var(--color-subtle); height: 280px; overflow: hidden; position: relative;">
           <img
             src="/img/rellotges/credor.jpg"
             alt="Credor Seiko"
             loading="lazy"
-            style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;"
+            style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"
             onerror="this.style.display='none';"
           />
-          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.15em; color: var(--color-muted); position: relative; z-index: 1;">CREDOR</span>
-          <span style="font-size: 1.25rem; font-weight: 800; color: var(--color-fg); position: relative; z-index: 1;">by SEIKO</span>
+          <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; pointer-events: none;">
+            <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.15em; color: var(--color-muted);">CREDOR</span>
+            <span style="font-size: 1.25rem; font-weight: 800; color: var(--color-fg);">by SEIKO</span>
+          </div>
         </div>
         <div class="card" style="background: var(--color-bg); pointer-events: none;">
           <p class="label" style="margin-bottom: 0.75rem;">Exclusiu al mercat japonès · ¥500,000–5,000,000</p>
