@@ -127,4 +127,12 @@
     min-width: 2rem;
     padding-top: 0.25rem;
   }
+
+  .eur-eq {
+    font-size: 0.8em;
+    color: var(--color-muted);
+    font-weight: 400;
+    margin-left: 0.3em;
+    white-space: nowrap;
+  }
 }
