@@ -1,0 +1,221 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const parcs = [
+  {
+    nom: "Ferrari World Abu Dhabi",
+    ubicacio: "Yas Island · 30 min des del centre",
+    transport: "Taxi/Careem des del centre: ~200 AED (~€50) anada i tornada. Yas Express gratuït entre els parcs de Yas Island.",
+    preu_adult: "380 AED",
+    euros_adult: "~€95",
+    preu_nen: "290 AED",
+    euros_nen: "~€72",
+    horari: "11h–20h (juliol)",
+    tag: "Prioritat · Indoor",
+    desc: "El parc d'atraccions indoor més gran del món, sota una cúpula en forma de Ferrari. Completament climatitzat — perfecte per al juliol de 50°C. La combinació de tecnologia, velocitat i cultura Ferrari el fa únic.",
+    atraccions: [
+      { nom: "Formula Rossa", tipus: "Muntanya russa", desc: "La muntanya russa més ràpida del món: 0–240 km/h en 4,9 segons. Càrrega G de 4,8. Mínim 140cm. Ulleres de seguretat obligatòries (incloses)." },
+      { nom: "Turbo Track", tipus: "Llançadora vertical", desc: "Sortida a través del sostre de la cúpula a 100 km/h. Vistes de Yas Island des de dalt abans de la caiguda vertical." },
+      { nom: "Flying Aces", tipus: "Alta velocitat", desc: "El looping més alt del món (63m). Inspirat en l'as de l'aviació Francesco Baracca. Molt recomanada." },
+      { nom: "Fiorano GT Challenge", tipus: "Dueling coaster", desc: "Dues pistes en paral·lel, perfecte per a famílies. Mínim 110cm. La millor opció si Formula Rossa fa por." },
+      { nom: "Junior Grand Prix", tipus: "Infantil", desc: "Coches elèctrics per a nens de 3–12 anys. Pista oficial de kart petit." },
+      { nom: "Ferrari Racing Legends", tipus: "Simulador", desc: "Història visual de Ferrari des de 1947. Exposicions dels cotxes originals de Fórmula 1." },
+    ],
+    menjar: [
+      { lloc: "Mamma Rossella", tipus: "Italià · Taula", desc: "El millor restaurant del parc. Pasta fresca, pizza de forn de llenya, vins italians. Ambient tranquil.", preu: "150–250 AED (~€37–62)" },
+      { lloc: "Scuderia Ferrari Café", tipus: "Cafè · Ràpid", desc: "Cafè, pastisseria italiana, sandvitxos. A l'entrada, bo per a esmorzar o berenar.", preu: "40–90 AED (~€10–22)" },
+      { lloc: "Il Podio", tipus: "Food court", desc: "Diverses parades de menjar ràpid. Burger, pizza, asiàtic. L'opció familiar central del parc.", preu: "50–100 AED (~€12–25)" },
+    ],
+    consells: [
+      "Comprar online: 10–15% de descompte habitual respecte a la taquilla",
+      "Formula Rossa: córrer directament en arribar — les cues s'acumulen a migdia",
+      "Altura mínima Formula Rossa: 140cm. Flying Aces: 130cm. Comprovar amb els nens",
+      "El parc obre a les 11h — perfecte per aprofitar el matí en un altre lloc",
+      "Es pot combinar amb Warner Bros. World al mateix dia (sortida als voltants, Yas Express gratuït)",
+    ],
+  },
+  {
+    nom: "Warner Bros. World Abu Dhabi",
+    ubicacio: "Yas Island · al costat de Ferrari World",
+    transport: "Yas Express gratuït des de Ferrari World (5 min). Taxi des del centre: ~200 AED.",
+    preu_adult: "350 AED",
+    euros_adult: "~€87",
+    preu_nen: "265 AED",
+    euros_nen: "~€66",
+    horari: "10h–20h (juliol)",
+    tag: "Famílies · Indoor",
+    desc: "Parc indoor temàtic dividit en 6 zones inspirades en universos DC i Looney Tunes. Perfecte per a famílies amb nens de totes les edats. Completament climatitzat.",
+    atraccions: [
+      { nom: "Justice League: Warworld Attacks", tipus: "Simulador · 4D", desc: "Batman, Superman i Wonder Woman contra Steppenwolf. Un dels millors simuladors del parc." },
+      { nom: "The Riddler Revolution", tipus: "Parachute drop", desc: "Caiguda lliure en la zona de Gotham City. Bo per a majors de 10 anys." },
+      { nom: "Tom & Jerry: Swiss Cheese Spin", tipus: "Infantil", desc: "La zona Cartoon Junction és excel·lent per a nens petits. Tom & Jerry, Scooby-Doo, Bugs Bunny." },
+      { nom: "Green Lantern Galactic Odyssey", tipus: "Simulador · Flying", desc: "Simulador 3D de vol. Apte per a tota la família. Una de les atraccions estrella." },
+      { nom: "Meet & Greet", tipus: "Foto · Experiència", desc: "Batman, Superman, Wonder Woman, Bugs Bunny. Horaris publicats a l'app del parc." },
+    ],
+    menjar: [
+      { lloc: "Perry's Burgers", tipus: "Americana", desc: "Hamburgueses de qualitat. Localitzat a la zona Warner Bros. Plaza. L'opció de dinar principal del parc.", preu: "70–120 AED (~€17–30)" },
+      { lloc: "Chez Bugs Café", tipus: "Cafè · Ràpid", desc: "Temàtica de Bugs Bunny. Sandvitxos, wraps, batuts. Bo per a berenar.", preu: "40–80 AED (~€10–20)" },
+      { lloc: "Cartoon Junction Food Court", tipus: "Familiar", desc: "Diverses opcions de menjar ràpid en zona familiar. Ideal si hi ha nens exigents.", preu: "50–100 AED (~€12–25)" },
+    ],
+    consells: [
+      "Millor opció per a famílies amb nens petits: menys impactant que Ferrari World",
+      "Combinar amb Ferrari World en el mateix dia: matí Ferrari, tarda Warner Bros.",
+      "Zones DC (Batman/Superman) per a grans, Cartoon Junction per a petits",
+      "Els Meet & Greet amb superherois solen ser molt populars — anar d'hora",
+      "Comprar combo Ferrari World + Warner Bros. World: estalvi d'uns 60–80 AED (~€15–20)",
+    ],
+  },
+  {
+    nom: "Sea World Abu Dhabi",
+    ubicacio: "Yas Island · llaterat nord",
+    transport: "Yas Express gratuït des de Ferrari/WB. Taxi des del centre: ~200 AED.",
+    preu_adult: "325 AED",
+    euros_adult: "~€81",
+    preu_nen: "245 AED",
+    euros_nen: "~€61",
+    horari: "10h–21h (juliol)",
+    tag: "2023 · Menys massiu",
+    desc: "El parc marí més nou de Yas Island (inauguració 2023). 68.000 animals aquàtics en 8 mons temàtics. Sense espectacles amb animals (model de conservació). Menys gent que Ferrari o Warner Bros.",
+    atraccions: [
+      { nom: "Manta", tipus: "Roller coaster", desc: "La muntanya russa principal. Recorregut temàtic de raies manta per sobre de l'aquari. Suau i familiar." },
+      { nom: "Penguin Encounter", tipus: "Zona freda", desc: "L'ambient de l'Antàrtica climatitzat a -1°C — un respir del calor exterior. Pingüins de prop." },
+      { nom: "Infinite Oceans", tipus: "Aquari", desc: "El tanc central: taurons, raies i milers de peixos en un aquari de 25 milions de litres. Impressionant." },
+      { nom: "Wave Breaker", tipus: "Atracció aquàtica (indoor)", desc: "Jet ski ride indoor. Moll. Bo per a families." },
+    ],
+    menjar: [
+      { lloc: "The Kitchen", tipus: "Bufet internacional", desc: "El millor restaurant del parc. Bufet de plats internacionals, mariscos, salades. El dinar complet del dia.", preu: "120–180 AED (~€30–45)" },
+      { lloc: "Polar Café", tipus: "Temàtic · Ràpid", desc: "A la zona dels pingüins. Gelats, cafè i begudes calentes. Sorprenentment agradable per fer pausa.", preu: "30–70 AED (~€7–17)" },
+    ],
+    consells: [
+      "Menys cues que Ferrari i WB — inauguració recent, menys turistes habituals",
+      "Penguin Encounter: perfecte per refrescar-se a mitja tarda",
+      "No té espectacles amb animals (filosofia conservacionista) — diferent al SeaWorld americà",
+      "Ideal per a una tarda sola o combinat amb matí a Ferrari World",
+      "App del parc per als temps d'espera i horaris d'alimentació dels animals",
+    ],
+  },
+];
+
+const noRecomanat = {
+  nom: "Yas Waterworld",
+  preu: "295 AED (~€74) adult",
+  rao: "Parc aquàtic exterior. En juliol a 48°C, l'aigua assoleix 35–38°C — no refresca. Exposició solar extrema. No recomanat per a una visita de juliol. Millor alternativa: Sea World indoor.",
+};
+
+const combo = [
+  {
+    dia: "Dia 1 — 24 juliol",
+    proposta: "Ferrari World (matí, 11h–15h) + Warner Bros. World (tarda, 15h–20h)",
+    nota: "Tots dos a Yas Island, connexió gratuïta. Comprar combo per estalviar. Dinar a Mamma Rossella (Ferrari) o Perry's Burgers (WB).",
+  },
+  {
+    dia: "Dia 2 — 25 juliol",
+    proposta: "Sea World Abu Dhabi (10h–14h) + Yas Mall (14h–18h)",
+    nota: "Sea World és menys intens, bo per a un segon dia. Yas Mall al costat: compres, menjar, cinema IMAX si cal descansar.",
+  },
+];
+---
+<Layout title="Parcs d'atraccions — Abu Dhabi" description="Ferrari World, Warner Bros., Sea World: preus, on menjar i recomanacions" section="abu-dhabi">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/abu-dhabi" style="color: var(--color-muted);">Abu Dhabi</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Parcs d'atraccions</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Yas Island · 24–25 juliol 2026</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Parcs d'atraccions</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 580px; margin-bottom: 2rem;">
+      Yas Island concentra quatre grans parcs a menys de 10 minuts en Yas Express gratuït. Tots indoor o semi-indoor — imprescindible en juliol amb 48–50°C. Dos dies donen per veure'n tres còmodament.
+    </p>
+
+    <div class="info-block" style="margin-bottom: 2rem;">
+      <p style="font-size: 0.875rem; color: var(--color-muted);">
+        <strong>Consell clau:</strong> Comprar les entrades online (10–15% de descompte) i arribar quan obren. El Yas Express bus és gratuït entre Ferrari World, Warner Bros., Sea World i Yas Waterworld.
+      </p>
+    </div>
+
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.25rem; margin-bottom: 1.25rem;">Proposta per als dos dies</h2>
+      <div style="border: 1px solid var(--color-border);">
+        {combo.map((c, i) => (
+          <div style={`padding: 1.25rem; ${i === 0 ? 'border-bottom: 1px solid var(--color-border);' : ''}`}>
+            <p class="label" style="margin-bottom: 0.5rem; color: var(--color-accent);">{c.dia}</p>
+            <p style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;">{c.proposta}</p>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{c.nota}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    {parcs.map(p => (
+      <section style="margin-bottom: 4rem;">
+        <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.5rem;">
+          <h2 style="font-size: 1.75rem;">{p.nom}</h2>
+          <span class="tag accent">{p.tag}</span>
+        </div>
+        <p style="font-size: 0.875rem; color: var(--color-muted); margin-bottom: 0.25rem;">{p.ubicacio} · {p.transport}</p>
+        <p style="font-size: 0.8125rem; color: var(--color-muted); margin-bottom: 1rem;">Horari juliol: {p.horari}</p>
+
+        <div style="display: flex; gap: 2rem; align-items: baseline; margin-bottom: 1.5rem;">
+          <div>
+            <span style="font-size: 1.25rem; font-weight: 800; color: var(--color-accent);">{p.euros_adult}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted); margin-left: 0.4rem;">adult · {p.preu_adult}</span>
+          </div>
+          <div>
+            <span style="font-size: 1rem; font-weight: 700; color: var(--color-fg);">{p.euros_nen}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted); margin-left: 0.4rem;">nen · {p.preu_nen}</span>
+          </div>
+        </div>
+
+        <p style="font-size: 0.9375rem; color: var(--color-muted); line-height: 1.7; max-width: 600px; margin-bottom: 2rem;">{p.desc}</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border); margin-bottom: 2rem;">
+          {p.atraccions.map(a => (
+            <div style="background: var(--color-bg); padding: 1.25rem;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.375rem;">
+                <h3 style="font-size: 0.9375rem; font-weight: 700;">{a.nom}</h3>
+                <span class="tag" style="flex-shrink: 0; margin-left: 0.5rem;">{a.tipus}</span>
+              </div>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{a.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem;">On menjar</h3>
+        <div style="border: 1px solid var(--color-border); margin-bottom: 2rem;">
+          {p.menjar.map((m, i) => (
+            <div style={`display: grid; grid-template-columns: 180px 1fr; gap: 1rem; padding: 0.875rem 1.25rem; align-items: start; ${i < p.menjar.length - 1 ? 'border-bottom: 1px solid var(--color-border);' : ''}`}>
+              <div>
+                <span style="font-size: 0.9375rem; font-weight: 600; display: block;">{m.lloc}</span>
+                <span style="font-size: 0.75rem; color: var(--color-muted);">{m.tipus}</span>
+                <span style="font-size: 0.8125rem; color: var(--color-accent); font-weight: 600; display: block; margin-top: 0.25rem;">{m.preu}</span>
+              </div>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{m.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Consells</h3>
+        <div style="border-left: 2px solid var(--color-border); padding-left: 1.25rem;">
+          {p.consells.map(c => (
+            <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7; margin-bottom: 0.25rem;">— {c}</p>
+          ))}
+        </div>
+
+        <div class="divider"></div>
+      </section>
+    ))}
+
+    <section>
+      <div class="info-block neutral">
+        <p style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.375rem;">⚠ {noRecomanat.nom} — No recomanat per a juliol</p>
+        <p style="font-size: 0.8125rem; color: var(--color-muted);">{noRecomanat.preu} · {noRecomanat.rao}</p>
+      </div>
+    </section>
+
+  </div>
+</Layout>

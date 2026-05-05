@@ -1,0 +1,198 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const parcs = [
+  {
+    nom: "Universal Studios Japan",
+    curt: "USJ",
+    ubicacio: "Osaka · Sakurajima",
+    transport: "JR Yumesaki Line des d'Osaka Station → Universal City (5 min, ¥180)",
+    preu_adult: "¥10,800",
+    euros_adult: "~€65",
+    preu_nen: "¥7,600",
+    euros_nen: "~€46",
+    extra: "Express Pass 7: ¥21,800–28,800 (~€130–175) — quasi obligatori en temporada alta",
+    tag: "Recomanat · Osaka",
+    zones: [
+      { nom: "Super Nintendo World", desc: "Mario, Peach, Bowser. Donkey Kong Land (2024). L'atracció Mario Kart i Yoshi's Adventure. Reservar Power-Up Band online (¥4,000)." },
+      { nom: "Wizarding World of Harry Potter", desc: "Hogsmeade complet: Tren de Hogwarts, Harry Potter and the Forbidden Journey (nécessita Express Pass), Flight of the Hippogriff (apta per a nens)." },
+      { nom: "Minion Park", desc: "Minion Mayhem (simulador), Despicable Me Photo Opportunities. Menys cues. Bo per a nens petits." },
+      { nom: "One Piece · Hollywood", desc: "Atraccions temàtiques. Espectacles en viu a Hollywood Dream. Zona més relaxada del parc." },
+    ],
+    menjar: [
+      { lloc: "Three Broomsticks", zona: "Harry Potter", desc: "L'esmorzar i dinar icònic del parc. Butterbeer gelat (¥1,100), chicken feast, corn soup. Seients coberts.", preu: "¥1,000–2,500" },
+      { lloc: "The Hopping Pot", zona: "Harry Potter", desc: "Llocs de peu exterior. Pumpkin Fizz, Butterbeer calent. Ideal per a snacks entre atraccions.", preu: "¥500–1,100" },
+      { lloc: "Toadstool Cafe", zona: "Nintendo World", desc: "Question Block Tiramisu (¥980, icònic). Mushroom soup. Reserva via app official uns dies abans.", preu: "¥800–2,000" },
+      { lloc: "Park Bistro", zona: "Hollywood", desc: "Restaurant tranquil fora de les zones temàtiques. Pollo, amanides, pasta. Per descansar a migdia.", preu: "¥1,500–2,500" },
+    ],
+    consells: [
+      "Entrades en línia amb mesos d'antelació — juliol s'esgoten ràpidament",
+      "Express Pass 7 o 4 pràcticament indispensable juliol–agost",
+      "Arribar a les 8:30h (30 min abans de l'obertura) per entrar primer a Nintendo World o Harry Potter",
+      "App oficial USJ: temps d'espera en temps real i reserva de restaurants",
+      "Portar ventall i calçat còmode — 35°C de dia amb humitat alta",
+    ],
+  },
+  {
+    nom: "Tokyo Disney Resort",
+    curt: "TDR",
+    ubicacio: "Maihama, Urayasu · 15 min des de Tokyo",
+    transport: "JR Keiyo Line des de Tokyo Station → Maihama (15 min, ¥222). Resorts Line connecta els dos parcs.",
+    preu_adult: "¥9,900–10,900",
+    euros_adult: "~€60–66",
+    preu_nen: "¥5,600–6,400",
+    euros_nen: "~€34–39",
+    extra: "Premier Access per atracció: ¥1,500–2,500 (~€9–15). DisneySea és l'únic al món.",
+    tag: "Icònic · Tokyo",
+    zones: [
+      { nom: "DisneySea · Fantasy Springs", desc: "Nova àrea 2024: Frozen, Rapunzel i Peter Pan. El nivell de detall és espectacular. Molt sol·licitada — comprar Premier Access en entrar." },
+      { nom: "DisneySea · Mediterranean Harbor", desc: "Soaring: Fantastic Flight — la millor atracció del resort. Restaurant Magellan's al peu del volcà. Espectacles nocturns a l'harbour." },
+      { nom: "DisneySea · American Waterfront", desc: "Tower of Terror (versió japonesa, diferent de les americanes). Toy Story Mania. Cape Cod Cook-Off per dinar." },
+      { nom: "Disneyland · Fantasyland", desc: "Clàssic per a famílies amb nens petits. Cinderella Castle il·luminat. Desfilades i espectacles. Menys temàtica adulta que DisneySea." },
+    ],
+    menjar: [
+      { lloc: "Cape Cod Cook-Off", zona: "DisneySea", desc: "Clam chowder en pa de motlle (¥1,050) — l'àpat icònic de DisneySea. Cua habitual però val la pena.", preu: "¥800–1,500" },
+      { lloc: "Magellan's", zona: "DisneySea", desc: "Restaurant de taula al peu del volcà. Menú de 4 plats, carn i peix. Reserva obligatòria 60 dies abans via Disney Resort App.", preu: "¥4,500–7,000" },
+      { lloc: "Blue Bayou Restaurant", zona: "Disneyland", desc: "El restaurant més famós de la resort. Ambient cajun dins del pirate ride. Reserva imprescindible.", preu: "¥3,800–5,500" },
+      { lloc: "Tiki Juice Bar", zona: "Disneyland", desc: "Dole Whip, el gelat de pinya icònic de tots els parcs Disney del món. Just ¥500.", preu: "¥500" },
+    ],
+    consells: [
+      "Triar entre Disneyland i DisneySea — no es fan bé tots dos en un dia",
+      "DisneySea és únic al món i el preferit pels adults i adolescents",
+      "Premier Access via app: comprar nada entrar al parc per Soaring i Fantasy Springs",
+      "Els espectacles nocturns a DisneySea (Celebrate! Tokyo DisneySea) val la pena quedar-se fins al tancament",
+      "Reservar Blue Bayou o Magellan's amb 60 dies d'antelació des de l'app",
+    ],
+  },
+  {
+    nom: "Fuji-Q Highland",
+    curt: "FQ",
+    ubicacio: "Fujiyoshida, Yamanashi · al peu del Mt. Fuji",
+    transport: "Autobús Keio Chuo des de Shinjuku Station (~2h, ¥1,750). O tren: JR Chuo + Fujikyuko Line.",
+    preu_adult: "¥7,800",
+    euros_adult: "~€47",
+    preu_nen: "¥5,800",
+    euros_nen: "~€35",
+    extra: "Fast Pass opcional per atracció: ¥2,000. Entrada lliure + pagar per atracció (no recomanat).",
+    tag: "Adrenalina",
+    zones: [
+      { nom: "Takabisha", desc: "Angle de 121°: la corba de descens més pronunciada del món (Guinness). Cua habitual: 60–90 min. Fast Pass recomanat." },
+      { nom: "Fujiyama", desc: "El King of Coasters: 79m, 130 km/h. Vistes del Mt. Fuji des de dalt. El primer gran coaster japonès (1996)." },
+      { nom: "Eejanaika", desc: "4D Wing Coaster: el seient gira 360° mentre fa loopings. Dels coasters més disorienting del món. No apta per a qui maregi." },
+      { nom: "Thomas Land", desc: "Zona familiar temàtica de Thomas & Friends. Per a nens de 3–8 anys." },
+    ],
+    menjar: [
+      { lloc: "Fujiyama Cool Noodles", zona: "Zona central", desc: "Hiyashi chuka (fideus freds japonesos) — perfectes per al calor del juliol. Local especialitzat.", preu: "¥900–1,300" },
+      { lloc: "Restaurant Fujiyama", zona: "Accés principal", desc: "Curry japonès, ramen, katsu. Menú de parc d'atraccions estàndard però ample.", preu: "¥800–1,500" },
+    ],
+    consells: [
+      "Juliol–agost: cues de 3–4h per a Takabisha sense Fast Pass — valorar si val la pena",
+      "Millor temporada: primavera (vistes del Fuji amb neu) o tardor",
+      "Arribar en l'obertura (9h) per fer Takabisha i Fujiyama abans que s'ompli",
+      "Possible excursió combinada: mati al parc + tarda al llac Kawaguchiko",
+      "Verificar apertura d'atraccions al web — tanquen per manteniment sense avís",
+    ],
+  },
+];
+
+const altresParcs = [
+  { nom: "Toei Kyoto Studio Park", on: "Kyoto · Uzumasa", preu: "¥2,400", desc: "Decorats de pel·lícules samurai i era Edo. Actors disfressats, demostracions de lluita. Bonic i diferent." },
+  { nom: "Nara Dreamland", on: "Nara", preu: "Tancat (2006)", desc: "Parc abandonat i popular entre urbex. Entrada il·legal — no recomanat però famós fotogràficament." },
+  { nom: "Legoland Japan", on: "Nagoya", preu: "¥4,600–6,600", desc: "Per a nens de 2–12 anys. Temàtica Lego. Bo si es para a Nagoya." },
+  { nom: "Sanrio Puroland", on: "Tama, Tokyo", preu: "¥4,400–5,500", desc: "Hello Kitty i Sanrio universe. Indoor complet. Per a fans de Sanrio o amb nens petits." },
+];
+---
+<Layout title="Parcs d'atraccions al Japó" description="USJ, Disney, Fuji-Q: parcs, preus, on menjar i recomanacions" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Parcs d'atraccions</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Oci · Juliol–agost 2026</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Parcs d'atraccions</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 580px; margin-bottom: 2rem;">
+      El Japó té alguns dels millors parcs d'atraccions del món. Juliol–agost és la temporada màxima de turisme local (vacances escolars japoneses) — cues llargues garantides. Preparació i entrades en línia amb antelació són imprescindibles.
+    </p>
+
+    <div class="info-block" style="margin-bottom: 3rem;">
+      <p style="font-size: 0.875rem; color: var(--color-muted);">
+        <strong>Calor de juliol:</strong> 35°C amb humitat alta a Osaka i Tokyo. Portar ventall, roba de fibres naturals, bidó d'aigua. USJ i Disney tenen zones amb boira d'aigua i ombra. Fuji-Q és a major altitud (900m) i més suportable.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    {parcs.map(p => (
+      <section style="margin-bottom: 4rem;">
+        <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.5rem;">
+          <h2 style="font-size: 1.75rem;">{p.nom}</h2>
+          <span class="tag accent">{p.tag}</span>
+        </div>
+        <p style="font-size: 0.875rem; color: var(--color-muted); margin-bottom: 0.25rem;">{p.ubicacio} · {p.transport}</p>
+        <div style="display: flex; gap: 2rem; align-items: baseline; margin-bottom: 0.5rem; margin-top: 1rem;">
+          <div>
+            <span style="font-size: 1.25rem; font-weight: 800; color: var(--color-accent);">{p.euros_adult}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted); margin-left: 0.4rem;">adult · {p.preu_adult}</span>
+          </div>
+          <div>
+            <span style="font-size: 1rem; font-weight: 700; color: var(--color-fg);">{p.euros_nen}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted); margin-left: 0.4rem;">nen · {p.preu_nen}</span>
+          </div>
+        </div>
+        <p style="font-size: 0.8125rem; color: var(--color-muted); margin-bottom: 2rem; font-style: italic;">{p.extra}</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border); margin-bottom: 2rem;">
+          {p.zones.map(z => (
+            <div style="background: var(--color-bg); padding: 1.25rem;">
+              <h3 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.5rem;">{z.nom}</h3>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{z.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem;">On menjar</h3>
+        <div style="border: 1px solid var(--color-border); margin-bottom: 2rem;">
+          {p.menjar.map((m, i) => (
+            <div style={`display: grid; grid-template-columns: 180px 100px 1fr; gap: 1rem; padding: 0.875rem 1.25rem; align-items: start; ${i < p.menjar.length - 1 ? 'border-bottom: 1px solid var(--color-border);' : ''}`}>
+              <div>
+                <span style="font-size: 0.9375rem; font-weight: 600; display: block;">{m.lloc}</span>
+                <span style="font-size: 0.75rem; color: var(--color-muted);">{m.zona}</span>
+              </div>
+              <span style="font-size: 0.8125rem; color: var(--color-accent); font-weight: 600; padding-top: 0.125rem;">{m.preu}</span>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{m.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Consells</h3>
+        <div style="border-left: 2px solid var(--color-border); padding-left: 1.25rem;">
+          {p.consells.map(c => (
+            <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7; margin-bottom: 0.25rem;">— {c}</p>
+          ))}
+        </div>
+
+        <div class="divider"></div>
+      </section>
+    ))}
+
+    <section>
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Altres parcs a considerar</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {altresParcs.map(a => (
+          <div style="background: var(--color-bg); padding: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.375rem;">
+              <h3 style="font-size: 0.9375rem; font-weight: 700;">{a.nom}</h3>
+              <span style="font-size: 0.8125rem; color: var(--color-accent); font-weight: 600;">{a.preu}</span>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--color-muted); margin-bottom: 0.5rem;">{a.on}</p>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{a.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</Layout>
