@@ -1,0 +1,454 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const plats = [
+  {
+    categoria: "Sushi i Sashimi",
+    intro: "La base de la cuina japonesa. El sashimi és peix cru sol; el sushi combina el peix amb arròs avinagrat. En tots dos casos cal saber que la salsa de soja (shoyu) porta gluten.",
+    items: [
+      {
+        nom: "Sushi nigiri",
+        original: "にぎり寿司",
+        desc: "Peix cru o cuit sobre una pilota d'arròs avinagrat. La qualitat depèn del peix i de la mà del cuiner. A un bon omakase, cada peça és diferent i va en ordre crescient d'intensitat.",
+        gluten: false,
+        glutenNota: "L'arròs és sense gluten. La salsa de soja estàndard SÍ porta gluten — demana tamari (soja sense blat) si cal.",
+        preu: "¥1,200–40,000+",
+        on: "Arreu del Japó, de konbini a Michelin"
+      },
+      {
+        nom: "Sashimi",
+        original: "刺身",
+        desc: "Peix o marisc cru tallat, sense arròs. Tonyina (maguro), salmó (sake), verat (saba), pop (tako), llagostí (ebi), orada. La forma més pura d'apreciar la qualitat del producte.",
+        gluten: false,
+        glutenNota: "En si mateix sense gluten. La salsa de soja al costat SÍ porta gluten.",
+        preu: "¥800–5,000",
+        on: "Izakayes, peixateries, restaurants especialitzats"
+      },
+      {
+        nom: "Temaki",
+        original: "手巻き寿司",
+        desc: "Con d'alga nori farcit d'arròs, peix i verdures. Menjar al moment que es prepara, sinó l'alga s'humiteja i perd la textura cruixent.",
+        gluten: false,
+        glutenNota: "Sense gluten. L'alga nori no porta gluten. Compte amb la salsa de soja.",
+        preu: "¥300–800 per con",
+        on: "Kaiten-sushi (sushi en cadena), mercats"
+      },
+      {
+        nom: "Sushi kaiten",
+        original: "回転寿司",
+        desc: "Sushi en cinta transportadora. Les cadenes Sushiro, Kura Sushi i Hamazushi ofereixen plats a ¥110–220/plat. La qualitat és sorprenentment bona per al preu. Toquets al taulell digital per demanar peces especials.",
+        gluten: false,
+        glutenNota: "El sushi en si és sense gluten. Algunes salsès i marinats poden portar soja amb gluten.",
+        preu: "¥110–220/plat",
+        on: "Cadenes: Sushiro, Kura, Hamazushi (arreu del país)"
+      }
+    ]
+  },
+  {
+    categoria: "Fideus",
+    intro: "Els fideus japonesos son una religió. Ramen, udon i soba son tres universos completament diferents. La majoria porten gluten, però el soba de 100% fajol (juwari) és una excepció a confirmar.",
+    items: [
+      {
+        nom: "Ramen",
+        original: "ラーメン",
+        desc: "Fideus de blat en caldo. Quatre grans estils: tonkotsu (caldo de porc, cremós, Kyushu), shoyu (salsa de soja, Tokyo), miso (pasta de miso, Hokkaido) i shio (sal, lleuger). Cada botiga té la seva recepta secreta. Un bon bol de ramen és una experiència completa.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: fideus de farina de blat + caldo sovint amb salsa de soja. No apta per a celíacs.",
+        preu: "¥900–1,800",
+        on: "Ramen Ichiran, Fuunji, Tsuta (Tokyo); Ippudo (arreu)"
+      },
+      {
+        nom: "Tsukemen",
+        original: "つけ麺",
+        desc: "Variant del ramen on els fideus es mengen separats del caldo. Es mulla cada forkful en un caldo molt concentrat i intens. Menjar fred o templat. Fuunji a Shinjuku és el rei d'aquest estil.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: fideus de blat i caldo amb soja.",
+        preu: "¥1,100–1,600",
+        on: "Fuunji (Shinjuku), Rokurinsha (Tokyo Station)"
+      },
+      {
+        nom: "Udon",
+        original: "うどん",
+        desc: "Fideus gruixuts de farina de blat, blancs i elàstics. Caldo lleuger (dashi de kombu i bonítol). A Osaka, el kitsune udon (amb tofu fregit dolç) és el clàssic. A Kagawa (Shikoku) n'és la capital absoluta.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: farina de blat pura. No apta per a celíacs.",
+        preu: "¥400–1,200",
+        on: "Marugame Seimen (cadena nacional), qualsevol ramen-ya"
+      },
+      {
+        nom: "Soba",
+        original: "そば",
+        desc: "Fideus de fajol (buckwheat). Mengen freds amb salsa tsuyu i wasabi (zarusoba) o calents en caldo. El fajol en si no té gluten, però la majoria de soba comercial porta 20–80% farina de blat barrejada.",
+        gluten: true,
+        glutenNota: "ATENCIÓ: la majoria de soba porta blat barrejat. Busca 'juwari soba' (十割そば) que és 100% fajol i potencialment sense gluten — però cal confirmar contaminació creuada a cuina.",
+        preu: "¥800–3,000",
+        on: "Soba-ya tradicionals, estacions de tren"
+      },
+      {
+        nom: "Yakisoba",
+        original: "焼きそば",
+        desc: "Fideus de blat sofregits amb col, carn de porc i salsa de soja sucre. Menjar de carrer habitual als festivals (matsuri). Olor inconfusible a les parades.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: fideus de blat + salsa yakisoba amb soja.",
+        preu: "¥500–800",
+        on: "Parades de festivals, konbini, restaurants de menjar de carrer"
+      }
+    ]
+  },
+  {
+    categoria: "Tempura i fregits",
+    intro: "La tempura japonesa és molt diferent de qualsevol fregit occidental: lleugera, cruixent i translúcida. La massa és mínima i es fa amb aigua freda per evitar el gluten actiu.",
+    items: [
+      {
+        nom: "Tempura",
+        original: "天ぷら",
+        desc: "Marisc i verdures fregits amb una massa lleugera d'ou i farina freda. Gamba (ebi), sípia, berenjena, moniato, bolets shiitake. Acompanya amb salsa tentsuyu (dashi+soja+mirin) i daikon ratllat.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: la massa porta farina de blat. La salsa tentsuyu porta soja.",
+        preu: "¥1,500–35,000 (tempura kaiseki)",
+        on: "Tempura Kondo (Ginza, 2★), Tendon Tenya (cadena econòmica)"
+      },
+      {
+        nom: "Karaage",
+        original: "唐揚げ",
+        desc: "Pollastre fregit japonès marinat amb soja, gingebre i sake. La versió japonesa del chicken nugget, però incomparablement millor. Cruixent per fora, sucós per dins. Clàssic d'izakaya.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: arrebossat de midó/farina + marinat de soja.",
+        preu: "¥400–900",
+        on: "Izakayes, konbini, cadenes de fast food"
+      },
+      {
+        nom: "Tonkatsu",
+        original: "とんかつ",
+        desc: "Costella o llom de porc arrebossats amb panko (pa ratllat japonès) i fregits. Servit amb col juliana, arròs, sopa miso i salsa tonkatsu (similar a Worcestershire). Menú complet econòmic i contundent.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: panko (pa ratllat de blat) + salsa tonkatsu.",
+        preu: "¥1,000–2,500",
+        on: "Maisen (Tokyo), Butagumi (Tokyo), Tonkatsu Wako"
+      },
+      {
+        nom: "Kare raisu (Curry japonès)",
+        original: "カレーライス",
+        desc: "Curry japonès: menys picant, més dolç i espès que l'indi. Servit amb arròs, carn (porc o pollastre) i verdures. Una de les menjades més populars del país. CoCo Ichibanya és la cadena de referència.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: el roux de curry porta farina de blat. La salsa japonesa porta soja.",
+        preu: "¥700–1,500",
+        on: "CoCo Ichibanya (arreu), izakayes, cuina casolana"
+      }
+    ]
+  },
+  {
+    categoria: "Menjar a la planxa i brases",
+    intro: "El yakiniku (carn a la brasa) i el yakitori (pollastre a la graella) son dues de les experiències gastronòmiques més socials del Japó. Es mengen a poc a poc, amb cervesa o sake.",
+    items: [
+      {
+        nom: "Wagyu",
+        original: "和牛",
+        desc: "La carn de boví japonesa (Kobe, Matsuzaka, Omi) amb el marmoratge de greix intramuscular més extrem del món. Es fon literalment a la boca. Al yakiniku es cuina tu mateix a la graella de la taula. El A5 és el grau màxim.",
+        gluten: false,
+        glutenNota: "La carn pura és sense gluten. Les salsès de soja que acompanyen SÍ porten gluten — demana tamari.",
+        preu: "¥3,000–20,000 per ració",
+        on: "Yakiniku restaurants, especialment a Tokyo i Osaka"
+      },
+      {
+        nom: "Yakitori",
+        original: "焼き鳥",
+        desc: "Broquetes de pollastre a la brasa. Cada part del pollastre és una broqueta diferent: cuixa (momo), pit (mune), pell (kawa), fetge (kimo), coll (seseri). La salsa tare (soja + mirin + sake) li dona el caràcter.",
+        gluten: false,
+        glutenNota: "El pollastre en si és sense gluten. La salsa tare porta salsa de soja (gluten). Demana 'shio' (sal) per evitar-la.",
+        preu: "¥100–300 per broqueta",
+        on: "Yakitori-ya sota les vies del tren, izakayes"
+      },
+      {
+        nom: "Yakiniku",
+        original: "焼き肉",
+        desc: "Barbacoa japonesa: llesques fines de wagyu i verdures que cuines tu a la graella incrustada a la taula. Ordena en rounds: primer wagyu A5, després tall normal, al final menuderies. Amb cervesa freda és perfecte.",
+        gluten: false,
+        glutenNota: "La carn és sense gluten. Les salsès de bany (tare) porten soja — demana tamari o menges 'shio' (sal).",
+        preu: "¥3,000–10,000/persona",
+        on: "Cadenes: Gyukaku, Don, Yakiniku Hohei; restaurants especialitzats"
+      },
+      {
+        nom: "Okonomiyaki",
+        original: "お好み焼き",
+        desc: "Crep gruixuda japonesa de col, ou i diversos ingredients (pop, carn, marisc) cuinada a la planxa. Versió Osaka (ingredients tots barrejats) vs. Hiroshima (en capes amb fideus soba). Completament diferent del que imagines.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: la massa principal porta farina de blat. La salsa okonomiyaki i la maionesa also poden portar soja.",
+        preu: "¥1,000–2,500",
+        on: "Chibo (Dotonbori, Osaka), Okonomimura (Hiroshima)"
+      },
+      {
+        nom: "Takoyaki",
+        original: "たこ焼き",
+        desc: "Boletes de massa farcides de pop, jengibre encurtit i ceba de julivert. Originàriament d'Osaka. Es fan en motlles semiesfèrics especials i es giren amb agulles. Per fora cruixents, per dins semilíquides i cremoses.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: massa de farina de blat + salsa okonomiyaki i soja per a moure.",
+        preu: "¥600–900 (8 peces)",
+        on: "Dotonbori (Osaka): Kukuru, Wanaka, Aizuya"
+      }
+    ]
+  },
+  {
+    categoria: "Snacks i menjar de carrer",
+    intro: "El konbini (convenience store: 7-Eleven, FamilyMart, Lawson) és el menjador del viatger intel·ligent. Obert 24h, menjar calent i fred d'altíssima qualitat per ¥200–600.",
+    items: [
+      {
+        nom: "Onigiri",
+        original: "おにぎり",
+        desc: "Triangle d'arròs farcit embolicat en alga nori. Els konbini en fan desenes de varietats: atun amb maionesa, salmó, prunes umeboshi, pollastre teriyaki. El snack definitiu japonès: barat, sa i omplidor.",
+        gluten: false,
+        glutenNota: "L'arròs és sense gluten. Alguns farcits (teriyaki, pollastre amb soja) porten soja — llegeix ingredients.",
+        preu: "¥120–200",
+        on: "Qualsevol konbini 24h: 7-Eleven, FamilyMart, Lawson"
+      },
+      {
+        nom: "Gyoza",
+        original: "餃子",
+        desc: "Empanadilles xineses adoptades pel Japó. Al vapor (mushi), fregides (yaki) o bullides (sui). Farcit de porc, all i col. Els de Osaka i Kyoto son especialment famosos. Acompanyen amb vinagre de vi + soja + oli de sèsam picant.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: embolcall de farina de blat + soja als condiments.",
+        preu: "¥300–700 (6 peces)",
+        on: "Izakayes, Gyoza no Ohsho (cadena), konbini"
+      },
+      {
+        nom: "Edamame",
+        original: "枝豆",
+        desc: "Beines de soia verda bullides i salades. El snack per excel·lència de les izakayes, igual que les olives als bars espanyols. Simple, sa i adictiu. Llença la pell.",
+        gluten: false,
+        glutenNota: "Sense gluten.",
+        preu: "¥300–500",
+        on: "Izakayes, supermercats, konbini"
+      },
+      {
+        nom: "Miso shiru (Sopa miso)",
+        original: "味噌汁",
+        desc: "Caldo dashi amb pasta miso, tofu i alga wakame. Sempre gratuïta o inclosa als menús de dinar. El pasta miso pot ser de soja, ceba, arròs o ordi. La versió d'ordi (mugi miso) porta gluten.",
+        gluten: false,
+        glutenNota: "Normalment sense gluten (miso de soja o arròs). Miso d'ordi (mugi miso) CONTÉ GLUTEN. Difícil saber quin porten sense preguntar.",
+        preu: "Gratuïta / inclosa",
+        on: "Tot arreu: ryokans, restaurants tradicionals, konbini"
+      },
+      {
+        nom: "Tamagoyaki",
+        original: "玉子焼き",
+        desc: "Truita japonesa enrotllada en capes, lleugerament dolça i amb dashi. Un element clau dels bentos i del sushi (tamago nigiri). Al mercat de Tsukiji es ven sola com a snack.",
+        gluten: false,
+        glutenNota: "Normalment sense gluten. Pot portar soja al dashi — confirmar si hi ha intolerància severa.",
+        preu: "¥200–600",
+        on: "Mercat de Tsukiji (Tokyo), bentos, sushi restaurants"
+      }
+    ]
+  },
+  {
+    categoria: "Wagyu i especialitats càrnies",
+    intro: "El wagyu japonès és en una categoria pròpia. No és simplement carn cara: és una experiència gustativa diferent per la seva composició de greixos que es fonen a temperatura corporal.",
+    items: [
+      {
+        nom: "Kobe beef",
+        original: "神戸牛",
+        desc: "El wagyu més famós del món, criat a la prefectura de Hyogo. Marmoratge A5 extrem. Servit en llesques fines a la planxa o com a shabu-shabu. Un dels aliments més cars del món. Prova-ho almenys una vegada.",
+        gluten: false,
+        glutenNota: "La carn pura és sense gluten. Compte amb els acompanyaments.",
+        preu: "¥10,000–30,000 per porció",
+        on: "Steakhouse a Kobe i Tokyo, restaurants especialitzats"
+      },
+      {
+        nom: "Shabu-shabu",
+        original: "しゃぶしゃぶ",
+        desc: "Fondue japonesa: llesques finísimes de wagyu (o porc) que mous 2-3 vegades en un brou bullent i menges de seguida amb salsa de sèsam o ponzu. El nom imita el so de moure la carn. Molt social.",
+        gluten: false,
+        glutenNota: "La carn és sense gluten. La salsa ponzu pot portar soja. El caldo és net. Demana opcions sense soja si cal.",
+        preu: "¥3,000–15,000/persona",
+        on: "Shabu-shabu Seryna, Mo Mo Paradise (cadena)"
+      },
+      {
+        nom: "Sukiyaki",
+        original: "すき焼き",
+        desc: "Carn de boví en una cassola amb salsa molt dolça de soja, mirin i sake. Es menja l'ou cru batut (serveix de salsa refredant). Típic del tardor-hivern però es troba tot l'any.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: la salsa sukiyaki porta salsa de soja.",
+        preu: "¥3,000–12,000/persona",
+        on: "Restaurants especialitzats, ryokans de qualitat"
+      }
+    ]
+  },
+  {
+    categoria: "Dolços i postres japonesos",
+    intro: "La confiteria japonesa (wagashi) és un art amb centenars d'anys d'història. Poca sucre, molts matisos, bellesa visual. El matcha és omnipresent. Molts dolços son naturalment sense gluten.",
+    items: [
+      {
+        nom: "Mochi",
+        original: "餅",
+        desc: "Pasta d'arròs glutinós, mastegable i elàstica. Pot ser farcida (daifuku) amb anko (pasta de mongeta roja), maduixa o matcha. El mochi de gel gelat és una revelació. Textura completament diferent de qualsevol cosa occidental.",
+        gluten: false,
+        glutenNota: "Sense gluten: farina d'arròs glutinós (no té relació amb el gluten del blat).",
+        preu: "¥150–500 per peça",
+        on: "Wagashi-ya (pastisseries tradicionals), konbini, mercats"
+      },
+      {
+        nom: "Matcha gelat / Parfait",
+        original: "抹茶パフェ",
+        desc: "El te verd en pols (matcha) japonès té un gust amarg, profund i complex que transforma qualsevol dolç. El matcha parfait (capes de gelat, pasta de mongeta, mochi i nata) és una icona de les cafeteries de Kyoto.",
+        gluten: false,
+        glutenNota: "El matcha i el gelat son sense gluten. El parfait complet pot portar galetes o bescuit — confirmar.",
+        preu: "¥800–1,800",
+        on: "Nakamura Tokichi (Kyoto), Tsujiri (Kyoto i Tokyo)"
+      },
+      {
+        nom: "Dorayaki",
+        original: "どら焼き",
+        desc: "Dos bescuits esponjosos rodons farcits d'anko (pasta de mongeta roja). El dolç favorit de Doraemon. Senzill, dens i satisfactori. Un dels wagashi més populars per emportar.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: els bescuits son de farina de blat.",
+        preu: "¥200–400",
+        on: "Pastisseries tradicionals, konbini, mercat de Tsukiji"
+      },
+      {
+        nom: "Taiyaki",
+        original: "たい焼き",
+        desc: "Galeta en forma de peix de mar (tai) farcida d'anko. Calent, cruixent per fora i amb pasta de mongeta per dins. Clàssic del carrer, especialment a l'hivern però disponible tot l'any als mercats.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: massa de farina de blat.",
+        preu: "¥200–350",
+        on: "Parades de carrer, mercats, àrees comercials"
+      },
+      {
+        nom: "Wagashi de temporada",
+        original: "和菓子",
+        desc: "La confiteria artesanal japonesa canvia amb les estacions. A l'estiu: yokan (gelatina de mongeta), kanten (gelees transparents), kakigori (granissat). A la tardor: manju de crisantems. Visitar una wagashi-ya és com entrar en un museu comestible.",
+        gluten: false,
+        glutenNota: "La majoria dels wagashi tradicionals son sense gluten (mongeta, arròs, agar). Confirmar els de pasta (manjū) que poden portar farina.",
+        preu: "¥300–2,000",
+        on: "Toraya (Tokyo i Kyoto), Kagizen Yoshifusa (Kyoto)"
+      },
+      {
+        nom: "Kakigori",
+        original: "かき氷",
+        desc: "Granissat japonès: gel rascat en làmines fines com neu, amb sirops de fruita real, llet condensada o matcha. No té res a veure amb el granissat occidental — la textura és etèria. Refrescant essencial a l'estiu al Japó.",
+        gluten: false,
+        glutenNota: "Sense gluten.",
+        preu: "¥500–1,200",
+        on: "Banboiya (Tokyo), botigues especialitzades, festivals d'estiu"
+      }
+    ]
+  },
+  {
+    categoria: "Begudes",
+    intro: "El Japó té una cultura de begudes pròpia. Des del sake fins al te matcha, passant per les cerveses artesanals i els whisky de classe mundial.",
+    items: [
+      {
+        nom: "Sake",
+        original: "日本酒",
+        desc: "Vi d'arròs japonès. Pot ser dolç (amakuchi) o sec (karakuchi), calent o fred. Les categories junmai (100% arròs) i ginjo/daiginjo (arròs polit finament) defineixen la qualitat. Beure-lo al mateix lloc de producció (sake brewery) és una experiència diferent.",
+        gluten: false,
+        glutenNota: "Sense gluten: fermentat d'arròs pur.",
+        preu: "¥300–5,000 per copa",
+        on: "Izakayes, sake-ya (botiga especialitzada), restaurants"
+      },
+      {
+        nom: "Whisky japonès",
+        original: "ウイスキー",
+        desc: "Yamazaki, Hakushu, Nikka Yoichi: els whiskies japonesos han revolucionat el mercat mundial. Característiques: equilibrats, fruitats, amb notes de fum suau. Busca edicions locals exclusives a les destil·leries.",
+        gluten: false,
+        glutenNota: "El whisky destil·lat és considerado sense gluten per la majoria de celíacs (destil·lació elimina proteïnes). Consulta amb metge si ets celíac sever.",
+        preu: "¥800–3,000+ per copa",
+        on: "Bar High Five (Tokyo), destil·leria Yamazaki (Osaka), duty-free"
+      },
+      {
+        nom: "Matcha",
+        original: "抹茶",
+        desc: "Te verd en pols batut amb aigua calenta fins a fer escuma. A Uji (Kyoto) es produeix el millor matcha del món. La cerimònia del te (chado) és una pràctica meditativa. Molt diferent del matcha occidental comercial.",
+        gluten: false,
+        glutenNota: "Sense gluten.",
+        preu: "¥800–3,000 (cerimònia), ¥300–600 (cafeteria)",
+        on: "Ippodo Tea (Kyoto i Tokyo), En (Kyoto), temples de Uji"
+      }
+    ]
+  }
+];
+---
+<Layout title="Menjar al Japó" description="Plats típics japonesos que cal provar. Avisos de gluten per a cada plat." section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Menjar</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Gastronomia · Plats típics · Avisos de gluten</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Menjar al Japó</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 600px; margin-bottom: 2rem; line-height: 1.7;">
+      El Japó és la capital gastronòmica del món: té més estrelles Michelin que cap altre país. Cada plat té la seva història, estació i filosofia. Aquí tens tot el que has de provar, amb avisos clars de gluten per a cada plat.
+    </p>
+
+    <div class="info-block neutral" style="margin-bottom: 1.5rem;">
+      <p style="font-size: 0.875rem; color: var(--color-muted); margin-bottom: 0.5rem;">
+        <strong>Sobre el gluten al Japó:</strong> La salsa de soja estàndard (shoyu) porta blat i és omnipresent a la cuina japonesa. Si tens celiaquia, busca <strong>tamari</strong> (醤油 without wheat / グルテンフリー醤油) com a substitut. La paraula japonesa per gluten és <strong>グルテン</strong> (guruten) i celíac és <strong>セリアック病</strong>.
+      </p>
+      <p style="font-size: 0.875rem; color: var(--color-muted);">
+        Molts restaurants japonesos no estan habituats a al·lèrgies alimentàries: porta una targeta d'al·lèrgia traduïda al japonès (pots imprimir-la de <strong>allergyeats.jp</strong>).
+      </p>
+    </div>
+
+    <div style="display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; gap: 0.375rem;">
+        <span style="display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: #ef4444;"></span>
+        <span style="font-size: 0.75rem; color: var(--color-muted);">Conté gluten</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.375rem;">
+        <span style="display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: #22c55e;"></span>
+        <span style="font-size: 0.75rem; color: var(--color-muted);">Sense gluten (amb matisos)</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    {plats.map(cat => (
+      <section style="margin-bottom: 4rem;">
+        <div style="margin-bottom: 1.5rem;">
+          <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">{cat.categoria}</h2>
+          <p style="font-size: 0.875rem; color: var(--color-muted); max-width: 640px; line-height: 1.65;">{cat.intro}</p>
+        </div>
+
+        <div style="display: grid; gap: 1px; background: var(--color-border); border: 1px solid var(--color-border);">
+          {cat.items.map(plat => (
+            <div style="background: var(--color-bg); padding: 1.25rem;">
+              <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.625rem; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                  <span style={`display: inline-block; width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; background: ${plat.gluten ? '#ef4444' : '#22c55e'};`}></span>
+                  <h3 style="font-size: 1rem; font-weight: 700;">{plat.nom}</h3>
+                  <span style="font-size: 0.75rem; color: var(--color-muted); font-style: italic;">{plat.original}</span>
+                </div>
+                <span style="font-size: 0.8125rem; color: var(--color-accent); font-weight: 600; white-space: nowrap;">{plat.preu}</span>
+              </div>
+
+              <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.65; margin-bottom: 0.75rem;">{plat.desc}</p>
+
+              <div style={`padding: 0.625rem 0.875rem; border-radius: 4px; border-left: 3px solid ${plat.gluten ? '#ef4444' : '#22c55e'}; background: ${plat.gluten ? 'rgba(239,68,68,0.05)' : 'rgba(34,197,94,0.05)'};`}>
+                <p style={`font-size: 0.75rem; line-height: 1.6; color: ${plat.gluten ? '#dc2626' : '#16a34a'};`}>{plat.glutenNota}</p>
+              </div>
+
+              <p style="font-size: 0.75rem; color: var(--color-muted); margin-top: 0.625rem;">
+                <strong>On trobar-lo:</strong> {plat.on}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <div class="info-block neutral">
+      <p style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">Consells pràctics per menjar al Japó</p>
+      <ul style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.8; padding-left: 1.25rem;">
+        <li>El konbini (7-Eleven, FamilyMart) és el millor amic del viatger: menjar calent i fred de qualitat a totes hores.</li>
+        <li>No es deixa propina al Japó. Mai. Pot ser ofensiu.</li>
+        <li>Les cues per un bon ramen o sushi kaiten valen la pena; els japonesos no fan cua per res mediocre.</li>
+        <li>Plats de dinar (teishoku) son molt més barats que el sopar als mateixos restaurants.</li>
+        <li>Allèrgies: porta targetes traduïdes al japonès. App recomanada: <strong>Google Translate càmera</strong> per llegir menús.</li>
+        <li>La majoria de restaurants tenen foto dels plats a la carta o maquetes de plàstic a l'aparador: assenyala i encerta.</li>
+      </ul>
+    </div>
+
+  </div>
+</Layout>

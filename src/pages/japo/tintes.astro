@@ -1,0 +1,206 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const iroshizuku = [
+  { nom: "Tsuki-yo", color: "#1a3a5c", hex: "#1a3a5c", desc: "Nit de lluna. Blau marí intens amb reflex verd. Un dels colors més venuts del catàleg.", tag: "Més popular" },
+  { nom: "Ama-iro", color: "#7bbfdb", hex: "#7bbfdb", desc: "Cel de pluja. Blau cel pàl·lid i lluminós. Perfecte per a escriptura diürna sobre paper japonès.", tag: "" },
+  { nom: "Kon-peki", color: "#0072bc", hex: "#0072bc", desc: "Blau cel profund. Profund i saturat. El blau de referència de la marca. Molt bon comportament sobre paper Tomoe River.", tag: "" },
+  { nom: "Momiji", color: "#c0392b", hex: "#c0392b", desc: "Fulles de tardor. Vermell càlid amb matís vermell-taronja. Idoni per a notes i subratllats.", tag: "" },
+  { nom: "Tsutsuji", color: "#e8517a", hex: "#e8517a", desc: "Azalea. Rosa vibrant amb prestigi. El color favorit de molts aficionats a la cal·ligrafia japonesa.", tag: "" },
+  { nom: "Chiku-rin", color: "#5a8a3c", hex: "#5a8a3c", desc: "Bosc de bambú. Verd fosc i natural. El color dels escriptors que volen sobriedad amb personalitat.", tag: "" },
+  { nom: "Shin-ryoku", color: "#2e7d52", hex: "#2e7d52", desc: "Verd nou. Verd esmeralda càlid. Excel·lent shading sobre paper absorbent.", tag: "" },
+  { nom: "Yama-budo", color: "#7d2358", hex: "#7d2358", desc: "Raïm de muntanya. Porpra intens i brusc. Un dels colors més sol·licitats per a signatures.", tag: "Icònic" },
+  { nom: "Murasaki-shikibu", color: "#6c4a8a", hex: "#6c4a8a", desc: "Violeta. Porpra suau inspirat en la poetessa medieval Murasaki Shikibu. Elegant en qualsevol paper.", tag: "" },
+  { nom: "Take-sumi", color: "#2c2c2c", hex: "#2c2c2c", desc: "Carbó de bambú. Negre càlid amb matís marró. El negre preferit dels que fugen del negre pur.", tag: "" },
+  { nom: "Yu-yake", color: "#e85d26", hex: "#e85d26", desc: "Capvespre. Taronja cremat. Un dels colors més vistosos del catàleg, difícil de trobar equivalent.", tag: "" },
+  { nom: "Kiri-same", color: "#8aafc0", hex: "#8aafc0", desc: "Pluja de tardor. Blau gris desaturat. Suau i llegible alhora. Ideal per a escriptura d'oficina.", tag: "" },
+];
+
+const altres = [
+  {
+    marca: "Sailor",
+    desc: "Sailor té tres col·leccions de tintes, totes exclusives al Japó en la seva gamma completa. La col·laboració amb la botiga Nagasawa de Kobe (Kobe Ink Story) és llegendària: 50+ colors inspirats en barris de Kobe, disponibles únicament a la botiga.",
+    col: [
+      { nom: "Jentle Collection", preu: "¥1,980", euros: "~€12", ml: "50 mL", desc: "La gamma estàndard. Negre, blau, verd, vermell. Colors clàssics, comportament impecable sobre qualsevol paper." },
+      { nom: "Shikiori (4 Seasons)", preu: "¥2,420", euros: "~€15", ml: "20 mL", desc: "Colors inspirats en les quatre estacions japoneses. Pots petits de 20 mL. Shading espectacular. Nom dels colors en japonès: Yama-dori (ocell de muntanya, blau verd), Oku-yama (muntanya profunda, blau), Waka-uguisu (ocell jove, verd)." },
+      { nom: "Kobo (col·laboració)", preu: "¥2,750", euros: "~€17", ml: "20 mL", desc: "Col·laboració amb artistes locals. Edicions molt limitades. Disponible a la Sailor Boutique de Ginza i botigues seleccionades. Imposible trobar fora del Japó." },
+      { nom: "Kobe Ink Story (Nagasawa)", preu: "¥2,200", euros: "~€13", ml: "50 mL", desc: "50+ colors, un per barri de Kobe. La botiga Nagasawa Shoten (Kobe, Sannomiya) és el destí de peregrinació. Colors únics amb noms de carrers i espais de la ciutat." },
+    ]
+  },
+  {
+    marca: "Platinum",
+    desc: "Platinum és discreta en màrqueting però sòlida en qualitat. Les seves tintes Mixable Colors estan dissenyades per barrejar entre elles sense obstruccions. Una curiositat única al mercat.",
+    col: [
+      { nom: "Classic Black / Lavender", preu: "¥660", euros: "~€4", ml: "60 mL", desc: "La tinta estàndard de Platinum. Negre de carboni: resistent a l'aigua i al llum. La millor tinta de carboni del mercat a preu molt accessible." },
+      { nom: "Mixable Colors", preu: "¥1,100", euros: "~€7", ml: "20 mL", desc: "Formulació pensada per barrejar. 24 colors que es combinen entre ells de forma predictible. Pot petit però molt concentrat. Ideal per a personalitzar." },
+      { nom: "Kasumi (boira)", preu: "¥1,650", euros: "~€10", ml: "60 mL", desc: "Sèrie premium de Platinum. Colors desaturats, suaus, amb shading subtil. La preferida dels que escriuen molt sobre paper blanc." },
+    ]
+  },
+  {
+    marca: "Taccia",
+    desc: "Marca japonesa menys coneguda fora del Japó. Les seves Ukiyo-e Colors estan inspirades en els colors dels gravats woodblock de l'era Edo. Disponible a la Itoya de Ginza i Maruzen Kyoto.",
+    col: [
+      { nom: "Ukiyo-e Colors", preu: "¥1,650", euros: "~€10", ml: "40 mL", desc: "12 colors inspirats en gravats ukiyo-e. La paleta recrea els pigments originals: blau índigo, vermell persimmon, verd malachite. Shading pronunciat i molt caràcter." },
+      { nom: "Sumi Collection", preu: "¥2,200", euros: "~€13", ml: "40 mL", desc: "Tintes de carboni amb formulació líquida suau. Resistents a l'aigua i permanents. Pensades per a cal·ligrafia tradicional però compatibles amb plumes modernes." },
+    ]
+  },
+];
+
+const papersBrands = [
+  { nom: "Tomoe River", fabricant: "Tomoegawa", preu: "~€15 (100 fulls A4)", desc: "El paper de referència per a plumes. Finissim (52 g/m²), no absorbent, shading espectacular i sheening sobre tintes saturades. Dificilissim de trobar a Europa. Al Japó disponible en quaderns Hobonichi i fulls solts." },
+  { nom: "Hobonichi (agenda)", fabricant: "Hobonichi Techo", preu: "~€25–45", desc: "L'agenda de culte japonesa feta amb paper Tomoe River. Format A6 i A5. Tinta apta per les dues cares de la fulla malgrat el gruix minimal. La compra estrella entre aficionats a les plumes." },
+  { nom: "MD Paper", fabricant: "Midori", preu: "~€10–20 (quadern)", desc: "Paper lleugerament texturitzat, color crema. Absorció controlada que potencia el shading. El paper preferit per a escriptura contemplativa. Quaderns sense dates, línies o punts." },
+  { nom: "Yamamoto Paper", fabricant: "Yamamoto", preu: "~€8–15", desc: "Papers d'especialitat: Cosmo Air Light (ultra lleuger), Bird (alt sheening). Accessible a Itoya i algunes botigues de papereria premium." },
+];
+---
+<Layout title="Tintes per a estilogràfiques al Japó" description="Iroshizuku, Sailor Shikiori, Kobe Ink, papers japonesos" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <a href="/japo/estilografiques" style="color: var(--color-muted);">Estilogràfiques</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Tintes</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Compres · Tintes japoneses</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Tintes</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 580px; margin-bottom: 3rem; line-height: 1.75;">
+      Les tintes japoneses per a estilogràfica no tenen equivalent al mercat occidental. Iroshizuku, Sailor Shikiori i Kobe Ink Story defineixen un estàndard de color, comportament i presentació que cap marca europea ha igualat. Al Japó pagues entre un 30–45% menys i accedeixes a colors exclusius que no surten del país.
+    </p>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.75rem;">
+        <h2 style="font-size: 1.75rem;">Pilot Iroshizuku</h2>
+        <span class="label">El referent absolut</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 0.5rem; max-width: 640px; line-height: 1.7;">
+        50 mL · <strong style="color: var(--color-fg);">¥2,200</strong> <span style="color: var(--color-accent);">~€13</span> al Japó · ~€18–22 a Europa
+      </p>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 640px; line-height: 1.7;">
+        24 colors, tots amb noms poètics de la natura japonesa. Alta saturació, excel·lent shading i bon comportament sobre qualsevol paper. L'ampolleta de vidre amb base còncava (per apurar fins a l'última gota amb plomes de converter) és una icona del disseny funcional.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--color-border);">
+        {iroshizuku.map(t => (
+          <div style="background: var(--color-bg); display: flex; flex-direction: column;">
+            <div style={`height: 80px; background: ${t.color}; position: relative; display: flex; align-items: flex-end; padding: 0.5rem;`}>
+              {t.tag && (
+                <span class:list={['tag', { accent: t.tag === 'Icònic' || t.tag === 'Més popular' }]} style="font-size: 0.625rem;">
+                  {t.tag}
+                </span>
+              )}
+            </div>
+            <div style="padding: 0.875rem; flex: 1; display: flex; flex-direction: column; gap: 0.25rem;">
+              <h3 style="font-size: 0.875rem; font-weight: 700;">{t.nom}</h3>
+              <p style="font-size: 0.75rem; color: var(--color-muted); line-height: 1.55; flex: 1;">{t.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top: 1.5rem; padding: 1.25rem; background: var(--color-subtle); border: 1px solid var(--color-border); display: flex; gap: 3rem; flex-wrap: wrap;">
+        <div>
+          <p class="label" style="margin-bottom: 0.375rem;">Colors recomanats per portar</p>
+          <p style="font-size: 0.875rem; color: var(--color-muted);">Tsuki-yo, Yama-budo, Momiji, Kon-peki, Take-sumi</p>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom: 0.375rem;">On trobar el catàleg complet</p>
+          <p style="font-size: 0.875rem; color: var(--color-muted);">Itoya Ginza · Maruzen Kyoto · Yodobashi Camera</p>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom: 0.375rem;">Estalvi vs Europa</p>
+          <p style="font-size: 0.875rem; color: var(--color-accent); font-weight: 700;">30–40% per ampolleta</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    {altres.map(brand => (
+      <section style="margin-bottom: 3.5rem;">
+        <h2 style="font-size: 1.5rem; margin-bottom: 0.75rem;">{brand.marca}</h2>
+        <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1.5rem; max-width: 640px; line-height: 1.7;">{brand.desc}</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+          {brand.col.map(c => (
+            <div style="background: var(--color-bg); padding: 1.25rem; display: flex; flex-direction: column; gap: 0.375rem;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                <h3 style="font-size: 0.9375rem; font-weight: 700;">{c.nom}</h3>
+                <span style="font-size: 0.75rem; color: var(--color-muted); font-family: var(--font-mono);">{c.ml}</span>
+              </div>
+              <div style="display: flex; gap: 0.5rem; align-items: baseline;">
+                <span style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent);">{c.euros}</span>
+                <span style="font-size: 0.75rem; color: var(--color-muted);">{c.preu}</span>
+              </div>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6; flex: 1;">{c.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.5rem;">Papers japonesos</h2>
+        <span class="label">Tan important com la tinta</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1.5rem; max-width: 640px; line-height: 1.7;">
+        El shading i el sheening d'una tinta es manifesta completament només sobre papers adequats. El paper europeu estàndard (80 g/m² d'oficina) ofega les tintes japoneses.
+      </p>
+      <a href="/japo/papers" style="display: grid; grid-template-columns: 200px 1fr; min-height: 160px; background: var(--color-border); text-decoration: none; color: inherit;">
+        <div style="background: var(--color-subtle); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; padding: 1.5rem;">
+          <div style="display: flex; flex-direction: column; gap: 3px; width: 80px;">
+            {["#f5f0e8","#ede8de","#e8e2d6","#f8f5ef","#ece6d8"].map(c => (
+              <div style={`height: 8px; background: ${c}; border: 1px solid rgba(0,0,0,0.08);`}></div>
+            ))}
+          </div>
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted); margin-top: 0.5rem;">TOMOE RIVER · MD · HOBONICHI</span>
+        </div>
+        <div class="card" style="background: var(--color-bg);">
+          <p class="label" style="margin-bottom: 0.75rem; color: var(--color-accent);">Veure tots els papers →</p>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            Tomoe River (52 g/m², referència absoluta), Hobonichi Techo, MD Paper Midori, Yamamoto Cosmo Air Light, Kokuyo Campus, washi artesanal. On trobar cada un i a quin preu.
+          </p>
+        </div>
+      </a>
+    </section>
+
+    <div class="divider"></div>
+
+    <section>
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Conceptes: shading i sheening</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Shading</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            Variació de claredat dins del mateix traç. On la tinta s'acumula (corbes, finals de traç) apareix més fosca; on flueix ràpid, més clara. Crea profunditat i vida a l'escriptura. Màxim en tintes poc saturades i papers poc absorbents (Tomoe River, MD Paper). Iroshizuku Yama-budo i Sailor Shikiori en són exemples extrems.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Sheening</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            Reflex metàl·lic (daurat, platejat, vermell) que apareix a les zones d'acumulació de tinta un cop seca. Visible en angle rasant. Especialitat d'algunes tintes Sailor i de la gamma Robert Oster australiana (disponible a Maruzen Kyoto). Requereix paper lent com el Tomoe River per a manifestar-se plenament.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Tintes de carboni</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            Resistents a l'aigua i a la llum. Imprescindibles per a documents permanents. Les millors del mercat japonès: Platinum Carbon Black (la referència), Pilot Iroshizuku Take-sumi (carboni tèrmic, menys agressiu per a la ploma). Atenció: no totes les plomes les suporten; cal netejar-les amb freqüència.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Comprar tintes: logística</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            Les tintes no es poden portar a l'equipatge de mà. Màxim 100 mL per recipient (ampolla estàndard de 50 mL va bé). En pots de 20 mL (Shikiori, Kobo) pots portar-ne molts. Factura la bossa on porti tintes. Alternativa: enviar per correu des del Japó (servei EMS de la oficina de correus japonesa, fiable i econòmic).
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>

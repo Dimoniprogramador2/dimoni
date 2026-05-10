@@ -1,0 +1,351 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const destacats = [
+  {
+    nom: "Tojiro DP Gyuto 210mm",
+    marca: "Tojiro",
+    preu: "¥12,000",
+    euros: "~€73",
+    acer: "VG-10 · 60 HRC",
+    img: "/img/ganivets/tojiro-dp-gyuto.jpg",
+    desc: "El ganivet d'entrada per excel·lència. VG-10 entre capes d'acer inoxidable, perfil occidental còmode. La millor relació preu-qualitat del mercat japonès. A Europa surt a €130–150.",
+    tag: "Millor valor"
+  },
+  {
+    nom: "Misono UX10 Gyuto 210mm",
+    marca: "Misono",
+    preu: "¥28,000",
+    euros: "~€170",
+    acer: "Acer suec · 61 HRC",
+    img: "/img/ganivets/misono-ux10.jpg",
+    desc: "Fabricat a Seki (Gifu), el poble dels ganivets japonesos. Acer suec d'alta puresa que aguanta el tall excepcional. El favorit dels cuiners professionals japonesos. Difícil trobar-lo a Europa.",
+    tag: "Professional"
+  },
+  {
+    nom: "Sakai Takayuki Gyuto Aogami Super",
+    marca: "Sakai Takayuki",
+    preu: "¥38,000",
+    euros: "~€230",
+    acer: "Aogami Super · 65 HRC",
+    img: "/img/ganivets/sakai-takayuki-aogami.jpg",
+    desc: "Aogami Super (acer blau suprem): la màxima duresa i retenció de tall dels acers amb carboni. Requereix manteniment (s'oxida) però la qualitat de tall és inigualable. Mànec wa d'octàgon en fusta de magnòlia.",
+    tag: "Acer carboni"
+  },
+  {
+    nom: "Shun Classic Santoku 180mm",
+    marca: "KAI / Shun",
+    preu: "¥18,000",
+    euros: "~€110",
+    acer: "VG-MAX Damascus · 61 HRC",
+    img: "/img/ganivets/shun-classic-santoku.jpg",
+    desc: "El ganivet d'entrada al damascat japonès. Damàs de 32 capes, mànec Pakkawood. L'estètica és impecable i el rendiment és molt per sobre del preu europeu (€180–220 a Europa).",
+    tag: "Estètica"
+  },
+  {
+    nom: "Yoshihiro Gyuto SG2 210mm",
+    marca: "Yoshihiro",
+    preu: "¥58,000",
+    euros: "~€352",
+    acer: "SG2 / R2 · 63 HRC",
+    img: "/img/ganivets/yoshihiro-sg2.jpg",
+    desc: "Acer en pols SG2: la combinació de duresa extrema (63 HRC) i resistència a la corrosió. Acabat martellat (tsuchime) que evita que els aliments s'enganxin. El mànec wa d'octàgon en fusta de wenge.",
+    tag: "Alta gamma"
+  },
+  {
+    nom: "Aritsugu Yanagiba 270mm",
+    marca: "Aritsugu",
+    preu: "¥45,000",
+    euros: "~€273",
+    acer: "Shirogami #2 · 62 HRC",
+    img: "/img/ganivets/aritsugu-yanagiba.jpg",
+    desc: "Aritsugu és la marca més antiga del Japó (1560). La yanagiba és el ganivet de sashimi: tall en una sola passada, zero pressió. Comprar-la a la botiga del mercat Nishiki de Kyoto és una de les experiències de compra més especials del Japó.",
+    tag: "Llegenda"
+  },
+];
+
+const tipus = [
+  {
+    nom: "Gyuto",
+    kana: "牛刀",
+    desc: "El ganivet de cuiner japonès. Equivalent al chef's knife occidental però més prim, més dur i amb angle de tall més agut (15° vs 20–25°). Ideal per a tot ús. El primer ganivet japonès que hauries de comprar.",
+    long: "180–270mm",
+    per: "Ús general, carn, peix, verdures"
+  },
+  {
+    nom: "Santoku",
+    kana: "三徳",
+    desc: "Literalment 'tres virtuts': carn, peix i verdura. Perfil més baix que el gyuto, sense punt. Molt còmode per a cuiners amb tècnica de tall de colp (no balanceig). El ganivet japonès més conegut fora del Japó.",
+    long: "165–190mm",
+    per: "Ús general, cuina domèstica"
+  },
+  {
+    nom: "Nakiri",
+    kana: "菜切り",
+    desc: "Ganivet de verdures. Full rectangular, tall recte que toca la taula en tota la seva longitud. Ideal per a juliana, brunoise i tall de verdures de rel. No és per a carn ni per a fer ossos.",
+    long: "165–180mm",
+    per: "Verdures exclusivament"
+  },
+  {
+    nom: "Yanagiba",
+    kana: "柳刃",
+    desc: "El ganivet de sashimi. Full llarg i prim, tall en una sola passada cap enrere. L'única manera correcta de tallar peix cru per a sushi i sashimi. Requereix tècnica; no és un ganivet d'ús general.",
+    long: "240–360mm",
+    per: "Sashimi, peix cru"
+  },
+  {
+    nom: "Deba",
+    kana: "出刃",
+    desc: "Ganivet de peix i aus. Full gruixut, pesat, robust. Separa caps, fileteja peixos grossos, parteix cartílags. Un sol tall, sense serrar. Molt específic: no té sentit comprar-lo si no treballes molt peix.",
+    long: "150–210mm",
+    per: "Peix gran, aus"
+  },
+  {
+    nom: "Petty / Utility",
+    kana: "ペティ",
+    desc: "Versió petita del gyuto. Per a pelar, decorar, tallar fruites i feines de precisió. Molts cuiners el porten a la butxaca. Excel·lent com a segon ganivet per a qui ja té un gyuto.",
+    long: "120–150mm",
+    per: "Precisió, fruites, decoració"
+  },
+];
+
+const acers = [
+  {
+    nom: "VG-10",
+    tipus: "Inoxidable",
+    hrc: "60–61",
+    pros: "No s'oxida, fàcil manteniment, bon tall",
+    contres: "Menys retenció de tall que acers de carboni",
+    per: "Ús domèstic, principiants"
+  },
+  {
+    nom: "SG2 / R2",
+    tipus: "Inoxidable pols",
+    hrc: "63–64",
+    pros: "Duresa extrema, retenció de tall excel·lent, no s'oxida",
+    contres: "Fràgil si cau o es torç, preu elevat",
+    per: "Aficionats exigents, cuiners professionals"
+  },
+  {
+    nom: "Aogami #1 / #2 (Acer blau)",
+    tipus: "Carboni",
+    hrc: "62–65",
+    pros: "Tall excepcional, fàcil d'esmolar, preu accessible",
+    contres: "S'oxida, requereix assecat immediat i oli",
+    per: "Aficionats que accepten el manteniment"
+  },
+  {
+    nom: "Shirogami #1 / #2 (Acer blanc)",
+    tipus: "Carboni pur",
+    hrc: "61–65",
+    pros: "El tall més fi possible, excel·lent per a sashimi",
+    contres: "Molt reactiu (s'oxida ràpid), fràgil",
+    per: "Cuiners professionals japonesos, col·leccionistes"
+  },
+  {
+    nom: "HAP40 / ZDP-189",
+    tipus: "Inoxidable pols extrem",
+    hrc: "65–67",
+    pros: "La màxima duresa assolible comercialment",
+    contres: "Molt car, pràcticament impossible d'esmolar a casa",
+    per: "Col·leccionistes, entesos"
+  },
+];
+
+const botigues = [
+  { lloc: "Kappabashi-dori", zona: "Tokyo · Taito", desc: "El carrer dels restaurants i la cuina. 2 km de botigues de tot l'equipament de cuina professional. Ganivets de totes les categories i preus. La millor selecció de Tokyo i la més accessible per a turistes." },
+  { lloc: "Aritsugu", zona: "Kyoto · Mercat Nishiki", desc: "La marca més antiga del Japó (1560). Originalment forjadors d'espases imperials. Avui fan els millors ganivets artesanals del país. La botiga del mercat Nishiki és petita i autèntica: personalitzen el mànec i graven el nom." },
+  { lloc: "Masamoto Sohonten", zona: "Tokyo · Kappabashi", desc: "La marca de referència dels cuiners professionals de Tokyo. Ganivets de carboni d'alta qualitat. No tan coneguts pels turistes com Shun o Global però els preferits a les cuines professionals nipones." },
+  { lloc: "Seisuke Knife", zona: "Tokyo · Asakusa / online", desc: "Botiga especialitzada en ganivets de productors artesanals (forjadors independents). La millor selecció de ganivets de gamma alta i customitzats. Personal molt expert i amb anglès." },
+  { lloc: "Kamata Hakensha", zona: "Tokyo · Kappabashi", desc: "Un dels establiments principals de Kappabashi. Excel·lent relació qualitat-preu. Bones opcions per a regals i ganivets de gama mitja-alta." },
+  { lloc: "Tsukiji Masamoto", zona: "Tokyo · Tsukiji", desc: "La sucursal del mercat de Tsukiji. Ambient de mercat, cuiners professionals al costat. Tancada alguns dies de la setmana; convé confirmar horaris." },
+];
+---
+<Layout title="Ganivets japonesos" description="Gyuto, Santoku, Yanagiba. Tojiro, Misono, Aritsugu. Quins comprar al Japó i per quèc" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Ganivets</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Compres · Cuina japonesa</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Ganivets japonesos</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 580px; margin-bottom: 1.5rem; line-height: 1.75;">
+      La tradició metal·lúrgica japonesa —les espases katana— va derivar en els millors ganivets de cuina del món. Angle de tall de 10–15° (vs 20–25° dels europeus), acers més durs i una filosofia del tall completament diferent. Al Japó, amb el ien dèbil i el tax-free, l'estalvi és del 30–50% respecte a Europa.
+    </p>
+    <div style="display: flex; gap: 2.5rem; margin-bottom: 3rem; flex-wrap: wrap;">
+      <div>
+        <p class="label" style="margin-bottom: 0.25rem;">Angle de tall</p>
+        <p style="font-size: 1.125rem; font-weight: 800; color: var(--color-fg);">10–15°</p>
+        <p style="font-size: 0.75rem; color: var(--color-muted);">vs 20–25° europeus</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom: 0.25rem;">Duresa típica</p>
+        <p style="font-size: 1.125rem; font-weight: 800; color: var(--color-fg);">60–65 HRC</p>
+        <p style="font-size: 0.75rem; color: var(--color-muted);">vs 56–58 HRC Wüsthof</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom: 0.25rem;">Estalvi vs Europa</p>
+        <p style="font-size: 1.125rem; font-weight: 800; color: var(--color-accent);">30–50%</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom: 0.25rem;">A l'avió</p>
+        <p style="font-size: 1.125rem; font-weight: 800; color: var(--color-fg);">Factura obligatòria</p>
+        <p style="font-size: 0.75rem; color: var(--color-muted);">Mai a cabina</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.75rem;">
+        <h2 style="font-size: 1.75rem;">Models destacats</h2>
+        <span class="label">Del valor al llegendari</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 640px; line-height: 1.7;">
+        La selecció que cobreix totes les necessitats: des del primer ganivet japonès fins a la peça de col·leccionista.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {destacats.map(g => (
+          <div style="background: var(--color-bg); display: flex; flex-direction: column;">
+            <div style="aspect-ratio: 4/3; background: var(--color-subtle); overflow: hidden; position: relative;">
+              <img
+                src={g.img}
+                alt={g.nom}
+                style="width: 100%; height: 100%; object-fit: cover;"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div style="display: none; position: absolute; inset: 0; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; background: var(--color-subtle);">
+                <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted);">{g.marca.toUpperCase()}</span>
+                <span style="font-size: 0.8125rem; font-weight: 800; color: var(--color-fg); text-align: center; padding: 0 1rem;">{g.nom}</span>
+              </div>
+              <span class:list={['tag', { accent: g.tag === 'Llegenda' || g.tag === 'Millor valor' }]} style="position: absolute; top: 0.75rem; left: 0.75rem;">
+                {g.tag}
+              </span>
+            </div>
+            <div style="padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.375rem;">
+              <h3 style="font-size: 0.9375rem; font-weight: 700;">{g.nom}</h3>
+              <div style="display: flex; gap: 0.75rem; align-items: baseline;">
+                <span style="font-size: 1rem; font-weight: 800; color: var(--color-accent);">{g.euros}</span>
+                <span style="font-size: 0.75rem; color: var(--color-muted);">{g.preu}</span>
+              </div>
+              <p style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); margin-bottom: 0.25rem;">{g.acer}</p>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6; flex: 1;">{g.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Tipus de ganivet</h2>
+      <div style="border: 1px solid var(--color-border);">
+        {tipus.map((t, i, arr) => (
+          <div style={`display: grid; grid-template-columns: 110px 60px 100px 1fr; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === arr.length - 1 ? 'border-bottom: none;' : ''}`}>
+            <div>
+              <span style="font-size: 0.9375rem; font-weight: 700; display: block;">{t.nom}</span>
+              <span style="font-size: 0.875rem; color: var(--color-muted);">{t.kana}</span>
+            </div>
+            <span style="font-size: 0.8125rem; color: var(--color-muted); font-family: var(--font-mono); padding-top: 0.125rem;">{t.long}</span>
+            <span style="font-size: 0.75rem; color: var(--color-muted); line-height: 1.5; padding-top: 0.125rem;">{t.per}</span>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{t.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.5rem;">Tipus d'acer</h2>
+        <span class="label">La decisió més important</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1.5rem; max-width: 640px; line-height: 1.7;">
+        L'acer determina el rendiment, el manteniment i el preu. La regla general: més dur = tall millor i més durador, però més fràgil i més difícil d'esmolar. Els acers de carboni tallen millor però s'oxiden.
+      </p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {acers.map(a => (
+          <div style="background: var(--color-bg); padding: 1.25rem; display: flex; flex-direction: column; gap: 0.375rem;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <h3 style="font-size: 0.9375rem; font-weight: 700;">{a.nom}</h3>
+              <span style="font-size: 0.75rem; color: var(--color-muted); font-family: var(--font-mono);">{a.hrc} HRC</span>
+            </div>
+            <span class="tag" style="align-self: start; margin-bottom: 0.25rem;">{a.tipus}</span>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.25rem;">
+              <div>
+                <p style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); margin-bottom: 0.2rem;">A favor</p>
+                <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.5;">{a.pros}</p>
+              </div>
+              <div>
+                <p style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); margin-bottom: 0.2rem;">En contra</p>
+                <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.5;">{a.contres}</p>
+              </div>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--color-muted);"><span style="color: var(--color-fg); font-weight: 600;">Per a:</span> {a.per}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Val la pena comprar al Japó?</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--color-accent);">Sí, clarament</h3>
+          <ul style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.8; padding-left: 1.25rem; margin: 0;">
+            <li>Preus de fàbrica sense distribuïdor europeu: 30–50% més barat</li>
+            <li>Tax-free del 10% addicional a partir de ¥5,000</li>
+            <li>Marques com Misono, Aritsugu o Masamoto directament inaccessibles a Europa</li>
+            <li>Pots escollir el ganivet en mà, provar el pes i l'equilibri</li>
+            <li>Servei de gravat del nom (personalització) gratuït o molt barat</li>
+            <li>Ien dèbil el 2025–2026: avantatge addicional del 15–20%</li>
+          </ul>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Coses a tenir en compte</h3>
+          <ul style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.8; padding-left: 1.25rem; margin: 0;">
+            <li>Mai a l'equipatge de mà — sempre a la bodega, ben embalat</li>
+            <li>A la duana espanyola, ganivets de qualitat no solen tenir problema</li>
+            <li>Els ganivets de carboni necessiten cura: assecat immediat, oli de tant en tant</li>
+            <li>Necessitaràs pedra d'esmolar japonesa — aprofita per comprar-ne una a Kappabashi</li>
+            <li>Global i Shun es troben a Europa; no val la pena prioritzar-los</li>
+          </ul>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Recomanació pràctica</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            Un gyuto de 210mm és el primer ganivet. Si tens pressupost fins a €100, el Tojiro DP és imbatible. De €150 a €250, el Misono UX10 o el Sakai Takayuki en VG-10. Per sobre de €250, entra en joc l'SG2 o l'Aogami Super. La yanagiba només té sentit si fas sashimi a casa habitualment.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Pedres d'esmolar</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            Un ganivet japonès esmolat amb una pedra japonesa és una experiència transformadora. Les pedres King (KW-65, grain 1000/6000) costen ¥3,000–8,000 (~€18–48) al Japó i €40–90 a Europa. Compra'n una a Kappabashi o a Itoya. Les Shapton i Naniwa Chosera / Super Stone són el top de gamma.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="label" style="margin-bottom: 1.5rem;">On comprar</p>
+      <div style="border: 1px solid var(--color-border);">
+        {botigues.map((v, i, arr) => (
+          <div style={`display: grid; grid-template-columns: 1fr 150px 1.5fr; gap: 1rem; padding: 0.875rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === arr.length - 1 ? 'border-bottom: none;' : ''}`}>
+            <span style="font-size: 0.9375rem; font-weight: 600;">{v.lloc}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted);">{v.zona}</span>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</Layout>

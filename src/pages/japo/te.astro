@@ -1,0 +1,347 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const varietats = [
+  {
+    nom: "Matcha",
+    kana: "抹茶",
+    color: "#3a6b35",
+    light: "#c8e6c0",
+    process: "Ombra 3–4 setm. → vapor → assecat → mòlta",
+    regio: "Uji (Kyoto), Nishio (Aichi)",
+    preu: "¥2,500–15,000",
+    euros: "€15–€91 / 40g",
+    desc: "Te en pols. Les fulles creixen a l'ombra durant setmanes per potenciar la clorofil·la i la L-teanina (umami dolç). Es bat amb chasen fins a fer escuma. Dos usos: cerimònia (koicha i usucha) i culinari (pastisseria, gelats, llet).",
+    tag: "Cerimònia"
+  },
+  {
+    nom: "Gyokuro",
+    kana: "玉露",
+    color: "#2d5a27",
+    light: "#b8ddb0",
+    process: "Ombra 3 setm. → vapor llarg → enrotllat",
+    regio: "Uji, Yame (Fukuoka), Asahina",
+    preu: "¥3,000–25,000",
+    euros: "€18–€152 / 100g",
+    desc: "El te en fulla de major qualitat del Japó. Fulles petites, enfosquides per l'ombra. Preparat amb aigua a 50–60°C durant 90 seg. Sabor d'umami intens, quasi de brou, sense astringència. El gyokuro de competició és un dels productes alimentaris més cars del Japó.",
+    tag: "Alta gamma"
+  },
+  {
+    nom: "Sencha",
+    kana: "煎茶",
+    color: "#5a8a3a",
+    light: "#d8edc8",
+    process: "Sol → vapor immediat → enrotllat → assecat",
+    regio: "Shizuoka, Kagoshima, Uji",
+    preu: "¥600–6,000",
+    euros: "€4–€36 / 100g",
+    desc: "El te quotidià japonès. Herba fresca, lleugera astringència, final dolç. El 70% de la producció japonesa. Preparat a 70–80°C durant 60 seg. Hi ha una diferència abismal entre el sencha de supermercat i un bon sencha de primera collita (shincha, disponible al maig).",
+    tag: "Quotidià"
+  },
+  {
+    nom: "Hojicha",
+    kana: "ほうじ茶",
+    color: "#8b5a2b",
+    light: "#e8d5b8",
+    process: "Sencha o bancha → torrat a alta temp.",
+    regio: "Kyoto (origen), nacional",
+    preu: "¥500–3,000",
+    euros: "€3–€18 / 100g",
+    desc: "Sencha o bancha torrat a alta temperatura. Color caramel, aroma de torrada, sabor suau i càlid. Poca cafeïna: el te de la nit, el dels nens, el de les persones grans. L'hojicha de Kyoto —torrat en una olla de ferro al moment— és incomparable.",
+    tag: "Baix en cafeïna"
+  },
+  {
+    nom: "Genmaicha",
+    kana: "玄米茶",
+    color: "#9a8050",
+    light: "#f0e8d0",
+    process: "Bancha + arròs morè torrat (+ mochi esclafat)",
+    regio: "Nacional",
+    preu: "¥400–2,000",
+    euros: "€2–€12 / 100g",
+    desc: "Barreja de bancha i arròs morè torrat. El popcorn japonès del te. Aroma d'arròs torrat, sabor ple i reconfortant. El te de l'hora de dinar. Amb matcha afegit es diu 'matcha-iri genmaicha' i té un color verd intens.",
+    tag: "Arròs torrat"
+  },
+  {
+    nom: "Kukicha",
+    kana: "茎茶",
+    color: "#6a8a5a",
+    light: "#d8e8c8",
+    process: "Tiges i branquetes del gyokuro o tencha",
+    regio: "Uji, Kagoshima",
+    preu: "¥800–4,000",
+    euros: "€5–€24 / 100g",
+    desc: "Te de tiges i branquetes. Subproducte del gyokuro i el matcha. Poc teinat, molt suau, lleugerament dolç i herbaci. Els japonesos el prenen fred a l'estiu. Poc conegut fora del Japó però de qualitat sorprenent per al preu.",
+    tag: "Subtil"
+  },
+];
+
+const marques = [
+  {
+    nom: "Ippodo",
+    seu: "Kyoto (fundada 1717) · sucursal Tokyo (Marunouchi)",
+    desc: "La marca de matcha més reputada del Japó. Establerta al carrer Teramachi de Kyoto. Venen per rang (Ummon, Kan'un, Ikuyo…) des del més accessible fins al ceremonial de competició. Ambient de farmàcia antiga. El personal explica cada te amb detall. La visita és una experiència en si mateixa.",
+    especialitat: "Matcha ceremonial, gyokuro, sencha Uji",
+    preu: "Matcha ¥1,728–12,960 / 40g"
+  },
+  {
+    nom: "Marukyu Koyamaen",
+    seu: "Uji, Kyoto",
+    desc: "Productor de matcha d'Uji des de 1861. Dels pocs que cultiven, processen i venen directament. La qualitat del matcha és excepcionalment consistent. Menys cèlebre entre turistes que Ippodo però preferida per molts entesos. Disponible a la botiga d'Uji i per encàrrec.",
+    especialitat: "Matcha d'Uji (tota la gamma)",
+    preu: "Matcha ¥1,620–20,000+ / 40g"
+  },
+  {
+    nom: "Tsujiri",
+    seu: "Kyoto (Gion) · sucursals a tot el Japó",
+    desc: "Fundada a Uji el 1860. Famosa pels productes de matcha gastronòmic (gelats, wagashi, lattes) i per la seva gamma de tes de qualitat. Molt accessible, amb productes a tots els preus. La gelateria de Gion fa cua constant.",
+    especialitat: "Matcha culinari, productes gastronòmics",
+    preu: "Sencha des de ¥540, matcha des de ¥1,080 / 40g"
+  },
+  {
+    nom: "Jugetsudo",
+    seu: "Tokyo (Ginza / Coredo Nihonbashi)",
+    desc: "Marca de te de gamma alta amb botiga de disseny a Ginza. Excel·lent selecció de sencha, gyokuro i matcha. Packaging elegant, ideal per a regals. La botiga de Nihonbashi té una sala de degustació.",
+    especialitat: "Sencha premium, matcha, packaging de regal",
+    preu: "Sencha ¥1,080–8,640 / 100g"
+  },
+  {
+    nom: "Lupicia",
+    seu: "Nacional, moltes sucursals",
+    desc: "Cadena de te d'estil occidental-japonès. Mescles, infusions, tes aromatitzats. No és la tradició pura però té qualitat consistent i packaging molt vistós. Bona opció per a regals per a gent que no beu te japonès pur.",
+    especialitat: "Tes aromatitzats, infusions, mescles",
+    preu: "Des de ¥540 / 50g"
+  },
+];
+
+const equipament = [
+  {
+    nom: "Chasen",
+    kana: "茶筅",
+    preu: "¥2,000–8,000",
+    euros: "€12–€48",
+    desc: "El batedor de bambú per al matcha. 80 o 120 dents (puntes). Fet a mà a Takayama (Nara), l'únic lloc del Japó que els produeix. Es malmet amb el temps; un chasen de qualitat dura 6–12 mesos amb ús diari. Els de 100 dents (kazuho) són els estàndards per a cerimònia."
+  },
+  {
+    nom: "Kyusu",
+    kana: "急須",
+    preu: "¥3,000–30,000",
+    euros: "€18–€182",
+    desc: "Tetera japonesa de mànec lateral per al sencha i el gyokuro. Bec fi per a control del flux; colador integrat a la sortida. Les de Tokoname (argila roja) o les de Banko (argila porpra) milloren el gust del te per la seva composició mineral. Una bona kyusu és una adquisició per a tota la vida."
+  },
+  {
+    nom: "Yuzamashi",
+    kana: "湯冷まし",
+    preu: "¥2,000–10,000",
+    euros: "€12–€61",
+    desc: "Recipient per refredar l'aigua abans d'infusionar. Essencial per al gyokuro (50–60°C) i per al sencha bo (70°C). Forma de katakuchi ampla. El refredament és part del ritual del te japonès de qualitat; l'aigua bullint destrueix el sabor del gyokuro."
+  },
+  {
+    nom: "Natsume",
+    kana: "棗",
+    preu: "¥5,000–100,000+",
+    euros: "€30–€606+",
+    desc: "Caixa llaconada per guardar el matcha en pols. Forma de dàtil (natsume vol dir 'dàtil'). Les senzilles de laca negra o vermella per a ús diari; les de maki-e per a cerimònia formal. Una natsume autèntica és objecte d'art lactat."
+  },
+];
+
+const regons = [
+  { nom: "Uji", prefectura: "Kyoto", desc: "La capital mundial del matcha i el gyokuro. L'aigua del riu Uji, la boira matinal i el microclima creat entre les muntanyes creen les condicions ideals. La Uji-cha (te d'Uji) és l'IGP japonesa del te. A 30 min de Kyoto en tren.", especialitat: "Matcha, gyokuro, kabusecha" },
+  { nom: "Shizuoka", prefectura: "Shizuoka", desc: "El 40% de la producció japonesa. Clima temperat del Mont Fuji. Te de consum quotidià, molt consistent. La Shizuoka Prefectural Tea Research Institute és el centre d'investigació tetera més important del Japó.", especialitat: "Sencha, fukamushi sencha (vapor llarg)" },
+  { nom: "Yame", prefectura: "Fukuoka", desc: "Gyokuro de Yame: guanya sistemàticament els concursos nacionals davant d'Uji. Menys conegut pel turista però adorat pels entesos. La cerimònia del te de Yame (te servit fred amb gel) és única al Japó.", especialitat: "Gyokuro d'elit, matcha" },
+  { nom: "Kagoshima", prefectura: "Kagoshima", desc: "El Japó del sud. Producció massiva de sencha de qualitat accessible. Tanaka en és el productor emblema. Creixent presència en el mercat internacional pel seu preu competitiu i qualitat consistent.", especialitat: "Sencha, kukicha, hojicha" },
+  { nom: "Nishio", prefectura: "Aichi", desc: "El principal productor de matcha culinari del Japó. El matcha de Nishio abasteix la major part de la industria alimentaria (Häagen-Dazs, Kit-Kat, pastisseries). Menys refinat que Uji però produccions molt grans.", especialitat: "Matcha culinari i industrial" },
+];
+---
+<Layout title="Te japonès" description="Matcha, gyokuro, sencha, hojicha. Marques, preus i on comprar te al Japó" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Te japonès</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Cultura · Te japonès</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Te japonès</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 580px; margin-bottom: 1.5rem; line-height: 1.75;">
+      El te no és una beguda al Japó: és una pràctica. Des del sencha que et posen a qualsevol restaurant fins al matcha de cerimònia preparat en silenci durant mitja hora, el te organitza el temps, l'espai i les relacions. Aprendre a distingir les varietats canvia la manera de viatjar per aquest país.
+    </p>
+    <div style="display: flex; gap: 2.5rem; margin-bottom: 3rem; flex-wrap: wrap;">
+      <div>
+        <p class="label" style="margin-bottom: 0.25rem;">Fàcil de portar</p>
+        <p style="font-size: 1.125rem; font-weight: 800; color: var(--color-accent);">Cap restricció</p>
+        <p style="font-size: 0.75rem; color: var(--color-muted);">no líquid, passa controls sense problema</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom: 0.25rem;">Estalvi vs Europa</p>
+        <p style="font-size: 1.125rem; font-weight: 800; color: var(--color-fg);">40–60%</p>
+        <p style="font-size: 0.75rem; color: var(--color-muted);">per a matcha de qualitat</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom: 0.25rem;">Preu d'entrada</p>
+        <p style="font-size: 1.125rem; font-weight: 800; color: var(--color-fg);">des de €4</p>
+        <p style="font-size: 0.75rem; color: var(--color-muted);">sencha 100g</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.75rem;">
+        <h2 style="font-size: 1.75rem;">Varietats principals</h2>
+        <span class="label">Del quotidià al ceremonial</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 640px; line-height: 1.7;">
+        Totes les varietats japoneses venen de la mateixa planta (<em>Camellia sinensis</em>). El que les diferencia és el cultiu (sol o ombra), el processament (vapor, torrat) i la forma final (fulla, pols, tija).
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {varietats.map(t => (
+          <div style="background: var(--color-bg); display: flex; flex-direction: column;">
+            <div style={`height: 90px; background: ${t.color}; position: relative; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.25rem;`}>
+              <span style={`font-size: 1.375rem; font-weight: 900; color: ${t.light}; letter-spacing: -0.01em;`}>{t.nom}</span>
+              <span style={`font-size: 1.25rem; color: ${t.light}; opacity: 0.6;`}>{t.kana}</span>
+              <span class:list={['tag', { accent: t.tag === 'Cerimònia' || t.tag === 'Alta gamma' }]} style="position: absolute; top: 0.75rem; left: 0.75rem; font-size: 0.625rem;">
+                {t.tag}
+              </span>
+            </div>
+            <div style="padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.375rem;">
+              <p style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--color-muted);">{t.process}</p>
+              <div style="display: flex; gap: 0.5rem; align-items: baseline;">
+                <span style="font-size: 0.9375rem; font-weight: 700; color: var(--color-accent);">{t.euros}</span>
+                <span style="font-size: 0.75rem; color: var(--color-muted);">{t.preu}</span>
+              </div>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6; flex: 1;">{t.desc}</p>
+              <p style="font-size: 0.75rem; color: var(--color-muted); margin-top: 0.25rem;">Regions: <span style="color: var(--color-fg);">{t.regio}</span></p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Marques i botigues de referència</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1.5rem; max-width: 640px; line-height: 1.7;">
+        Al Japó existeixen milers de productors de te, però per al viatger les marques establertes de Kyoto i Tokyo concentren la millor qualitat accessible.
+      </p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {marques.map(m => (
+          <div style="background: var(--color-bg); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;">
+            <h3 style="font-size: 1rem; font-weight: 700;">{m.nom}</h3>
+            <p style="font-size: 0.75rem; color: var(--color-muted);">{m.seu}</p>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65; flex: 1;">{m.desc}</p>
+            <div style="margin-top: 0.5rem; padding-top: 0.75rem; border-top: 1px solid var(--color-border);">
+              <p style="font-size: 0.75rem; color: var(--color-muted);"><span style="color: var(--color-fg); font-weight: 600;">Especialitat:</span> {m.especialitat}</p>
+              <p style="font-size: 0.75rem; color: var(--color-accent); font-weight: 600; margin-top: 0.2rem;">{m.preu}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Equipament</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1.5rem; max-width: 640px; line-height: 1.7;">
+        L'equipament japonès de te és funcional, durador i difícil de trobar a Europa a preu raonable. Una kyusu de Tokoname o un chasen autèntic de Takayama fan una diferència real en el resultat a la tassa.
+      </p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {equipament.map(e => (
+          <div style="background: var(--color-bg); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.375rem;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <h3 style="font-size: 0.9375rem; font-weight: 700;">{e.nom} <span style="font-weight: 400; color: var(--color-muted);">{e.kana}</span></h3>
+            </div>
+            <div style="display: flex; gap: 0.5rem; align-items: baseline;">
+              <span style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent);">{e.euros}</span>
+              <span style="font-size: 0.75rem; color: var(--color-muted);">{e.preu}</span>
+            </div>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65; flex: 1;">{e.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Regions productores</h2>
+      <div style="border: 1px solid var(--color-border);">
+        {regons.map((r, i, arr) => (
+          <div style={`display: grid; grid-template-columns: 100px 100px 120px 1fr; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === arr.length - 1 ? 'border-bottom: none;' : ''}`}>
+            <span style="font-size: 0.9375rem; font-weight: 700;">{r.nom}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted);">{r.prefectura}</span>
+            <span style="font-size: 0.75rem; color: var(--color-muted); line-height: 1.5;">{r.especialitat}</span>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Cerimònia del te (Chado)</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Orígens</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            El te va entrar al Japó des de la Xina al s. IX. El monjo Myoan Eisai el va difondre al s. XII com a pràctica meditativa zen. Sen no Rikyu (1522–1591) va codificar el Chado (<em>el camí del te</em>) com a disciplina espiritual: senzillesa radical, presència total, cada trobada irrepetible (<em>ichigo ichie</em>). Les tres escoles principals —Ura Senke, Omote Senke, Mushanokoji Senke— deriven directament de Rikyu.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Fer una cerimònia de turista</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            A Kyoto és fàcil participar en una cerimònia d'introducció (~¥1,500–3,000, 30–45 min). Inclouen un wagashi (dolç tradicional) per contrastar l'amargor del matcha i una explicació dels moviments bàsics. Botigues a Higashiyama, al Jardí Kenroku-en de Kanazawa i al parc Hamarikyu de Tokyo en fan regularment. No requereix reserva prèvia.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Koicha i Usucha</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            El matcha es prepara en dues densitats. <strong style="color: var(--color-fg);">Koicha</strong> (te espès): 4g de matcha per 40 mL d'aigua, textura de xocolata desfeta, molt intens. S'usa al te formal i requereix matcha de primera qualitat. <strong style="color: var(--color-fg);">Usucha</strong> (te prim): 2g per 70 mL, escumós, lleuger. L'estàndard de les cerimònies d'introducció i de l'ús domèstic.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Matcha fora de la cerimònia</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            El matcha ha transcendit el ritual: gelat Häagen-Dazs de matcha, Kit-Kat de matcha (un dels souvenirs més populars del Japó), latte, croissants, tíramisú, pastes de Nadal. La distinció de qualitat segueix important: un latte amb matcha culinari (verd apagat, amarg) és molt diferent d'un amb matcha d'Uji de primera collita (verd elèctric, umami, dolç).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Consells de compra</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Matcha: com triar el grau</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            Per a batut (usucha domèstic): gamma mitja d'Ippodo (Kan'un, ~¥2,160/40g). Per a koicha o regal: gamma alta (Ummon o superior). Per a cuinar i fer lattes: grade culinari de Nishio (~¥1,000/100g). Evita el matcha barat importat de la Xina que venen com a «matcha japonès» a Europa.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Conservació i logística</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            El te en pols (matcha) s'oxida amb la llum i l'aire. Compra en llaunes hermètiques petites (20–40g) si no el consumiràs en un mes. El sencha i el gyokuro aguanten 6 mesos ben tancats. Cap restricció a l'aeroport: és un producte sec, passa controls sense problema. Ideal per portar en equipatge de mà.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Temperatura de l'aigua</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            L'error més comú: aigua bullint sobre te verd. Sencha: 70–75°C. Gyokuro: 50–60°C. Hojicha i genmaicha: 90–95°C (resistents al calor pel torrat). Matcha: 70–80°C. Un termòmetre de cuina bàsic o un yuzamashi resolen el problema per sempre.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Shincha — la primera collita</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            El shincha («te nou») és la primera collita de l'any, recollida entre finals d'abril i principis de juny. Les fulles joves de la primera brotada contenen la màxima concentració d'aminoàcids i clorofil·la. Sabor fresc, herba nova, dolçor natural. El viatge és al juliol–agost, quan el shincha de la temporada és als prestatges. No el deixis passar.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>

@@ -1,0 +1,333 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const tomoe = [
+  {
+    nom: "Tomoe River Original (52 g/m²)",
+    preu: "~€12",
+    preuJapo: "~¥1,800",
+    format: "A4 · 100 fulls",
+    on: "Itoya, Amazon JP",
+    desc: "El paper de referència absoluta per a estilogràfica. Finissim però no travessa la tinta. Shading i sheening extrems. Tarda a assecar-se: compte amb l'escriptura ràpida. El tacte és lleugerament plàstic, inconfusible.",
+    tag: "Referència"
+  },
+  {
+    nom: "Tomoe River S (68 g/m²)",
+    preu: "~€14",
+    preuJapo: "~¥2,200",
+    format: "A4 · 100 fulls",
+    on: "Itoya, Maruzen",
+    desc: "Versió reformulada (2021). Lleugerament més gruixuda, s'asseca més ràpid. Menys sheening que l'original però més pràctica per a ús diari. Disponible en blanc i crema.",
+    tag: ""
+  },
+  {
+    nom: "Hobonichi Techo A6",
+    preu: "~€25",
+    preuJapo: "~¥4,180",
+    format: "Agenda anual · A6",
+    on: "Hobonichi Store, Loft, Itoya",
+    desc: "L'agenda de culte. Paper Tomoe River de 52 g/m², una pàgina per dia, format de butxaca. Compatible amb les dues cares de la fulla. La compra més popular entre aficionats a les plumes del Japó.",
+    tag: "Més popular"
+  },
+  {
+    nom: "Hobonichi Techo Cousin A5",
+    preu: "~€38",
+    preuJapo: "~¥6,380",
+    format: "Agenda anual · A5",
+    on: "Hobonichi Store, Loft, Itoya",
+    desc: "El format gran del Hobonichi. Una pàgina per dia amb marge extra. Ideal per a qui vol espai per dibuixar o anotar molt. Disponible amb cobertes d'artistes col·laboradors (edicions limitades).",
+    tag: ""
+  },
+];
+
+const midori = [
+  {
+    nom: "MD Paper Notebook — Línies",
+    preu: "~€12",
+    preuJapo: "~¥1,760",
+    format: "A5 · 176 pàgines",
+    desc: "Paper MD (Midori Diary) de color crema, lleugerament texturitzat. Absorció controlada que potencia el shading sense la lentitud del Tomoe River. Relligat cosit, s'obre pla al 180°. L'elecció dels que escriuen molt cada dia."
+  },
+  {
+    nom: "MD Paper Notebook — Quadrícula",
+    preu: "~€12",
+    preuJapo: "~¥1,760",
+    format: "A5 · 176 pàgines",
+    desc: "Idèntic al de línies però amb quadrícula de 5 mm. Color de la quadrícula subtilíssim: quasi invisible però útil per a dibuixos tècnics, taules o escriptura alineada."
+  },
+  {
+    nom: "MD Paper Notebook — Blanc",
+    preu: "~€12",
+    preuJapo: "~¥1,760",
+    format: "A5 · 176 pàgines",
+    desc: "Fulls en blanc per a il·lustració i escriptura lliure. El paper MD suporta aquarel·la lleugera i tinta sense ondular-se excessivament. El preferit d'artistes i sketchers."
+  },
+  {
+    nom: "MD Paper Notebook — A4",
+    preu: "~€15",
+    preuJapo: "~¥2,200",
+    format: "A4 · 80 pàgines",
+    desc: "Format gran per a escriptors prolífics o ús professional. Tapa tova. Bona relació preu-qualitat per al paper MD."
+  },
+  {
+    nom: "MD Paper Light Pad A4",
+    preu: "~€20",
+    preuJapo: "~¥2,970",
+    format: "A4 · 80 fulls solts",
+    desc: "Paper MD en fulls solts, sense relligar. Lleuger, ideal per a correspondència o proves de tintes. Es ven a blocs de 80 fulls. El preferit per a cartes manuscrites."
+  },
+];
+
+const sailor = [
+  {
+    nom: "Sailor Crossfield Notebook",
+    preu: "~€18",
+    preuJapo: "~¥2,750",
+    format: "B5 · 80 pàgines",
+    desc: "Paper d'alta qualitat dissenyat per Sailor específicament per a les seves tintes. El shading és espectacular. Disponible a les botigues Sailor i Itoya Ginza. Poc conegut fora del Japó."
+  },
+  {
+    nom: "Nagasawa Kobe Paper",
+    preu: "~€5–10",
+    preuJapo: "~¥800–1,500",
+    format: "A5 / cartes",
+    desc: "Papers especials de la botiga Nagasawa de Kobe, la mateixa que ven el Kobe Ink Story. Formats per a cartes i targetes. El souvenir paper per excel·lència de Kobe per als aficionats a l'escriptura."
+  },
+];
+
+const altres = [
+  {
+    nom: "Cosmo Air Light",
+    fabricant: "Yamamoto",
+    preu: "~€10 (50 fulls)",
+    preuJapo: "~¥1,500",
+    desc: "Ultra lleuger (52 g/m²), sheening extrem. El rival directe del Tomoe River. Textura diferent: menys plàstica, més càlida. Disponible a Itoya i algunes botigues especialitzades."
+  },
+  {
+    nom: "Bird (Tsubame)",
+    fabricant: "Yamamoto",
+    preu: "~€12 (50 fulls)",
+    preuJapo: "~¥1,800",
+    desc: "Paper japonès tradicional modernitzat. Shading suau i elegant. Nom inspirat en l'ocell Tsubame (oreneta). Favoritit per a carta manuscrita i cal·ligrafia occidental."
+  },
+  {
+    nom: "Stalogy 365",
+    fabricant: "Stalogy / Nitor",
+    preu: "~€20",
+    preuJapo: "~¥3,300",
+    format: "A5 · 365 pàgines",
+    desc: "Agenda perpètua (sense any imprès). Paper de qualitat acceptable, millor que els quaderns europeus estàndard. Per a qui vol una agenda funcional sense l'exclusivitat del Hobonichi."
+  },
+  {
+    nom: "Kokuyo Campus",
+    fabricant: "Kokuyo",
+    preu: "~€4–7",
+    preuJapo: "~¥600–1,100",
+    desc: "El paper d'estudi japonès. Omnipresent als conbinis i papereries. Molt millor que el paper d'estudi europeu. Excel·lent per a proves de tintes i ús quotidià sense preocupació."
+  },
+  {
+    nom: "Maruman Mnemosyne",
+    fabricant: "Maruman",
+    preu: "~€8",
+    preuJapo: "~¥1,200",
+    format: "A5 · 80 pàgines",
+    desc: "Paper llis d'alta qualitat. Relligar en espiral, tapa rígida. El preferit dels enginyers i dissenyadors japonesos per a notes tècniques i esbossos. Marge roig característic."
+  },
+];
+
+const on = [
+  { lloc: "Itoya Tower (G-Itoya)", zona: "Tokyo · Ginza", pisos: "B1–10F", desc: "El temple. Papers, agendas, quaderns, fulls solts. Pis 4 dedicat exclusivament a paper. Pis 6 d'escriptura creativa. Tot el catàleg Tomoe River, MD Paper, Hobonichi i exclusivitats de botiga." },
+  { lloc: "Maruzen Kyoto", zona: "Kyoto · Shijo", pisos: "B1–4F", desc: "Llibreria-papeleria llegendària. Excel·lent selecció de papers japonesos premium i papers washi artesanals. Menys massificada que Itoya. Personal de la secció de papers molt expert." },
+  { lloc: "Hobonichi Store", zona: "Tokyo · Tobichi", pisos: "—", desc: "La botiga oficial del Hobonichi Techo. Venda directa, totes les cobertes de la temporada. A Tokyo i Kyoto. Reserva de l'agenda de l'any vinent si t'hi passes a l'estiu." },
+  { lloc: "Loft / Tokyu Hands", zona: "Shinjuku, Shibuya, Osaka…", pisos: "—", desc: "Grans superfícies de disseny. Bona selecció de quaderns Midori, Stalogy, Kokuyo. No tan especialitzats com Itoya però molt accessibles i ben proveïts." },
+  { lloc: "Nagasawa Shoten", zona: "Kobe · Sannomiya", pisos: "—", desc: "La botiga de referència de Kobe. Papers exclusius de Nagasawa, Kobe Ink Story i productes de col·laboració únics. Impossible no sortir amb alguna cosa." },
+];
+---
+<Layout title="Papers japonesos" description="Tomoe River, Hobonichi Techo, MD Paper de Midori, Yamamoto i on comprar" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <a href="/japo/estilografiques" style="color: var(--color-muted);">Estilogràfiques</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Papers</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Compres · Papers japonesos</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Papers</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 580px; margin-bottom: 1.5rem; line-height: 1.75;">
+      El paper és la meitat de l'experiència d'escriptura. Un paper dolent ofega les millors tintes; un bon paper japonès transforma fins i tot una ploma bàsica. El Japó és l'únic lloc on pots comprar Tomoe River original, agendas Hobonichi i paper MD al preu de fàbrica.
+    </p>
+    <div style="display: flex; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap;">
+      <div>
+        <p class="label" style="margin-bottom: 0.25rem;">Estalvi vs Europa</p>
+        <p style="font-size: 1.125rem; font-weight: 800; color: var(--color-accent);">25–40%</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom: 0.25rem;">Tax-free des de</p>
+        <p style="font-size: 1.125rem; font-weight: 800; color: var(--color-fg);">¥5,000</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom: 0.25rem;">Problema a l'avió</p>
+        <p style="font-size: 1.125rem; font-weight: 800; color: var(--color-fg);">Cap — lleuger i pla</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.75rem;">
+        <h2 style="font-size: 1.75rem;">Tomoe River</h2>
+        <span class="label">El paper de referència mundial</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 640px; line-height: 1.75;">
+        Fabricat per Tomoegawa, una empresa de materials especials de Tokyo. Originalment era paper per a impressió làser de gran qualitat. Els aficionats a les estilogràfiques el van descobrir als anys 2000: és el paper que maximitza el shading, el sheening i la vivesa dels colors de qualsevol tinta. El seu secret és la superfície poc absorbent que deixa la tinta «seure» a sobre en comptes d'absorbir-la.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {tomoe.map(p => (
+          <div style="background: var(--color-bg); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.25rem;">
+              <h3 style="font-size: 0.9375rem; font-weight: 700; padding-right: 1rem;">{p.nom}</h3>
+              {p.tag && <span class:list={['tag', { accent: p.tag === 'Més popular' || p.tag === 'Referència' }]} style="flex-shrink: 0;">{p.tag}</span>}
+            </div>
+            <p style="font-size: 0.75rem; color: var(--color-muted); font-family: var(--font-mono);">{p.format}</p>
+            <div style="display: flex; gap: 0.5rem; align-items: baseline;">
+              <span style="font-size: 0.9375rem; font-weight: 700; color: var(--color-accent);">{p.preu}</span>
+              <span style="font-size: 0.75rem; color: var(--color-muted);">{p.preuJapo}</span>
+            </div>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65; flex: 1;">{p.desc}</p>
+            <p style="font-size: 0.75rem; color: var(--color-muted); margin-top: 0.25rem;">On: <span style="color: var(--color-fg);">{p.on}</span></p>
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; background: var(--color-subtle); border: 1px solid var(--color-border);">
+        <p class="label" style="margin-bottom: 0.5rem;">Atenció: assecat lent</p>
+        <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.65; max-width: 640px;">
+          El Tomoe River tarda 15–60 segons a assecar depenent de la tinta. Si ets esquerrà o escrius ràpid, és incòmode. Per a ús quotidià intens, el MD Paper és més pràctic.
+        </p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.75rem;">
+        <h2 style="font-size: 1.75rem;">Midori MD Paper</h2>
+        <span class="label">Per a escriptors quotidians</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 640px; line-height: 1.75;">
+        Midori (ara Designphil) porta des de 1950 fent objectes de disseny japonès. El paper MD és la seva creació estrella: color crema càlid, textura subtilment rugosa que fa sentir la ploma, i assecat en 3–5 segons. No és tan espectacular com el Tomoe River però és molt més pràctic per a escriptura intensiva. Tots els quaderns MD s'obren pla al 180° gràcies al relligat cosit.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {midori.map(p => (
+          <div style="background: var(--color-bg); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;">
+            <h3 style="font-size: 0.9375rem; font-weight: 700;">{p.nom}</h3>
+            <p style="font-size: 0.75rem; color: var(--color-muted); font-family: var(--font-mono);">{p.format}</p>
+            <div style="display: flex; gap: 0.5rem; align-items: baseline;">
+              <span style="font-size: 0.9375rem; font-weight: 700; color: var(--color-accent);">{p.preu}</span>
+              <span style="font-size: 0.75rem; color: var(--color-muted);">{p.preuJapo}</span>
+            </div>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65; flex: 1;">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Sailor i Nagasawa</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1.5rem; max-width: 640px; line-height: 1.7;">
+        Papers exclusius de botiga, pensats per a les tintes japoneses.
+      </p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {sailor.map(p => (
+          <div style="background: var(--color-bg); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;">
+            <h3 style="font-size: 0.9375rem; font-weight: 700;">{p.nom}</h3>
+            <p style="font-size: 0.75rem; color: var(--color-muted); font-family: var(--font-mono);">{p.format}</p>
+            <div style="display: flex; gap: 0.5rem; align-items: baseline;">
+              <span style="font-size: 0.9375rem; font-weight: 700; color: var(--color-accent);">{p.preu}</span>
+              <span style="font-size: 0.75rem; color: var(--color-muted);">{p.preuJapo}</span>
+            </div>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65; flex: 1;">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Altres papers i quaderns</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1.5rem; max-width: 640px; line-height: 1.7;">
+        De Yamamoto d'especialitat fins al Kokuyo Campus de la cantonada.
+      </p>
+      <div style="border: 1px solid var(--color-border);">
+        {altres.map((p, i, arr) => (
+          <div style={`display: grid; grid-template-columns: 180px 80px 1fr; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === arr.length - 1 ? 'border-bottom: none;' : ''}`}>
+            <div>
+              <span style="font-size: 0.9375rem; font-weight: 600; display: block;">{p.nom}</span>
+              <span style="font-size: 0.75rem; color: var(--color-muted);">{p.fabricant}</span>
+            </div>
+            <div>
+              <span style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent); display: block;">{p.preu}</span>
+              <span style="font-size: 0.75rem; color: var(--color-muted);">{p.preuJapo}</span>
+            </div>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Paper washi</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Què és</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            El washi és paper artesanal japonès fet de fibres vegetals (kozo, gampi, mitsumata). Reconegut per la UNESCO com Patrimoni Immaterial de la Humanitat el 2014. La seva textura és completament diferent al paper occidental: fibrosa, translúcida, amb una resistència sorprenent per al seu gruix.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Per a escriptura amb ploma</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            El washi tradicional absorbeix molt la tinta i no és ideal per a escriure amb ploma estàndard. Però existeix washi modern tractat (disponible a Itoya i Maruzen) compatible amb estilogràfica. Per a cal·ligrafia shodo o pincell, el washi clàssic és el suport correcte.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">On comprar washi</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            Itoya Ginza (pis de papers especials), Kyukyodo a Ginza (papeleria tradicional des de 1663), Haibara a Nihonbashi (proveïdora imperial de paper des del 1806). Per a washi artesanal de productors: el mercat Nishiki de Kyoto i les botigues del barri Gion.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Com a souvenir</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            Targetes, ensobres i cartes en washi colorit són el souvenir d'escriptora per excel·lència. Lleugers, plans, de valor cultural alt i molt personalitzats. A Kyodo i Haibara trobes els mateixos formats que usen les famílies japoneses per a correspondència formal des de fa generacions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="label" style="margin-bottom: 1.5rem;">On comprar</p>
+      <div style="border: 1px solid var(--color-border);">
+        {on.map((v, i, arr) => (
+          <div style={`display: grid; grid-template-columns: 1fr 160px 60px 1.5fr; gap: 1rem; padding: 0.875rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === arr.length - 1 ? 'border-bottom: none;' : ''}`}>
+            <span style="font-size: 0.9375rem; font-weight: 600;">{v.lloc}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted);">{v.zona}</span>
+            <span style="font-size: 0.75rem; color: var(--color-muted); font-family: var(--font-mono);">{v.pisos}</span>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</Layout>

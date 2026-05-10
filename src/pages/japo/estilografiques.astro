@@ -1,0 +1,277 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const pilot = [
+  {
+    ref: "Custom 74",
+    nom: "Custom 74",
+    preu: "¥22,000",
+    euros: "~€130",
+    ploma: "14K, 5 talls",
+    img: "/img/estilografiques/pilot-custom74.jpg",
+    desc: "La ploma d'entrada a l'alta escriptura japonesa. Cos translúcid, ploma de 14K flexible. L'equivalent del que és el Submariner de Rolex al món dels rellotges: el model que tothom hauria de tenir.",
+    tag: "Referència"
+  },
+  {
+    ref: "Custom Heritage 912",
+    nom: "Custom Heritage 912",
+    preu: "¥35,000",
+    euros: "~€210",
+    ploma: "14K Falcon / FA / MS",
+    img: "/img/estilografiques/pilot-ch912.jpg",
+    desc: "El gran salt qualitatiu de Pilot. Ploma FA (ultra-flexible) o Falcon disponible. El cos negre lactat és elegant i funcional. El preferit dels cal·lígrafs i escriptors professionals japonesos.",
+    tag: "Premium"
+  },
+  {
+    ref: "Custom 823",
+    nom: "Custom 823",
+    preu: "¥44,000",
+    euros: "~€265",
+    ploma: "14K, mecanisme de buit",
+    img: "/img/estilografiques/pilot-823.jpg",
+    desc: "Mecanisme de càrrega per buit (vacuum filler): una de les majors capacitats de tinta del mercat. Cos ambre o fum. Per a qui escriu molt i vol la millor experiència de flux de tinta.",
+    tag: "Capacitat màxima"
+  },
+  {
+    ref: "Namiki Falcon",
+    nom: "Namiki Falcon",
+    preu: "¥25,000",
+    euros: "~€150",
+    ploma: "14K Falcon flexible",
+    img: "/img/estilografiques/pilot-falcon.jpg",
+    desc: "La ploma flexible per excel·lència. Disseny aerodinàmic inspirat en el falcó. La ploma cedeix amb la pressió i crea variació de gruix espontània. Molt popular entre dissenyadors i artistes.",
+    tag: "Flexible"
+  },
+  {
+    ref: "Capless Decimo",
+    nom: "Capless Decimo",
+    preu: "¥22,000",
+    euros: "~€130",
+    ploma: "18K, retràctil",
+    img: "/img/estilografiques/pilot-capless.jpg",
+    desc: "Ploma retràctil amb clip integrat. El clic posa la ploma a punt en un segon. Ploma de 18K. Única en el mercat: la comoditat d'un bolígraf amb la qualitat d'una ploma de primera categoria.",
+    tag: "Pràctica"
+  },
+  {
+    ref: "Custom Heritage 91",
+    nom: "Custom Heritage 91",
+    preu: "¥27,000",
+    euros: "~€160",
+    ploma: "14K, dropper",
+    img: "/img/estilografiques/pilot-ch91.jpg",
+    desc: "Sistema eyedropper: s'omple directament amb comptagotes i aguanta 4–5 mL de tinta. Cos translúcid que permet veure la tinta. Per a qui estima els colors extravagants dels Iroshizuku.",
+    tag: "Eyedropper"
+  },
+];
+
+const altres = [
+  {
+    marca: "Sailor",
+    models: [
+      { ref: "1911 Standard", nom: "Sailor 1911 Standard", preu: "¥22,000", euros: "~€130", img: "/img/estilografiques/sailor-1911.jpg", desc: "La ploma més clàssica de Sailor. Ploma 21K bicolor daurada/rodí. Més rígida que Pilot: escriptura precisa i controlada. Ideal per a cal·ligrafia i escriptura asiàtica." },
+      { ref: "Pro Gear Slim", nom: "Pro Gear Slim", preu: "¥25,000", euros: "~€150", img: "/img/estilografiques/sailor-progear-slim.jpg", desc: "Format più petit, ideal per a mans petites. Mateixa ploma 21K que el 1911. Disponible en colors i col·laboracions exclusives amb les botigues japoneses (Nagasawa, Bung Box)." },
+      { ref: "King of Pens", nom: "King of Pens Urushi", preu: "¥220,000", euros: "~€1,330", img: "/img/estilografiques/sailor-kop.jpg", desc: "La ploma flagship de Sailor. Cos lacat urushi negre, ploma 21K gran. Insolent i magistral. Impossible trobar-la fora del Japó a menys del doble del preu japonès." },
+    ]
+  },
+  {
+    marca: "Platinum",
+    models: [
+      { ref: "#3776 Century", nom: "3776 Century", preu: "¥18,000", euros: "~€110", img: "/img/estilografiques/platinum-3776.jpg", desc: "La millor relació qualitat-preu del mercat. Mecanisme Slip & Seal que conserva la tinta mesos sense assecar-se. Ploma rígida i precisa. La tria dels meticulosos." },
+      { ref: "Izumo", nom: "Izumo (Urushi)", preu: "¥110,000", euros: "~€665", img: "/img/estilografiques/platinum-izumo.jpg", desc: "Lacat urushi artesanal de la regió d'Izumo (Shimane). Cada ploma és única: textura natural del lacat, lleugerament irregular. Artesania tradicional japonesa en format quotidià." },
+      { ref: "President", nom: "President", preu: "¥50,000", euros: "~€300", img: "/img/estilografiques/platinum-president.jpg", desc: "La ploma de tamany gran de Platinum. Ploma 14K. Format imponent, escriptura suau i consistent. El regal corporatiu per excel·lència al Japó." },
+    ]
+  }
+];
+
+const namiki = [
+  { ref: "Yukari Royale", nom: "Yukari Royale Maki-e", preu: "¥350,000", euros: "~€2,100", desc: "Alta artesania de Namiki (branca de Pilot). Maki-e en urushi: pols d'or i plata incrustats a mà en laca urushi. Cada unitat porta més de 100 hores de treball artesanal. Col·leccionable.", tag: "Maki-e" },
+  { ref: "Yukari Collection", nom: "Yukari (sèrie estàndard)", preu: "¥130,000", euros: "~€790", desc: "La porta d'entrada al món Namiki. Laca urushi de colors, figures naturalistes d'èpoques Meiji i Taisho. La inversió artesanal equivalent al que és Grand Seiko en rellotgeria.", tag: "Artesania" },
+  { ref: "Pilot Custom Urushi", nom: "Pilot Custom Urushi", preu: "¥120,000", euros: "~€725", desc: "La versió urushi del Pilot Custom 743. Lacat negre o vermell profund. Accés a alta qualitat artesanal sense arribar als preus Namiki. Disponible a la Itoya Tower de Ginza.", tag: "Entrada urushi" },
+];
+---
+<Layout title="Estilogràfiques japoneses" description="Plumes japoneses Pilot, Sailor, Platinum, urushi i on comprar" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Estilogràfiques</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Compres · Escriptura japonesa</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Estilogràfiques</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 580px; margin-bottom: 3rem; line-height: 1.75;">
+      El Japó és la capital mundial de l'escriptura de qualitat. Pilot, Sailor i Platinum produeixen plomes que rivalitzen amb les millors europees a un terç del preu. Amb la devaluació del ien i el tax-free, l'estalvi respecte a Europa és del 35–50%.
+    </p>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.75rem;">
+        <h2 style="font-size: 1.75rem;">Pilot</h2>
+        <span class="label">La marca japonesa per excel·lència</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 620px; line-height: 1.7;">
+        Fundada el 1918. Les seves plomes de 14K i 18K s'escriuen d'una manera inconfusible: suaus, lliscants, amb una ploma que sembla flotar sobre el paper. El Custom 74 és la porta d'entrada; el Custom Heritage 912 és el cim de la gamma estàndard.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {pilot.map(p => (
+          <div style="background: var(--color-bg); display: flex; flex-direction: column;">
+            <div style="aspect-ratio: 4/3; background: var(--color-subtle); overflow: hidden; position: relative;">
+              <img
+                src={p.img}
+                alt={`Pilot ${p.ref}`}
+                style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div style="display: none; position: absolute; inset: 0; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; background: var(--color-subtle);">
+                <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted);">PILOT</span>
+                <span style="font-size: 0.9375rem; font-weight: 800; color: var(--color-fg); text-align: center; padding: 0 1rem;">{p.ref}</span>
+              </div>
+              <span class:list={['tag', { accent: p.tag === 'Referència' || p.tag === 'Premium' }]} style="position: absolute; top: 0.75rem; left: 0.75rem;">
+                {p.tag}
+              </span>
+            </div>
+            <div style="padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.375rem;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                <h3 style="font-size: 1rem; font-weight: 700;">{p.nom}</h3>
+              </div>
+              <div style="display: flex; gap: 0.75rem; align-items: baseline;">
+                <span style="font-size: 1rem; font-weight: 800; color: var(--color-accent);">{p.euros}</span>
+                <span style="font-size: 0.75rem; color: var(--color-muted);">{p.preu}</span>
+              </div>
+              <p style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); margin-bottom: 0.25rem;">{p.ploma}</p>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6; flex: 1;">{p.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    {altres.map(brand => (
+      <section style="margin-bottom: 3.5rem;">
+        <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">{brand.marca}</h2>
+        {brand.marca === 'Sailor' && (
+          <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1.5rem; max-width: 600px; line-height: 1.7;">
+            Fundada el 1911 a Hiroshima. Les plomes Sailor tenen plomes de 21K bicolor, inconfusiblement rígides i precises. El seu sistema de tintes exclusiu (Jentle, Shikiori, Kobo) és una de les raons principals per visitar la seva botiga.
+          </p>
+        )}
+        {brand.marca === 'Platinum' && (
+          <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1.5rem; max-width: 600px; line-height: 1.7;">
+            La marca menys coneguda internacionalment però adorada pels aficionats. El mecanisme Slip &amp; Seal és únic: la ploma pot estar guardada mesos sense assecar-se. Molt apreciada per a usos intermitents.
+          </p>
+        )}
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+          {brand.models.map(m => (
+            <div style="background: var(--color-bg); display: flex; gap: 0;">
+              <div style="width: 140px; min-height: 140px; flex-shrink: 0; background: var(--color-subtle); overflow: hidden; position: relative;">
+                <img
+                  src={m.img}
+                  alt={m.nom}
+                  loading="lazy"
+                  style="width: 100%; height: 100%; object-fit: cover;"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div style="display: none; position: absolute; inset: 0; align-items: center; justify-content: center; padding: 0.5rem; text-align: center;">
+                  <span style="font-size: 0.6875rem; font-weight: 700; color: var(--color-muted); line-height: 1.3;">{m.ref}</span>
+                </div>
+              </div>
+              <div style="padding: 1.25rem; flex: 1;">
+                <h3 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.25rem;">{m.nom}</h3>
+                <div style="display: flex; gap: 0.5rem; align-items: baseline; margin-bottom: 0.5rem;">
+                  <span style="font-size: 0.875rem; color: var(--color-accent); font-weight: 700;">{m.euros}</span>
+                  <span style="font-size: 0.75rem; color: var(--color-muted);">{m.preu}</span>
+                </div>
+                <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{m.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.75rem;">
+        <h2 style="font-size: 1.5rem;">Urushi — lactat japonès</h2>
+        <span class="label">L'alta artesania de l'escriptura</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 640px; line-height: 1.75;">
+        L'urushi és la laca de la sàvia de l'arbre <em>Toxicodendron vernicifluum</em>, usada al Japó des de fa 9.000 anys. Aplicada en capes (fins a 30–50), polit a mà, resulta en una superfície que endureix amb la humitat i millora amb el pas del temps. Les plomes lacades urushi no envelleixen: es perfeccionen. El maki-e afegeix dibuixos en pols d'or, plata i nacre sobre l'urushi, obra de mestres artesans que triguen anys a dominar la tècnica.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {namiki.map(n => (
+          <div style="background: var(--color-bg); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.25rem;">
+              <span class:list={['tag', { accent: n.tag === 'Maki-e' }]}>{n.tag}</span>
+            </div>
+            <h3 style="font-size: 1rem; font-weight: 700;">{n.nom}</h3>
+            <div style="display: flex; gap: 0.75rem; align-items: baseline;">
+              <span style="font-size: 1rem; font-weight: 800; color: var(--color-accent);">{n.euros}</span>
+              <span style="font-size: 0.75rem; color: var(--color-muted);">{n.preu}</span>
+            </div>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65; flex: 1;">{n.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top: 2rem; padding: 1.5rem; background: var(--color-subtle); border: 1px solid var(--color-border);">
+        <p class="label" style="margin-bottom: 0.75rem;">Per què comprar urushi al Japó</p>
+        <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75; max-width: 680px;">
+          Les peces Namiki maki-e valen a Europa entre un 60–100% més que al Japó. No existeix distribuïdor europeu que tingui tot el catàleg. A la <strong>Itoya Tower de Ginza</strong> (10 plantes dedicades a l'escriptura) i a les boutiques Pilot de Tokyo es pot veure tota la col·lecció en persona i escriure amb qualsevol model. El tax-free s'aplica normalment a partir de ¥5,000 en compres a la mateixa botiga.
+        </p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.5rem;">Tintes</h2>
+        <span class="label">Iroshizuku, Sailor, Platinum, papers</span>
+      </div>
+      <a href="/japo/tintes" style="display: grid; grid-template-columns: 300px 1fr; min-height: 200px; background: var(--color-border); text-decoration: none; color: inherit;">
+        <div style="background: var(--color-subtle); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.75rem; padding: 2rem;">
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;">
+            {["#1a3a5c","#c0392b","#1e8449","#6c3483","#e85d26","#7bbfdb","#2c2c2c","#7d2358"].map(color => (
+              <div style={`width: 26px; height: 26px; border-radius: 50%; background: ${color};`}></div>
+            ))}
+          </div>
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.15em; color: var(--color-muted); margin-top: 0.5rem;">IROSHIZUKU · SAILOR · PLATINUM</span>
+        </div>
+        <div class="card" style="background: var(--color-bg);">
+          <p class="label" style="margin-bottom: 0.75rem; color: var(--color-accent);">Veure tots els colors →</p>
+          <p style="font-size: 0.9375rem; line-height: 1.75; color: var(--color-muted);">
+            24 colors Iroshizuku (¥2,200 · ~€13), Sailor Shikiori per estacions, Kobe Ink Story exclusiu de Nagasawa Kobe, tintes de carboni Platinum. Papers japonesos: Tomoe River, Hobonichi, MD Paper.<br/><br/>
+            Estalvi del 30–45% vs Europa. Colors exclusius que no surten del Japó.
+          </p>
+        </div>
+      </a>
+    </section>
+
+    <section>
+      <p class="label" style="margin-bottom: 1.5rem;">On comprar</p>
+      <div style="border: 1px solid var(--color-border);">
+        {[
+          { lloc: "Itoya Tower", zona: "Tokyo · Ginza", desc: "10 plantes. La catedral mundial de l'escriptura. Tot el catàleg Pilot, Sailor, Platinum i Namiki. Tintes, papers, agendas. Personal expert. Tax-free des de ¥5,000." },
+          { lloc: "Maruzen Kyoto", zona: "Kyoto · Shijo", desc: "Llegendària papeleria-llibreria. Excel·lent selecció de plomes i tintes. Menys concorreguda que Itoya. Atmosfera tranquil·la i assessorament personalitzat." },
+          { lloc: "Penport Osaka", zona: "Osaka · Shinsaibashi", desc: "Botiga especialitzada en plumes. Saben molt de Sailor i Platinum. Bones edicions exclusives de col·laboració amb la botiga." },
+          { lloc: "Yodobashi Camera", zona: "Tokyo · Akihabara", desc: "Secció d'escriptura sorprenentment bona. Bona selecció de gama baixa i mitja. Preus competitius. No té assessors especialitzats però el catàleg és ampli." },
+          { lloc: "Sekaido Art Supply", zona: "Tokyo · Shinjuku", desc: "Botiga d'art amb secció de plumes. Tintes inusuals i papers japonesos de gamma alta. El lloc per trobar productes menys mainstream." },
+        ].map((v, i, arr) => (
+          <div style={`display: grid; grid-template-columns: 1fr 140px 1.5fr; gap: 1rem; padding: 0.875rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === arr.length - 1 ? 'border-bottom: none;' : ''}`}>
+            <span style="font-size: 0.9375rem; font-weight: 600;">{v.lloc}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted);">{v.zona}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted);">{v.desc}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</Layout>

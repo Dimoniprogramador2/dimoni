@@ -1,0 +1,247 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const costos = [
+  {
+    categoria: "Menjar",
+    items: [
+      { nom: "Conbini (àpat complet)", preu: "¥500–800", euros: "€3–5" },
+      { nom: "Ramen / udon / soba", preu: "¥900–1,500", euros: "€5–9" },
+      { nom: "Gyudon (Yoshinoya / Sukiya)", preu: "¥550–800", euros: "€3–5" },
+      { nom: "Teishoku (menú del migdia)", preu: "¥850–1,500", euros: "€5–9" },
+      { nom: "Sushi conveyor (kaiten)", preu: "¥1,500–3,000", euros: "€9–18" },
+      { nom: "Izakaya (sopar amb beure)", preu: "¥3,000–6,000", euros: "€18–36" },
+      { nom: "Sushi omakase mid-range", preu: "¥15,000–30,000", euros: "€91–182" },
+    ]
+  },
+  {
+    categoria: "Transport",
+    items: [
+      { nom: "Metro Tokyo (trajecte)", preu: "¥180–320", euros: "€1–2" },
+      { nom: "Yamanote Line (volta completa)", preu: "¥210", euros: "€1.3" },
+      { nom: "Tokyo → Kyoto (Hikari, sense pass)", preu: "¥14,170", euros: "€86" },
+      { nom: "Taxi 20 min a Tokyo", preu: "¥3,000–5,000", euros: "€18–30" },
+      { nom: "Autobús nocturn Tokyo–Osaka", preu: "¥3,500–5,000", euros: "€21–30" },
+    ]
+  },
+  {
+    categoria: "Visites i cultura",
+    items: [
+      { nom: "Temple / santuari (molts gratuïts)", preu: "¥0–500", euros: "€0–3" },
+      { nom: "Museu nacional", preu: "¥620–1,000", euros: "€4–6" },
+      { nom: "Universal Studios Japan (USJ)", preu: "¥10,400–16,500", euros: "€63–100" },
+      { nom: "Tokyo DisneySea", preu: "¥9,400–13,900", euros: "€57–84" },
+      { nom: "Cerimònia del te (intro)", preu: "¥1,500–3,000", euros: "€9–18" },
+      { nom: "Karaoke (per hora i persona)", preu: "¥500–1,200", euros: "€3–7" },
+    ]
+  },
+  {
+    categoria: "Allotjament (per nit)",
+    items: [
+      { nom: "Càpsula hotel (per persona)", preu: "¥3,000–5,000", euros: "€18–30" },
+      { nom: "Business hotel (habitació doble)", preu: "¥10,000–18,000", euros: "€61–109" },
+      { nom: "Hotel 4 estrelles (doble)", preu: "¥20,000–40,000", euros: "€121–242" },
+      { nom: "Ryokan amb sopar (per persona)", preu: "¥20,000–60,000", euros: "€121–364" },
+    ]
+  },
+];
+
+const pressupostos = [
+  {
+    nivell: "Econòmic",
+    dia: "¥10,000–15,000",
+    euros: "€61–91",
+    per: "per persona/dia",
+    desc: "Conbini i restaurants populars, hotel bàsic o càpsula, metro. Possible però omets moltes experiències.",
+    color: "var(--color-subtle)"
+  },
+  {
+    nivell: "Confortable",
+    dia: "¥20,000–35,000",
+    euros: "€121–212",
+    per: "per persona/dia",
+    desc: "Menjar bé cada dia (incl. un sopar en izakaya), business hotel de qualitat, visites amb entrada, un tren llarg ocasional.",
+    color: "var(--color-bg)"
+  },
+  {
+    nivell: "Sense restriccions",
+    dia: "¥50,000+",
+    euros: "€303+",
+    per: "per persona/dia",
+    desc: "Hotel 4 estreles, omakase de tant en tant, compres sense límit, taxis. El Japó és barat en aquest rang comparant amb Europa.",
+    color: "var(--color-subtle)"
+  },
+];
+---
+<Layout title="Pressupost i diners al Japó" description="Cost diari, ATMs, efectiu vs targeta, tax-free, canvi de divises" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Pressupost</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Planificació · Diners</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Pressupost</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 580px; margin-bottom: 1.5rem; line-height: 1.75;">
+      El Japó té fama de car però és enganyós: el menjar quotidià és barat, el transport intern és car i les compres d'artesania i electrònica surten molt a compte. La variable que més afecta el pressupost és l'allotjament i si fas o no el JR Pass.
+    </p>
+    <div style="display: flex; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; align-items: start;">
+      <div style="padding: 1rem 1.5rem; background: var(--color-subtle); border: 1px solid var(--color-border);">
+        <p class="label" style="margin-bottom: 0.375rem;">Tipus de canvi 2026</p>
+        <p style="font-size: 1.5rem; font-weight: 900; color: var(--color-fg); letter-spacing: -0.02em;">¥165 = €1</p>
+        <p style="font-size: 0.75rem; color: var(--color-muted); margin-top: 0.25rem;">Ien en mínims històrics. Avantatge enorme per al turista europeu.</p>
+      </div>
+      <div style="padding: 1rem 1.5rem; background: var(--color-subtle); border: 1px solid var(--color-border);">
+        <p class="label" style="margin-bottom: 0.375rem;">Regla ràpida</p>
+        <p style="font-size: 1rem; font-weight: 700; color: var(--color-fg);">¥1,000 ≈ €6</p>
+        <p style="font-size: 0.875rem; color: var(--color-muted); margin-top: 0.25rem;">¥10,000 ≈ €60 · ¥50,000 ≈ €300</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Cost diari per nivell</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {pressupostos.map(p => (
+          <div style={`background: ${p.color}; padding: 1.75rem; display: flex; flex-direction: column; gap: 0.5rem;`}>
+            <p class="label">{p.nivell}</p>
+            <p style="font-size: 1.75rem; font-weight: 900; color: var(--color-accent); line-height: 1;">{p.euros}</p>
+            <p style="font-size: 0.875rem; color: var(--color-muted);">{p.dia} · {p.per}</p>
+            <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.65; margin-top: 0.25rem;">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+      <div style="margin-top: 1px; background: var(--color-border);">
+        <div style="background: var(--color-bg); padding: 1.25rem 1.5rem;">
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            <strong style="color: var(--color-fg);">Estimació per a 22 dies en família de 4 (nivell confortable):</strong> Allotjament ~€5,500 · Transport (JR Pass 14d × 4 + transport local) ~€3,000 · Menjar ~€4,000 · Visites i entrades ~€1,500 · Compres (variable) · <strong style="color: var(--color-accent);">Total base sense compres: ~€14,000</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Referència de preus</h2>
+      {costos.map(cat => (
+        <div style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem; color: var(--color-muted);">{cat.categoria}</h3>
+          <div style="border: 1px solid var(--color-border);">
+            {cat.items.map((item, i, arr) => (
+              <div style={`display: grid; grid-template-columns: 1fr 120px 80px; gap: 1rem; padding: 0.625rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: center; ${i === arr.length - 1 ? 'border-bottom: none;' : ''}`}>
+                <span style="font-size: 0.875rem;">{item.nom}</span>
+                <span style="font-size: 0.8125rem; color: var(--color-muted); font-family: var(--font-mono);">{item.preu}</span>
+                <span style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent);">{item.euros}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.5rem;">Efectiu i ATMs</h2>
+        <span class="label">El Japó és un país d'efectiu</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--color-accent);">ATMs que funcionen amb targetes estrangeres</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            <strong style="color: var(--color-fg);">7-Eleven ATM</strong> — el més fiable. Accepta Visa, Mastercard, American Express. Comissió: ¥110–220 per retirada + la teva comissió bancària.<br/><br/>
+            <strong style="color: var(--color-fg);">Japan Post ATM (oficines de correus)</strong> — Accepta totes les targetes internacionals. Horari limitat (dies laborables).<br/><br/>
+            <strong style="color: var(--color-fg);">7pay App</strong> — Si portes Wise o Revolut, et pots estalviar les comissions d'ATM amb targetes de dèbit virtuals.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Quant efectiu portar</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            Molts restaurants, temples i mercats tradicionels accepten <strong style="color: var(--color-fg);">únicament efectiu</strong>. Desde 2020 ha crescut l'acceptació de targeta (contactless, QR) però no és universal.<br/><br/>
+            Recomendació: porta sempre ¥20,000–30,000 (~€120–180) d'efectiu disponible. Retira en arribar a l'ATM del 7-Eleven de l'aeroport. Per a una família de 4, una retirada de ¥100,000 (~€600) dura 3–4 dies còmodament.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Wise o Revolut — imprescindible</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            Obre un compte Wise o Revolut abans de sortir. Permeten mantenir saldo en iens, pagar sense comissions de divisa a comerços que accepten targeta, i retirar efectiu als ATMs a canvi real (sense marge bancari). La Revolut permet fins a €200/mes en retirades gratuïtes. Per al Japó, val la pena carregar ¥500,000 (~€3,000) en iens abans del viatge aprofitant el canvi favorable.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">On NO canviar divises</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            Evita les cases de canvi de l'aeroport de Barcelona (comissió del 3–5%). Les cases de canvi de Ginza o Akihabara a Tokyo donen millors tipus. <strong style="color: var(--color-fg);">Travelex</strong> (aeroports) és dels pitjors tipus possibles. El millor tipus el donarà Wise o un ATM japonès amb targeta Revolut.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.5rem;">Tax-free</h2>
+        <span class="label">Estalvi addicional del 10%</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1.5rem; max-width: 640px; line-height: 1.7;">
+        El Japó aplica un IVA (consumption tax) del 10%. Els turistes estrangers amb visat de turista poden recuperar-lo en qualsevol botiga acreditada. Sobre el ja de per si favorable canvi ien-euro, és un 10% addicional.
+      </p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Com funciona</h3>
+          <ol style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.9; padding-left: 1.25rem; margin: 0;">
+            <li>Compra per un mínim de <strong style="color: var(--color-fg);">¥5,000</strong> en la mateixa botiga (en un sol dia).</li>
+            <li>Presenta el passaport a caixa.</li>
+            <li>La botiga aplica la deducció del 10% al moment (no és un reemborsament posterior).</li>
+            <li>L'import queda precintades: no pots obrir els productes fins sortir del Japó.</li>
+          </ol>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Consumibles vs no consumibles</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            <strong style="color: var(--color-fg);">No consumibles</strong> (rellotges, plomes, electrònica, roba): tax-free sense cap restricció. Mínim ¥5,000.<br/><br/>
+            <strong style="color: var(--color-fg);">Consumibles</strong> (menjar, te, tintes, cosmètics): tax-free possible però amb mínim ¥5,000 i els productes van precintats en una bossa separada que has d'entregar a la duana a la sortida. En pràctica, molts turistes no ho fan.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Botigues acreditades</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            Tots els grans magatzems (Isetan, Takashimaya, Mitsukoshi), Yodobashi Camera, Bic Camera, botigues de rellotges i plomes, boutiques de dissenyador. La majoria mostren el símbol <strong style="color: var(--color-fg);">Tax-Free Shop</strong> a l'entrada. Si no el veus, pregunta igualment.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Canvi legislatiu 2025</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            El govern japonès ha anunciat canvis al sistema tax-free per al 2025–2026 per evitar abusos (revenedors que porten tercers a comprar). El sistema de <strong style="color: var(--color-fg);">tax-free digital</strong> vinculat al passaport electrònic pot estar actiu el 2026. Comprova la normativa vigent en el moment de viatjar; l'essència (deducció del 10%) no canviarà.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Consells d'estalvi</h2>
+      <div style="border: 1px solid var(--color-border);">
+        {[
+          { tip: "Menja als conbinis al matí", desc: "Onigiri + cafè + iogurt: €3 per persona. Allibera pressupost per a dinars i sopars millors." },
+          { tip: "Menú del migdia (teishoku)", desc: "La majoria de restaurants ofereixen menús de migdia a meitat de preu del vespre. El sushi de migdia val la meitat que el de nit." },
+          { tip: "Targeta IC per tot", desc: "La Suica és lleugerament més barata que comprar bitllets individuals a cada viatge de metro (cap descompte però és la tarifa correcta)." },
+          { tip: "Temples gratuïts", desc: "La majoria de santuaris sintoïstes (jinja) són gratuïts. Molts temples budistes cobren ¥500–1,000 per als jardins o cambres interiors però els patis principals són lliures." },
+          { tip: "Gympass al Japó", desc: "Molts hotels de negocis inclouen accés al gimnàs o a la piscina. Alguns fins i tot al spa o al sento privat. Pregunta en fer la reserva." },
+          { tip: "Happy hour a les izakayas", desc: "De 17h a 19h moltes izakayas fan 'all-you-can-drink' (nomihōdai) per ¥1,500–2,000/persona durant 2h. El millor moment per sopar bé a bon preu." },
+          { tip: "Enviament de maletes (takuhaibin)", desc: "Pagar ¥1,500–2,500/maleta per enviar-la al proper hotel estalvia hores d'arrossegar-la. El ROI en còmoditat és enorme especialment amb nens." },
+        ].map((t, i, arr) => (
+          <div style={`display: grid; grid-template-columns: 220px 1fr; gap: 1.5rem; padding: 0.875rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === arr.length - 1 ? 'border-bottom: none;' : ''}`}>
+            <span style="font-size: 0.9375rem; font-weight: 600;">{t.tip}</span>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{t.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</Layout>

@@ -1,0 +1,286 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const tradicions = [
+  {
+    nom: "Arita / Imari",
+    regio: "Saga · Kyushu",
+    color: "#e8eef5",
+    accent: "#1a3a6e",
+    desc: "La porcellana japonesa per excel·lència. Cobalt blau sobre blanc, o cobalt amb daurat i vermell (estil Kakiemon). El primer estil japonès que va fascinar Europa al s. XVII. Meissen i Delft en copiaven els dissenys.",
+    preu: "¥3,000–200,000",
+    euros: "€18–€1.200",
+    on: "Poble d'Arita (Saga), Isetan Shinjuku",
+    tag: "Porcel·lana"
+  },
+  {
+    nom: "Bizen",
+    regio: "Okayama · Honshū",
+    color: "#5a3a28",
+    accent: "#e8d5c0",
+    desc: "Terrissa sense esmalt. Cuita a forn de llenya durant 10–14 dies: les cendres i les flames creen els colors i les textures (higata, goma, sangiri). Cada peça és única. Una de les sis cerames antigues del Japó.",
+    preu: "¥8,000–500,000",
+    euros: "€48–€3.000",
+    on: "Bizen City, Isetan, galeries especialitzades",
+    tag: "Stoneware"
+  },
+  {
+    nom: "Kutani",
+    regio: "Ishikawa · Kanazawa",
+    color: "#8b1a1a",
+    accent: "#f5e8c0",
+    desc: "Esmalts de colors vius (vermell, verd, groc, porpra, blau) sobre porcel·lana blanca. Figures de grues, crisantems i paisatges de Kyoto. L'artesania de referència de Kanazawa, la ciutat que va escapar els bombardejos de la guerra.",
+    preu: "¥5,000–150,000",
+    euros: "€30–€910",
+    on: "Kanazawa, Higashi Chaya, Kutani Kosen",
+    tag: "Esmalt virolat"
+  },
+  {
+    nom: "Hagi",
+    regio: "Yamaguchi · Honshū",
+    color: "#d4b8a0",
+    accent: "#3a2010",
+    desc: "Terrissa suau, porosa, de color crema-rosa-ocre. Apreciada per al te: amb l'ús, la taca del te penetra l'esmalt i la peça canvia de color al llarg dels anys (shichi-bake, 'set canvis'). La ceràmica del temps i la memòria.",
+    preu: "¥6,000–80,000",
+    euros: "€36–€485",
+    on: "Hagi City, botigues de te a Kyoto",
+    tag: "Cerimònia del te"
+  },
+  {
+    nom: "Kyo-yaki / Kiyomizu-yaki",
+    regio: "Kyoto",
+    color: "#f0e8d8",
+    accent: "#8b4513",
+    desc: "La ceràmica de Kyoto: refinada, colorista, fashionable. Moltes peces van destinades als rituals de la cultura del te i al protocol de la cort. El carrer Kiyomizuzaka, que puja al temple Kiyomizudera, és ple de botigues i tallers.",
+    preu: "¥3,000–300,000",
+    euros: "€18–€1.820",
+    on: "Kiyomizuzaka (Kyoto), Ninen-zaka",
+    tag: "Kyoto"
+  },
+  {
+    nom: "Mashiko",
+    regio: "Tochigi · Kantō",
+    color: "#8a7a60",
+    accent: "#f0ead8",
+    desc: "Mingei (artesania popular). Formes simples, funcionals, esmalts naturals. Shoji Hamada (1894–1978) va establir-hi el seu taller i va convertir Mashiko en el centre mundial de la ceràmica mingei. A 2h de Tokyo, el poble és un museu viu.",
+    preu: "¥2,000–50,000",
+    euros: "€12–€300",
+    on: "Poble de Mashiko (excursió des de Tokyo)",
+    tag: "Mingei"
+  },
+];
+
+const objectes = [
+  {
+    nom: "Yunomi",
+    kana: "湯呑み",
+    desc: "Got de te de la vida quotidiana. Sense nanses, cilíndric o lleugerament cònic. El que es fa servir a casa, a l'oficina, al restaurant de barri. La peça ceràmica japonesa més democràtica i accessible. Bona qualitat des de ¥1,500.",
+    preu: "¥1,500–15,000",
+    euros: "€9–€91"
+  },
+  {
+    nom: "Chawan",
+    kana: "茶碗",
+    desc: "El bol del te matcha per a la cerimònia del te. La peça ceràmica japonesa més venerada. Un chawan autèntic de mestre és objecte de col·leccionista. Per a ús domèstic quotidià, peces boniques des de ¥5,000.",
+    preu: "¥5,000–∞",
+    euros: "€30–∞"
+  },
+  {
+    nom: "Tokkuri",
+    kana: "徳利",
+    desc: "Gerra petita per a escalfar i servir sake. Forma de con o de botella de coll estret. Normalment va amb dues tasses (ochoko). Un joc de tokkuri + ochoko és un dels souvenirs més pràctics i elegants.",
+    preu: "¥3,000–25,000",
+    euros: "€18–€152"
+  },
+  {
+    nom: "Katakuchi",
+    kana: "片口",
+    desc: "Bol amb bec vertidor. Serveix per a sake, dressings, salses. Forma lliure, molt popular entre els cuiners contemporanis. Una de les peces ceràmiques més versàtils i fotogèniques de la cuina japonesa moderna.",
+    preu: "¥4,000–30,000",
+    euros: "€24–€182"
+  },
+  {
+    nom: "Kozara",
+    kana: "小皿",
+    desc: "Plat petit de tapes i condiments. La ceràmica del kakemono japonès: 5–8 cm, pinzellada única, minimalisme absolut. Col·leccionar kozara és adictiu i pràctic. Un joc de 5 peces és fàcil de portar a l'avió.",
+    preu: "¥500–8,000 / peça",
+    euros: "€3–€48"
+  },
+  {
+    nom: "Donburi",
+    kana: "丼",
+    desc: "Bol fondo per a arròs. El contenidor del ramen, del gyudon, del katsudon. La ceràmica domèstica japonesa per excel·lència. En un bon donburi de qualitat la sopa es manté calenta més estona.",
+    preu: "¥2,500–20,000",
+    euros: "€15–€121"
+  },
+];
+
+const botigues = [
+  { lloc: "Kiyomizuzaka", zona: "Kyoto · Higashiyama", desc: "El carrer que puja al temple Kiyomizudera. 300 metres de botigues i tallers de ceràmica Kyo-yaki. Pots veure artesans treballant el torn. Preus per a tots els rangs. La millor concentració de ceràmica de qualitat del Japó." },
+  { lloc: "Ninen-zaka i Sannen-zaka", zona: "Kyoto · Higashiyama", desc: "Els carrers empedrats adjacents a Kiyomizuzaka. Botigues de ceràmica, laca i artesania en un entorn urbanístic de l'era Edo. Les peces aquí tendeixen al format souvenir però n'hi ha de qualitat real si es mira bé." },
+  { lloc: "Poble de Mashiko", zona: "Tochigi · 2h de Tokyo", desc: "El poble de la ceràmica mingei. Desenes de tallers oberts al públic, museu Hamada, mercat dos cops l'any (maig i novembre). Un dia sencer. Si el viatge coincideix amb el mercat, és dels millors destins artesanals d'Àsia." },
+  { lloc: "2k540 Aki-Oka Artisan", zona: "Tokyo · sota el tren entre Akihabara i Okachimachi", desc: "Espai de creadors contemporanis sota les arcades de la via elevada. Ceràmica, cuir, joieria. Artistes joves japonesos amb preus accessibles i peces úniques. Obert dijous a diumenge." },
+  { lloc: "Isetan / Takashimaya (planta cuina i art)", zona: "Tokyo · Shinjuku", desc: "Els grans magatzems japonesos dediquen una planta sencera a ceràmica i vaixella. La selecció és la millor fora dels districtes especialitzats. Peces d'artesans establerts, amb tax-free." },
+  { lloc: "Higashi Chaya / Kanazawa", zona: "Kanazawa · Ishikawa", desc: "El districte de les geixes de Kanazawa. Botigues de Kutani yaki i artesania d'or de Kanazawa (kinpaku). La millor selecció de Kutani fora dels mercats d'Arita." },
+];
+---
+<Layout title="Ceràmica japonesa" description="Arita, Bizen, Kutani, Hagi, Mashiko. Yunomi, chawan, tokkuri. On comprar ceràmica al Japó" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Ceràmica</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Compres · Artesania japonesa</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Ceràmica</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 580px; margin-bottom: 1.5rem; line-height: 1.75;">
+      El Japó té tradicions ceràmiques actives des de fa 12.000 anys. Cada regió té el seu estil, la seva argila, el seu forn. El que fa especial la ceràmica japonesa no és la perfecció tècnica sinó l'acceptació de la imperfecció: cada peça porta les marques del foc, del temps i de les mans que la van fer.
+    </p>
+    <div style="display: flex; gap: 2.5rem; margin-bottom: 3rem; flex-wrap: wrap;">
+      <div>
+        <p class="label" style="margin-bottom: 0.25rem;">Tradicions regionals</p>
+        <p style="font-size: 1.125rem; font-weight: 800; color: var(--color-fg);">6 principals</p>
+        <p style="font-size: 0.75rem; color: var(--color-muted);">+ desenes de locals</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom: 0.25rem;">Preu d'entrada</p>
+        <p style="font-size: 1.125rem; font-weight: 800; color: var(--color-accent);">des de €9</p>
+        <p style="font-size: 0.75rem; color: var(--color-muted);">yunomi quotidià</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom: 0.25rem;">A l'avió</p>
+        <p style="font-size: 1.125rem; font-weight: 800; color: var(--color-fg);">Bodega recomanat</p>
+        <p style="font-size: 0.75rem; color: var(--color-muted);">o embalatge rígid de mà</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.75rem;">
+        <h2 style="font-size: 1.75rem;">Les sis grans tradicions</h2>
+        <span class="label">Estil, regió i caràcter</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 640px; line-height: 1.7;">
+        El Japó reconeix sis «antigues cerames» (Rokkoyo): Bizen, Shigaraki, Tamba, Echizen, Tokoname i Seto. Però les tradicions vives i accessibles al turista inclouen Arita, Kutani, Hagi i Kyo-yaki, molt més fàcils de visitar.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {tradicions.map(t => (
+          <div style="background: var(--color-bg); display: flex; flex-direction: column;">
+            <div style={`height: 100px; background: ${t.color}; position: relative; display: flex; align-items: center; justify-content: center;`}>
+              <span style={`font-size: 1.5rem; font-weight: 900; color: ${t.accent}; letter-spacing: -0.02em; opacity: 0.7;`}>{t.nom}</span>
+              <span class:list={['tag', { accent: t.tag === 'Mingei' || t.tag === 'Porcel·lana' }]} style="position: absolute; top: 0.75rem; left: 0.75rem; font-size: 0.625rem;">
+                {t.tag}
+              </span>
+            </div>
+            <div style="padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.375rem;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                <h3 style="font-size: 1rem; font-weight: 700;">{t.nom}</h3>
+                <span style="font-size: 0.75rem; color: var(--color-muted);">{t.regio}</span>
+              </div>
+              <div style="display: flex; gap: 0.5rem; align-items: baseline;">
+                <span style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent);">{t.euros}</span>
+                <span style="font-size: 0.75rem; color: var(--color-muted);">{t.preu}</span>
+              </div>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6; flex: 1;">{t.desc}</p>
+              <p style="font-size: 0.75rem; color: var(--color-muted); margin-top: 0.25rem;">On: <span style="color: var(--color-fg);">{t.on}</span></p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Objectes que val la pena comprar</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1.5rem; max-width: 640px; line-height: 1.7;">
+        Guia pràctica per a qui vol portar a casa peces útils, no de museu.
+      </p>
+      <div style="border: 1px solid var(--color-border);">
+        {objectes.map((o, i, arr) => (
+          <div style={`display: grid; grid-template-columns: 110px 60px 130px 1fr; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === arr.length - 1 ? 'border-bottom: none;' : ''}`}>
+            <div>
+              <span style="font-size: 0.9375rem; font-weight: 700; display: block;">{o.nom}</span>
+              <span style="font-size: 0.875rem; color: var(--color-muted);">{o.kana}</span>
+            </div>
+            <span style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent); padding-top: 0.125rem;">{o.euros}</span>
+            <span style="font-size: 0.75rem; color: var(--color-muted); font-family: var(--font-mono); padding-top: 0.25rem;">{o.preu}</span>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{o.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Wabi-sabi i Mingei</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Wabi-sabi (侘び寂び)</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            L'estètica de la imperfecció, la incompletesa i la impermanència. Una tassa amb una bombolla a l'esmalt, una gerra amb les marques del forn, un plat lleugerament asimètric: tot això és perfecció des de la perspectiva wabi-sabi. És l'antítesi de la porcel·lana europea perfecta i simètrica. Aprendre a veure'l canvia la manera de comprar ceràmica per sempre.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Mingei (民芸) — artesania popular</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            Moviment fundat per Yanagi Soetsu als anys 1920. Reacció contra la industrialització: els objectes fets per artesans anònims per a ús quotidià tenien una bellesa que els objectes de luxe amb signatura perdien. Mashiko i els seus tallers en són l'exemple viu. Shoji Hamada i Bernard Leach (ceramista britànic) en van ser els difusors internacionals.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Les sis antigues cerames (Rokkoyo)</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            Bizen (Okayama), Shigaraki (Shiga), Tamba (Hyogo), Echizen (Fukui), Tokoname (Aichi) i Seto (Aichi). Totes actives des del s. XII–XIV, sense interrupció. El que les uneix: forn de llenya, sense esmalt o esmalt natural, argiles locals, producció artesanal. Shigaraki és famosa pels tanuki (ossets de ceràmica de bona sort davant les portes dels restaurants).
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Ceràmica contemporània japonesa</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            Al costat de les tradicions regionals, el Japó té una escena de ceramistes contemporanis molt activa. Barreja tradicions antigues amb sensibilitats minimalistes modernes. El 2k540 Aki-Oka Artisan (Tokyo), les galeries de Daikanyama i Nakameguro, i les fires d'artesania dels temples (Toji a Kyoto, cada 21 del mes) són el lloc per trobar-los.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <p class="label" style="margin-bottom: 0.75rem;">Kintsugi — l'art de reparar amb or</p>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            Tècnica de reparació de ceràmica trencada amb laca urushi barrejada amb pols d'or, plata o coure. La fractura no s'amaga: es ressalta. La peça reparada val més que l'original perquè porta la història del trencament. Filosofia aplicada: les cicatrius no son defectes, és on la llum entra.<br/><br/>
+            <strong style="color: var(--color-fg);">Tallers a Kyoto i Tokyo:</strong> Hi ha cursos d'un dia (~¥8,000–15,000) per a turistes. Porta una peça trencada de casa o compra una de local. Una de les experiències artesanals més memorables del Japó.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <p class="label" style="margin-bottom: 0.75rem;">Com portar ceràmica a l'avió</p>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            <strong style="color: var(--color-fg);">A cabina:</strong> Peces petites (kozara, yunomi) caben en una bossa de mà si van ben embolcallades. Cap problema als controls: la ceràmica no és cap objecte prohibit.<br/><br/>
+            <strong style="color: var(--color-fg);">A la bodega:</strong> Per a peces grans (chawan, tokkuri, donburi): embolcalla amb roba, posa al centre de la maleta, mai als costats. Les botigues de qualitat ofereixen embalatge de viatge o fins i tot emmagatzematge fins a la recollida al final del viatge.<br/><br/>
+            <strong style="color: var(--color-fg);">Enviament postal:</strong> El servei EMS japonès és molt fiable. Les botigues de Kiyomizuzaka i Mashiko acostumen a oferir enviament internacional directe.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="label" style="margin-bottom: 1.5rem;">On comprar</p>
+      <div style="border: 1px solid var(--color-border);">
+        {botigues.map((v, i, arr) => (
+          <div style={`display: grid; grid-template-columns: 1fr 160px 1.5fr; gap: 1rem; padding: 0.875rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === arr.length - 1 ? 'border-bottom: none;' : ''}`}>
+            <span style="font-size: 0.9375rem; font-weight: 600;">{v.lloc}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted);">{v.zona}</span>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</Layout>

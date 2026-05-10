@@ -1,0 +1,388 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const plats = [
+  {
+    categoria: "Plats principals emiratins",
+    intro: "La cuina dels EAU és una fusió entre la tradició beduïna del desert (arròs, carn, espècies) i les influències persa, índia i llevantina. Abundants, aromàtics i molt satisfactoris.",
+    items: [
+      {
+        nom: "Kabsa",
+        original: "كبسة",
+        desc: "El plat nacional dels països del Golf. Arròs de gra llarg (basmati) cuit en un caldo ric de xai o pollastre amb espècies aromàtiques: cardamom, canyella, clavell, safrà i roses seques. Servit en una safata gran per compartir. El perfum en obrir la cassola és inoblidable.",
+        gluten: false,
+        glutenNota: "Sense gluten: arròs, carn i espècies. Cap ingredient amb blat.",
+        preu: "AED 35–80 (~€9–20)",
+        on: "Restaurants emiratins, Al Fanar Restaurant (Abu Dhabi)"
+      },
+      {
+        nom: "Mandi",
+        original: "مندي",
+        desc: "Carn de xai o pollastre cuinada a foc lent en un forn sota terra (tabun) amb arròs i espècies. La carn queda caient de l'os, exquisidament tendra. Diferent del kabsa per la tècnica de cocció i el perfum de fum. Plat de celebració i reunió familiar.",
+        gluten: false,
+        glutenNota: "Sense gluten: carn, arròs, espècies i caldo.",
+        preu: "AED 40–90 (~€10–23)",
+        on: "Mandi Paradise, restaurants yemenites especialitzats"
+      },
+      {
+        nom: "Machboos",
+        original: "مجبوس",
+        desc: "Variant del kabsa típica del Bahrain i els EAU. L'arròs es cou directament en el caldo de la carn (xai, pollastre o peix) amb tomàquet, ceba i espècies loomi (llima negra seca). Menys sec que el kabsa, més melós i saborós.",
+        gluten: false,
+        glutenNota: "Sense gluten.",
+        preu: "AED 35–75 (~€9–19)",
+        on: "Restaurants del Golf, hotels de cuina àrab"
+      },
+      {
+        nom: "Harees",
+        original: "هريس",
+        desc: "Blat triturat cuit lentament amb carn de xai o pollastre fins obtenir una papilla espessa i sedosa. Textura similar a una polenta molt cremosa. Típic del Ramadà i festes religioses, però present tot l'any. Cobert amb ghee (mantega clarificada) i canyella.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: el harees és essencialment blat sencer triturat. No apta per a celíacs ni intolerantes al gluten.",
+        preu: "AED 25–50 (~€6–13)",
+        on: "Restaurants emiratins tradicionals, mercats d'alimentació"
+      },
+      {
+        nom: "Saloona",
+        original: "سالونة",
+        desc: "Estofat lleuger de verdures (tomàquet, patata, pastanaga) amb carn de xai o pollastre, condimentat amb espècies del Golf. Cuina casolana per excel·lència. Servit amb arròs blanc o pa khubz.",
+        gluten: false,
+        glutenNota: "L'estofat en si és sense gluten. El pa khubz que acompanya SÍ porta gluten — pots demanar només arròs.",
+        preu: "AED 25–55 (~€6–14)",
+        on: "Restaurants emiratins locals, menú del dia"
+      }
+    ]
+  },
+  {
+    categoria: "Mezzé i entrants",
+    intro: "La cultura del mezzé (compartir múltiples plats petits) és omnipresent a l'Orient Mitjà. Hummus, falafel, fattoush i derivats. La majoria son sense gluten, però el pa és constant.",
+    items: [
+      {
+        nom: "Hummus",
+        original: "حمص",
+        desc: "Puré de cigrons amb tahini (pasta de sèsam), suc de llimona, all i oli d'oliva. El menjar més democràtic de la regió. A Abu Dhabi es fa clar i fi, sovint servit calent amb oli de bona qualitat per sobre. Menjar-lo amb pa khubz fresc és una de les grans experiències simples.",
+        gluten: false,
+        glutenNota: "El hummus en si és completament sense gluten. El pa pita o khubz que serveix de cullera SÍ porta gluten.",
+        preu: "AED 15–35 (~€4–9)",
+        on: "Qualsevol restaurant àrab, cadenes com Zaatar w Zeit"
+      },
+      {
+        nom: "Falafel",
+        original: "فلافل",
+        desc: "Croquetes fregides de cigrons i/o faves amb julivert, coriandre, comí i all. Cruixents per fora, verdes per dins. Menjar al moment, just fregit. A l'emirat se serveix en pa pita amb hummus, tomàquet i salsa tahini.",
+        gluten: false,
+        glutenNota: "El falafel tradicional és sense gluten (cigrons). Alguns falafel comercials incorporen farina de blat com a lligant — confirmar. El pa pita SÍ porta gluten.",
+        preu: "AED 10–25 (~€3–6)",
+        on: "Falafel Al Arabi, parades de mercat, restaurants libanesos"
+      },
+      {
+        nom: "Mutabbal",
+        original: "متبل",
+        desc: "Puré de berenjena fumada (cuita directament a la flama) amb tahini, all, llimona i sumac. Similar al baba ganoush però amb tahini. El sabor fumat és profund i adictiu. Superior a qualsevol cosa que puguis fer a casa.",
+        gluten: false,
+        glutenNota: "Sense gluten: berenjena, tahini, espècies.",
+        preu: "AED 20–40 (~€5–10)",
+        on: "Restaurants libanesos i emiratins, mezzé tradicional"
+      },
+      {
+        nom: "Fattoush",
+        original: "فتوش",
+        desc: "Amanida de verdures fresques (tomàquet, cogombre, rave, enciam) amb pa pita torrat i esmicolat, condimentada amb sumac i all. Àcida, fresca i cruixent. El pa torrat és un element essencial del plat.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: el pa pita torrat és un ingredient central, no un acompanyament. Si demanes sense pa, el plat perd la seva essència.",
+        preu: "AED 20–40 (~€5–10)",
+        on: "Restaurants libanesos i àrabs, mezzé"
+      },
+      {
+        nom: "Tabbouleh",
+        original: "تبولة",
+        desc: "Amanida de julivert fresc picat molt fi, tomàquet, bulgur (blat escairat), llimona i oli d'oliva. La versió libanesa és allau de verd: el bulgur és mínim, el julivert és el protagonista. Refrescant i herbaci.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: el bulgur és blat escairat. Variant: pot demanar-se amb quinoa com a substitut en alguns restaurants moderns.",
+        preu: "AED 20–40 (~€5–10)",
+        on: "Restaurants libanesos, mezzé, cuina del Llevant"
+      },
+      {
+        nom: "Shanklish",
+        original: "شنكليش",
+        desc: "Formatge de pit de vaca o ovella fermentat, sec, cobert d'herbes seques (zaatar, sèsam) i de vegades xili. Sabor fort i complex, semblant a un formatge de pasta dura. Servit esmicolat sobre tomàquet i ceba.",
+        gluten: false,
+        glutenNota: "Sense gluten.",
+        preu: "AED 25–45 (~€6–11)",
+        on: "Restaurants libanesos i sirians, deli àrabs"
+      }
+    ]
+  },
+  {
+    categoria: "Carn a la brasa i kebabs",
+    intro: "La cuina de brases és l'ànima de la cuina de l'Orient Mitjà. El shawarma, el shish taouk i les koftes son omnipresents. Servits amb pa, però la carn en si és sense gluten.",
+    items: [
+      {
+        nom: "Shawarma",
+        original: "شاورما",
+        desc: "Carn (pollastre o xai) cuinada lentament en un pal vertical rotatiu, tallada en llesques fines i servida en pa (khubz o pita) amb salsa toum (all), tahini, tomàquet i cogombre. El fast food del món àrab, en la seva millor versió.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: el pa que embolica el shawarma porta gluten. La carn en si és sense gluten — pots demanar-la sola en plat (al tabaq) sense pa.",
+        preu: "AED 10–25 (~€3–6)",
+        on: "Shawarma Al Basha, parades de mercat, restaurants ràpids"
+      },
+      {
+        nom: "Shish taouk",
+        original: "شيش طاووق",
+        desc: "Broquetes de pollastre marinat amb iogurt, all, suc de llimona, cúrcuma i baharat. A la graella de carbó. La marinada d'iogurt fa que el pollastre quedi extraordinàriament tendre i humit. Servit amb arròs i salsa toum.",
+        gluten: false,
+        glutenNota: "Sense gluten: pollastre, iogurt, espècies. El pa de servei SÍ porta gluten — demana arròs d'acompanyament.",
+        preu: "AED 35–65 (~€9–16)",
+        on: "Restaurants libanesos, cuina de brases, food courts"
+      },
+      {
+        nom: "Kofta",
+        original: "كفتة",
+        desc: "Broquetes de carn picada (xai o vedella) condimentades amb ceba ratllada, julivert, comí i baharat. A la graella, s'enganxen al pal de la broqueta. Suculentes i aromàtiques. Servides amb arròs, amanida i salsa de iogurt.",
+        gluten: false,
+        glutenNota: "Normalment sense gluten: carn picada i espècies. Alguns restaurants afegeixen pa ratllat com a lligant — confirmar.",
+        preu: "AED 35–70 (~€9–18)",
+        on: "Restaurants de brases, menjadors locals"
+      },
+      {
+        nom: "Mashawi",
+        original: "مشاوي",
+        desc: "Selecció mixta de carns a la brasa: xai, pollastre, vedella, amb kofta. La versió àrab del 'mixed grill'. Perfecte per provar tot en una sola comanda. Servit sobre un llit d'arròs o de pa pita enroscat.",
+        gluten: false,
+        glutenNota: "La carn és sense gluten. El pa pita de base SÍ porta gluten.",
+        preu: "AED 60–120 (~€15–30)",
+        on: "Restaurants de cuina àrab, hotels"
+      },
+      {
+        nom: "Ouzi",
+        original: "أوزي",
+        desc: "Carn de xai sencera cuinada molt lentament fins que és absolutament tendra, servida sobre arròs amb pinyons, panses i espècies. Plat de celebracions, es prepara per a grups. Un dels plats de carn més espectaculars de la cuina àrab.",
+        gluten: false,
+        glutenNota: "Sense gluten: xai, arròs, fruits secs i espècies.",
+        preu: "AED 80–200 (~€20–50) per persona (mínim 2)",
+        on: "Restaurants emiratins, hotels de cuina àrab, menú de grup"
+      }
+    ]
+  },
+  {
+    categoria: "Peix i marisc",
+    intro: "Abu Dhabi és a la costa del Golf Pèrsic. El peix fresc és excel·lent: hammour (mero), safi (sard daurada) i langostins del Golf son la millor expressió de la cuina costanera emiratina.",
+    items: [
+      {
+        nom: "Hammour a la planxa",
+        original: "هامور مشوي",
+        desc: "El mero del Golf (hammour) és el peix estrella de la cuina emiratina. Carn blanca, ferma i dolça. A la planxa amb espècies, llimona i all. Servit sencer o en filets. Alta qualitat garantida si estàs prop del mercat del peix.",
+        gluten: false,
+        glutenNota: "Sense gluten: peix fresc i espècies. Les salsès de soja d'alguns restaurants de fusió poden portar gluten.",
+        preu: "AED 60–120 (~€15–30)",
+        on: "Fish Market (Abu Dhabi), restaurants de peix de la Corniche"
+      },
+      {
+        nom: "Langostins del Golf",
+        original: "روبيان",
+        desc: "Els langostins del Golf Pèrsic (rubyan) son grossos, dolços i frescos. A la planxa amb all, mantega i llimona, o fregits amb espècies. Al mercat del peix d'Abu Dhabi pots triar el teu i te'l cuinen al moment.",
+        gluten: false,
+        glutenNota: "Sense gluten si és a la planxa o bullit. Si és arrebossat: CONTÉ GLUTEN.",
+        preu: "AED 80–150 (~€20–38)",
+        on: "Abu Dhabi Fish Market, Mina Fish Market, Corniche"
+      },
+      {
+        nom: "Sayadieh",
+        original: "صيادية",
+        desc: "Arròs de peix libanès: arròs cuit en un caldo intens de peix fregit amb ceba caramel·litzada i espècies (comí, cúrcuma, pebre negre). Servit amb el peix per sobre. Un dels arrossos de peix més saborosos del mediterrani oriental.",
+        gluten: false,
+        glutenNota: "Sense gluten: arròs, peix, ceba i espècies.",
+        preu: "AED 50–90 (~€13–23)",
+        on: "Restaurants libanesos, Sayad (Abu Dhabi)"
+      }
+    ]
+  },
+  {
+    categoria: "Dolços i postres àrabs",
+    intro: "La confiteria àrab és exuberant: molt dolça, amb aigua de roses, pistacis i miel. Bastant gluten en la majoria. El dàtil és el dolç nacional, i és completament sense gluten.",
+    items: [
+      {
+        nom: "Dàtils",
+        original: "تمر",
+        desc: "El dàtil és el símbol dels EAU. Els millors del món es produeixen a la region (Medjool, Khalas, Khidri). Se serveixen a l'inici de qualsevol reunió o àpat, amb cafè àrab (qahwa) sense cafeïna i cardamom. Dolços, cremosos i naturals.",
+        gluten: false,
+        glutenNota: "Sense gluten. Aliment natural pur.",
+        preu: "AED 15–80 (~€4–20) per bossa",
+        on: "Mercat de dàtils del Souk, aeroport, qualsevol supermercat"
+      },
+      {
+        nom: "Knafeh",
+        original: "كنافة",
+        desc: "El rei dels dolços àrabs. Pasta de fideus de blat (kataifi) farcida de formatge fresc, banyada en xarop de sucre amb aigua de roses i coberta de pistacis. Servit calent. Crosta cruixent, interior filamentós i melós. Una de les experiències dolces més intenses del viatge.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: la pasta kataifi és farina de blat pura. No apta per a celíacs.",
+        preu: "AED 15–35 (~€4–9)",
+        on: "Knafeh Nabulsiyah, pastisseries palestines i jordanes"
+      },
+      {
+        nom: "Baklava",
+        original: "بقلاوة",
+        desc: "Masses de pasta filo en capes, farcides de fruits secs (festucs, nous, anacards) i banyades en xarop de mel i flor de taronger. L'estil dels EAU és més fi i perfumat que el turc. Compra'l en caixes a qualsevol pastisseria per emportar.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: pasta filo de farina de blat.",
+        preu: "AED 30–80 (~€8–20) per caixa",
+        on: "Al Samadi Sweets, pastisseries dels souks, hotels"
+      },
+      {
+        nom: "Luqaimat",
+        original: "لقيمات",
+        desc: "Boletes fregides de pasta de llevat, cobertes de mel de dàtil (dibs) i sèsam. El donut àrab, en versió miniatura. Cruixents per fora i esponjoses per dins. Menjar calents, just frets. Típics del Ramadà però presents tot l'any.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: pasta de farina de blat amb llevat.",
+        preu: "AED 10–25 (~€3–6) per bol",
+        on: "Parades de carrer, pastisseries locals, Abraj Café"
+      },
+      {
+        nom: "Umm Ali",
+        original: "أم علي",
+        desc: "El 'bread pudding' egipci: làmines de pastisseria (o pa) remullades en llet calenta amb sucre, nous, panses i coco, gratinades al forn. Dolç, calent, cremós. El postre nacional d'Egipte que ha adoptat el Golf. Molt contundent.",
+        gluten: true,
+        glutenNota: "CONTÉ GLUTEN: pastisseria o pa de blat.",
+        preu: "AED 20–40 (~€5–10)",
+        on: "Restaurants emiratins i egipcis, hotels internacionals"
+      },
+      {
+        nom: "Halwa (Al Harees dolç)",
+        original: "حلوى",
+        desc: "El halwa omanita i emiratí és completament diferent del grec: una pasta espessa de midó de blat de moro (o de blat), sucre, safrà, cardamom, roses i fruits secs. Brillant, elàstica i molt perfumada. Es menja a cullerades petites amb cafè àrab.",
+        gluten: false,
+        glutenNota: "El halwa d'emirats es fa generalment amb midó de blat de moro (maizena): SENSE GLUTEN. Variants antigues amb farina de blat poden contenir gluten — confirmar.",
+        preu: "AED 30–60 (~€8–15)",
+        on: "Halawani pastisseria, souks tradicionals"
+      }
+    ]
+  },
+  {
+    categoria: "Begudes i experiència del cafè",
+    intro: "El cafè àrab (qahwa) i el te de menta son els pilars de l'hospitalitat emiratina. El de la beguda de llet de camell és una curiositat que val la pena provar.",
+    items: [
+      {
+        nom: "Qahwa (Cafè àrab)",
+        original: "قهوة",
+        desc: "Cafè verd lleuger (no torrat) bullit amb cardamom i safrà, sense cafeïna significativa. Servit en tasses petites sense mànec (finjal), sempre acompanyat de dàtils. L'hospitalitat àrab en una tassa. Es reomple fins que gires la tassa.",
+        gluten: false,
+        glutenNota: "Sense gluten.",
+        preu: "AED 5–15 (~€1–4) o gratuït com a benvinguda",
+        on: "Qualsevol restaurant àrab, hotels, el fan als centres comercials"
+      },
+      {
+        nom: "Karak chai",
+        original: "كرك",
+        desc: "Te negre fort bullit amb llet evaporada, sucre i espècies (cardamom, canyella, safrà). La beguda de carrer per excel·lència dels EAU. Molt dolç, molt cremós i molt addictiu. L'equivalent del chai indien però amb l'estil del Golf.",
+        gluten: false,
+        glutenNota: "Sense gluten.",
+        preu: "AED 3–8 (~€0,75–2)",
+        on: "Parades de karak per tot arreu, Karak House"
+      },
+      {
+        nom: "Llet de camell",
+        original: "لبن إبل",
+        desc: "La llet de camella és lleument salada, més prima que la de vaca i amb un post gust característic. Rica en vitamina C i baixa en greix. Es ven natural, amb xocolata o amb safrà. Una experiència única dels EAU que no trobaràs a Europa.",
+        gluten: false,
+        glutenNota: "Sense gluten.",
+        preu: "AED 15–35 (~€4–9)",
+        on: "Emirates National Dairy (centres comercials), aeroport"
+      },
+      {
+        nom: "Laban",
+        original: "لبن",
+        desc: "Iogurt de beure salat i lleugerament àcid, similar al lassi salat indi. Refrescant i digestiu. Perfecte per acompanyar plats de carn especiats. Una constant a les taules del Gulf.",
+        gluten: false,
+        glutenNota: "Sense gluten.",
+        preu: "AED 5–12 (~€1–3)",
+        on: "Supermercats, restaurants àrabs, fast food local"
+      }
+    ]
+  }
+];
+---
+<Layout title="Menjar a Abu Dhabi" description="Plats típics emiratins que cal provar. Avisos de gluten." section="abu-dhabi">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/abu-dhabi" style="color: var(--color-muted);">Abu Dhabi</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Menjar</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Gastronomia · Plats típics · Avisos de gluten</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Menjar a Abu Dhabi</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 600px; margin-bottom: 2rem; line-height: 1.7;">
+      La cuina dels EAU és una fusió entre la tradició beduïna, les influències perses i índies, i la cosmopolita Abu Dhabi moderna. En dos dies hi ha molt per tastar. Aquí tens tot el que no t'has de perdre, amb indicació clara de gluten per a cada plat.
+    </p>
+
+    <div class="info-block neutral" style="margin-bottom: 1.5rem;">
+      <p style="font-size: 0.875rem; color: var(--color-muted); margin-bottom: 0.5rem;">
+        <strong>Sobre el gluten als EAU:</strong> La majoria de la cuina àrab tradicional de carn i arròs és naturalment sense gluten. El gluten apareix principalment en els pans (khubz, pita), pastisseries (baklava, knafeh) i en alguns plats de pasta com el harees. La paraula en àrab per gluten és <strong>غلوتين</strong> i per celíac és <strong>مرض الاضطرابات الهضمية</strong>.
+      </p>
+      <p style="font-size: 0.875rem; color: var(--color-muted);">
+        Abu Dhabi és molt cosmopolita: la majoria de restaurants grans entenen al·lèrgies alimentàries. Porta una targeta d'al·lèrgia o usa Google Translate per comunicar-te.
+      </p>
+    </div>
+
+    <div style="display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; gap: 0.375rem;">
+        <span style="display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: #ef4444;"></span>
+        <span style="font-size: 0.75rem; color: var(--color-muted);">Conté gluten</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.375rem;">
+        <span style="display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: #22c55e;"></span>
+        <span style="font-size: 0.75rem; color: var(--color-muted);">Sense gluten (amb matisos)</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    {plats.map(cat => (
+      <section style="margin-bottom: 4rem;">
+        <div style="margin-bottom: 1.5rem;">
+          <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">{cat.categoria}</h2>
+          <p style="font-size: 0.875rem; color: var(--color-muted); max-width: 640px; line-height: 1.65;">{cat.intro}</p>
+        </div>
+
+        <div style="display: grid; gap: 1px; background: var(--color-border); border: 1px solid var(--color-border);">
+          {cat.items.map(plat => (
+            <div style="background: var(--color-bg); padding: 1.25rem;">
+              <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.625rem; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                  <span style={`display: inline-block; width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; background: ${plat.gluten ? '#ef4444' : '#22c55e'};`}></span>
+                  <h3 style="font-size: 1rem; font-weight: 700;">{plat.nom}</h3>
+                  <span style="font-size: 0.75rem; color: var(--color-muted); font-style: italic;">{plat.original}</span>
+                </div>
+                <span style="font-size: 0.8125rem; color: var(--color-accent); font-weight: 600; white-space: nowrap;">{plat.preu}</span>
+              </div>
+
+              <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.65; margin-bottom: 0.75rem;">{plat.desc}</p>
+
+              <div style={`padding: 0.625rem 0.875rem; border-radius: 4px; border-left: 3px solid ${plat.gluten ? '#ef4444' : '#22c55e'}; background: ${plat.gluten ? 'rgba(239,68,68,0.05)' : 'rgba(34,197,94,0.05)'};`}>
+                <p style={`font-size: 0.75rem; line-height: 1.6; color: ${plat.gluten ? '#dc2626' : '#16a34a'};`}>{plat.glutenNota}</p>
+              </div>
+
+              <p style="font-size: 0.75rem; color: var(--color-muted); margin-top: 0.625rem;">
+                <strong>On trobar-lo:</strong> {plat.on}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <div class="info-block neutral">
+      <p style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">Consells pràctics per menjar a Abu Dhabi</p>
+      <ul style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.8; padding-left: 1.25rem;">
+        <li>Juliol: la calor extrema (45°C+) fa que la majoria de restaurants estiguin a dins, amb l'aire condicionat posat al màxim. Porta un jersei lleuger.</li>
+        <li>Ramadà (si coincideix): menjar i beure en públic durant el dia és il·legal per a no-musulmans. Menja als hotels o restaurants tancats.</li>
+        <li>Propina: 10–15% és habitual i apreciat als EAU. Sovint inclosa automàticament (service charge).</li>
+        <li>Halal: tota la carn servida als EAU és halal. El porc no s'ofereix en restaurants públics (excepció: alguns hotels de cinc estrelles).</li>
+        <li>Alcohol: disponible als hotels i alguns restaurants amb llicència. Fora d'aquests llocs, no es pot consumir a la via pública.</li>
+        <li>Preu: menjar als food courts dels centres comercials (com Al Wahda Mall o Yas Mall) és molt més econòmic i la qualitat sol ser bona.</li>
+      </ul>
+    </div>
+
+  </div>
+</Layout>

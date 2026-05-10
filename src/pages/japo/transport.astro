@@ -1,0 +1,265 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jrPass = [
+  { dies: "7 dies", preu: "¥50,000", euros: "~€303", per: "Tokyo + Kyoto/Osaka únicament", recomanat: false },
+  { dies: "14 dies", preu: "¥80,000", euros: "~€485", per: "Ruta completa amb Hiroshima", recomanat: true },
+  { dies: "21 dies", preu: "¥100,000", euros: "~€606", per: "Ruta completa + excursions", recomanat: false },
+];
+
+const shinkansen = [
+  { ruta: "Tokyo → Kyoto", tren: "Hikari", temps: "2h 15m", preu: "¥14,170", euros: "~€86", notes: "Hikari cobert pel JR Pass. Nozomi (2h 15m) NO cobert." },
+  { ruta: "Tokyo → Osaka", tren: "Hikari", temps: "2h 52m", preu: "¥14,720", euros: "~€89", notes: "Nozomi fa el trajecte en 2h 30m però no entra al JR Pass." },
+  { ruta: "Kyoto → Hiroshima", tren: "Hikari", temps: "1h 25m", preu: "¥11,220", euros: "~€68", notes: "Inclou parada opcional a Himeji (15 min des de Kyoto)." },
+  { ruta: "Tokyo → Nikko", tren: "Tobu Nikko Ltd. Exp.", temps: "2h", preu: "¥2,780", euros: "~€17", notes: "No shinkansen. Tobu Railway des d'Asakusa. JR Pass NO cobreix." },
+  { ruta: "Osaka → Nara", tren: "Kintetsu / JR Yamato", temps: "35–45m", preu: "¥680–1,130", euros: "~€4–7", notes: "Diverses opcions. La Kintetsu és més ràpida però no JR Pass." },
+  { ruta: "Kyoto → Nara", tren: "JR Nara Line", temps: "45m", preu: "¥720", euros: "~€4", notes: "Cobert pel JR Pass. Surt des de Kyoto Station." },
+];
+
+const icCard = [
+  { nom: "Suica", emissora: "JR East", zona: "Tokyo i nacional", desc: "La IC card de referència. Funciona a tot el Japó en transport, conbinis, màquines expenedores i molts restaurants. Es carrega a qualsevol màquina automàtica o al Suica App (iPhone)." },
+  { nom: "Pasmo", emissora: "Tokyo Metro et al.", zona: "Tokyo i nacional", desc: "Equivalent a la Suica, intercanviable. Si ja tens una Suica no necessites la Pasmo. Útil si arribes per metro (no JR) i la primera màquina que veus és Pasmo." },
+  { nom: "ICOCA", emissora: "JR West", zona: "Osaka / Kyoto / Hiroshima", desc: "La IC card de l'oest del Japó. Si viatges molt per la regió Kansai, la ICOCA és la més còmoda. Acceptada a tot el Japó com la Suica." },
+];
+
+const aeroports = [
+  {
+    aeroport: "Narita (NRT)",
+    opcions: [
+      { nom: "Narita Express (N'EX)", temps: "1h–1h 20m", preu: "¥3,070", euros: "~€19", desc: "JR. Arriba a Tokyo, Shinjuku, Shibuya i Yokohama. Cobert pel JR Pass. El més còmode amb maletes." },
+      { nom: "Keisei Skyliner", temps: "41m fins Ueno", preu: "¥2,570", euros: "~€16", desc: "El més ràpid fins al centre. Arriba a Nippori i Ueno. No cobert pel JR Pass però barat i molt puntual." },
+      { nom: "Autobús Limousine", temps: "60–90m", preu: "¥3,200", euros: "~€19", desc: "Porta fins a grans hotels directament. Còmode amb molt equipatge. Susceptible a trànsit." },
+    ]
+  },
+  {
+    aeroport: "Haneda (HND)",
+    opcions: [
+      { nom: "Tokyo Monorail", temps: "20m fins Hamamatsucho", preu: "¥650", euros: "~€4", desc: "El més econòmic. Des de Hamamatsucho connectes amb la JR Yamanote Line." },
+      { nom: "Keikyu Line", temps: "20m fins Shinagawa", preu: "¥410", euros: "~€2.5", desc: "El més barat i ràpid. Des de Shinagawa connectes amb el shinkansen i la Yamanote." },
+      { nom: "Autobús Limousine", temps: "30–60m", preu: "¥1,000–2,000", euros: "~€6–12", desc: "Directe a hotels de Shinjuku, Shibuya, Tokyo Station. Còmode però variable per trànsit." },
+    ]
+  }
+];
+---
+<Layout title="Transport al Japó" description="JR Pass, shinkansen, Suica, metro de Tokyo. Com moure's per tot el Japó" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Transport</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Planificació · Transport</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Transport</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 580px; margin-bottom: 3rem; line-height: 1.75;">
+      El transport japonès és el millor del món: puntual al segon, cobert per tot el país, net i segur. Però és car i complex si no es planifica. La decisió clau és si el JR Pass surt a compte — i el 2026, amb els preus actualitzats, no sempre és evident.
+    </p>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.75rem;">
+        <h2 style="font-size: 1.75rem;">JR Pass</h2>
+        <span class="label">La decisió principal</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 0.75rem; max-width: 660px; line-height: 1.7;">
+        El JR Pass cobreix tots els trens JR (incloent shinkansen Hikari i Kodama, però <strong style="color: var(--color-fg);">no el Nozomi ni el Mizuho</strong>) i molts busos JR. Des de l'octubre de 2023 va pujar un 70%. Ja no és automàticament rendible: cal fer el càlcul per a cada ruta.
+      </p>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 660px; line-height: 1.7;">
+        <strong style="color: var(--color-fg);">Important:</strong> S'ha de comprar fora del Japó (agències autoritzades o online). Des de l'octubre 2023 es pot comprar a l'aeroport però a preu més alt. Compra'l a Espanya abans de sortir.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--color-border); margin-bottom: 2rem;">
+        {jrPass.map(j => (
+          <div style={`background: var(--color-bg); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; ${j.recomanat ? 'outline: 2px solid var(--color-accent); outline-offset: -2px;' : ''}`}>
+            <div style="display: flex; justify-content: space-between; align-items: start;">
+              <h3 style="font-size: 1.125rem; font-weight: 700;">{j.dies}</h3>
+              {j.recomanat && <span class="tag accent" style="font-size: 0.625rem;">Recomanat</span>}
+            </div>
+            <div style="display: flex; gap: 0.5rem; align-items: baseline;">
+              <span style="font-size: 1.25rem; font-weight: 800; color: var(--color-accent);">{j.euros}</span>
+              <span style="font-size: 0.8125rem; color: var(--color-muted);">{j.preu} / persona</span>
+            </div>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">{j.per}</p>
+          </div>
+        ))}
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--color-accent);">Quan SÍ surt a compte</h3>
+          <ul style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.9; padding-left: 1.25rem; margin: 0;">
+            <li>Ruta Tokyo → Kyoto → Hiroshima → Osaka → Tokyo (14 dies)</li>
+            <li>Si fas 3+ trajectes llargs en shinkansen</li>
+            <li>Si afegeixes excursions a Hiroshima, Miyajima, Hakone</li>
+            <li>Si vols flexibilitat per canviar trens sense comprar bitllets nous</li>
+          </ul>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.75rem;">Quan NO surt a compte</h3>
+          <ul style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.9; padding-left: 1.25rem; margin: 0;">
+            <li>Si et quedes bàsicament a Tokyo i Kyoto/Osaka</li>
+            <li>Si utilitzes molt l'autobús nocturn (no cobert)</li>
+            <li>Si prefereixes el Nozomi (més ràpid, no cobert)</li>
+            <li>Per a nens menors de 6 anys: gratuïts sense JR Pass</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; background: var(--color-subtle); border: 1px solid var(--color-border);">
+        <p class="label" style="margin-bottom: 0.5rem;">Càlcul per a la ruta 23 juliol – 14 agost (família)</p>
+        <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75; max-width: 680px;">
+          Ruta Tokyo → Nikko → Kyoto → Nara → Osaka → Hiroshima i tornada. Shinkansen estimat per persona: Tokyo→Kyoto (¥14,170) + Kyoto→Hiroshima (¥11,220) + Hiroshima→Tokyo (¥19,440) = <strong style="color: var(--color-fg);">¥44,830</strong>. El JR Pass de 14 dies val ¥80,000 però inclou tots els JR dins de Tokyo, els busos JR i les excursions. Sense el pass, cada trajecte es paga a part. Amb família de 4, el pass de 14 dies és probablement rendible.
+        </p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Shinkansen — trajectes principals</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1.5rem; max-width: 640px; line-height: 1.7;">
+        El tren de bala japonès. Puntual al segon. Els seients reservats (shiteiseki) estan inclosos al JR Pass però cal reservar-los gratuïtament a les oficines JR o per app. Sense reserva vas als wagons de seients lliures (jiyuseki), que existeixen en tots els Hikari i Kodama.
+      </p>
+      <div style="border: 1px solid var(--color-border);">
+        {shinkansen.map((s, i, arr) => (
+          <div style={`display: grid; grid-template-columns: 160px 130px 55px 90px 1fr; gap: 1rem; padding: 0.875rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: center; ${i === arr.length - 1 ? 'border-bottom: none;' : ''}`}>
+            <span style="font-size: 0.9375rem; font-weight: 600;">{s.ruta}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted);">{s.tren}</span>
+            <span style="font-size: 0.8125rem; color: var(--color-muted); font-family: var(--font-mono);">{s.temps}</span>
+            <div>
+              <span style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent); display: block;">{s.euros}</span>
+              <span style="font-size: 0.7rem; color: var(--color-muted);">{s.preu}</span>
+            </div>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.5;">{s.notes}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.75rem;">
+        <h2 style="font-size: 1.5rem;">IC Card — Suica i Pasmo</h2>
+        <span class="label">Imprescindible</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1.5rem; max-width: 640px; line-height: 1.7;">
+        La targeta de transport recàrregable japonesa. Funciona en metro, JR, busos, tramvies, i també com a mètode de pagament a tots els conbinis, moltes màquines expenedores i restaurants. L'equivalent de la T-Mobilitat però que serveix també com a targeta de crèdit lleugera.
+      </p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--color-border); margin-bottom: 1.5rem;">
+        {icCard.map(c => (
+          <div style="background: var(--color-bg); padding: 1.25rem; display: flex; flex-direction: column; gap: 0.375rem;">
+            <h3 style="font-size: 1rem; font-weight: 700;">{c.nom}</h3>
+            <p style="font-size: 0.75rem; color: var(--color-muted);">{c.emissora} · {c.zona}</p>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6; flex: 1;">{c.desc}</p>
+          </div>
+        ))}
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        <div style="background: var(--color-bg); padding: 1.25rem;">
+          <h3 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.5rem;">Mobile Suica (recomanat)</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            Des de l'iPhone 8 (iOS) o Android NFC, la Suica pot viure al mòbil. Es carrega amb Apple Pay o Google Pay. Toques el mòbil al lector i passes. Elimina la necessitat de targeta física. La manera més còmoda per a un viatge llarg.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.25rem;">
+          <h3 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.5rem;">Devolució en sortir</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            La targeta física té un dipòsit de ¥500. En sortir del Japó pots recuperar-lo a les màquines JR de l'aeroport. Si tens Mobile Suica, el saldo es queda per al proper viatge (no caduca). Deixa sempre ¥2,000 de marge per als últims desplaçaments.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Metro de Tokyo</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Dos operadors, un sistema</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            Tokyo té dues xarxes: <strong style="color: var(--color-fg);">Tokyo Metro</strong> (9 línies, privada) i <strong style="color: var(--color-fg);">Toei Subway</strong> (4 línies, municipal). Amb la Suica o Pasmo passes entre les dues sense cap problema. Els abonaments diaris separats per operador no val la pena; la IC Card és la solució universal.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Yamanote Line — l'anella de Tokyo</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            La línia JR circular que connecta tots els grans nodes: Shinjuku, Shibuya, Harajuku, Akihabara, Ueno, Tokyo Station, Shinagawa. Cobert pel JR Pass. Tarda 60 min en donar la volta completa. L'eix vertebrador de Tokyo per als turistes.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Abonaments de turista</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            <strong style="color: var(--color-fg);">Tokyo Subway Ticket</strong>: 24h (¥800), 48h (¥1,200), 72h (¥1,500). Inclou Tokyo Metro + Toei. Útil si fas molts desplaçaments en un sol dia de turisme intens. Per a dies normals de viatge, la Suica és més flexible.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Senyalització i apps</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75;">
+            Totes les estacions estan senyalitzades en japonès, hiragana, katakana i <strong style="color: var(--color-fg);">romanitzat</strong>. No cal parlar japonès. App recomanada: <strong style="color: var(--color-fg);">Google Maps</strong> (funciona perfectament per al transport de Tokyo) o <strong style="color: var(--color-fg);">Navitime Japan</strong> per a rutes complexes amb shinkansen i cost de bitllet.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Transferències des de l'aeroport</h2>
+      {aeroports.map(a => (
+        <div style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem;">{a.aeroport}</h3>
+          <div style="border: 1px solid var(--color-border);">
+            {a.opcions.map((o, i, arr) => (
+              <div style={`display: grid; grid-template-columns: 180px 80px 90px 1fr; gap: 1rem; padding: 0.875rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === arr.length - 1 ? 'border-bottom: none;' : ''}`}>
+                <span style="font-size: 0.9375rem; font-weight: 600;">{o.nom}</span>
+                <span style="font-size: 0.8125rem; color: var(--color-muted); font-family: var(--font-mono);">{o.temps}</span>
+                <div>
+                  <span style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent); display: block;">{o.euros}</span>
+                  <span style="font-size: 0.7rem; color: var(--color-muted);">{o.preu}</span>
+                </div>
+                <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.5;">{o.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <div class="divider"></div>
+
+    <section>
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Altres opcions de transport</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Autobús nocturn (highway bus)</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            Tokyo → Osaka per ¥3,500–5,000 (~€21–30) per persona. Tarda 8–9h (de nit, dorms). Estalvi enorme vs shinkansen però no cobert pel JR Pass. Ideal si el temps no és crític i es vol estalviar en el bitllet i en l'hotel alhora. Willer Express i JR Bus Kanto en són els principals operadors.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Taxi</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            Cars nets i amb taxímetres fiables, però cars: ¥730 de baixada, ¥90 cada 265m. Un trajecte de 20 min a Tokyo pot costar ¥3,000–5,000. Reserva'ls per a situacions amb maletes, nens petits o tarda de nit. App GO Taxi (antiga JapanTaxi) funciona molt bé en anglès.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Bicicleta i scooter elèctric</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            Kyoto i Osaka es presten a explorar en bici. Docomo Bike Share (bicing) funciona a Tokyo, Yokohama, Osaka i Kyoto. ¥165 per 30 min o passes de dia (~¥1,650). Per a scooters elèctrics: Luup a Tokyo i Osaka. Carnet de conduir internacional necessari per als scooters.
+          </p>
+        </div>
+        <div style="background: var(--color-bg); padding: 1.5rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Tàxi d'equipatge (takuhaibin)</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.7;">
+            Servei únic del Japó: envies les maletes de l'hotel d'avui a l'hotel de demà per ~¥1,500–2,500 per maleta. Arriben l'endemà al matí. Allibera completament les mans per a un dia sencer de turisme o shinkansen. Yamato Transport (la tortuga groga) és l'operador principal. Tot els hotels ho gestionen.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>

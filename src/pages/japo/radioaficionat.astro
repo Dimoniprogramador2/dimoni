@@ -1,0 +1,307 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const yaesu = [
+  {
+    ref: "FT-991A",
+    nom: "Yaesu FT-991A",
+    tipus: "Transceptor multibanda",
+    preu: "¥110,000",
+    euros: "~€665",
+    europa: "~€1,100",
+    estalvi: "~40%",
+    freq: "HF/VHF/UHF · 100W",
+    desc: "L'all-in-one per excel·lència. HF, VHF i UHF en un sol equip. C4FM digital integrat. La referència per a radioaficionats que volen un equip complet sense complicar-se. Molt popular al Japó per C4FM Wires-X.",
+    tag: "Referència"
+  },
+  {
+    ref: "FT-DX10",
+    nom: "Yaesu FT-DX10",
+    tipus: "Transceptor HF",
+    preu: "¥120,000",
+    euros: "~€730",
+    europa: "~€1,350",
+    estalvi: "~46%",
+    freq: "HF/50 MHz · 100W",
+    desc: "SDR de gamma mitja-alta. Receptor de doble conversió amb FPGA Yaesu. Pantalla tàctil, filtre de roofing de 300Hz. Per a concursos i DX. El salt qualitatiu respecte al FT-991A en recepció HF.",
+    tag: "SDR"
+  },
+  {
+    ref: "FT-DX101D",
+    nom: "Yaesu FT-DX101D",
+    tipus: "Transceptor HF top",
+    preu: "¥360,000",
+    euros: "~€2,180",
+    europa: "~€3,800",
+    estalvi: "~43%",
+    freq: "HF/50 MHz · 200W",
+    desc: "El flagship de Yaesu. Triple conversió, filtratge FPGA avançat, pantalla gran amb waterfall. El que usen els contester seriosos. Difícil de trobar a Europa i molt més car quan apareix.",
+    tag: "Top gamma"
+  },
+  {
+    ref: "FT-3D",
+    nom: "Yaesu FT3D",
+    tipus: "Portàtil dual band",
+    preu: "¥32,000",
+    euros: "~€195",
+    europa: "~€350",
+    estalvi: "~44%",
+    freq: "VHF/UHF · 5W · C4FM",
+    desc: "El millor portàtil de Yaesu amb GPS integrat i APRS. C4FM digital natiu. Pantalla color. Molt popular entre radioaficionats de muntanya i emergències. Exclusiu JDM: model internacional sense algunes funcions.",
+    tag: "Portàtil"
+  },
+];
+
+const icom = [
+  {
+    ref: "IC-7300",
+    nom: "Icom IC-7300",
+    tipus: "Transceptor HF SDR",
+    preu: "¥95,000",
+    euros: "~€575",
+    europa: "~€1,050",
+    estalvi: "~45%",
+    freq: "HF/50 MHz · 100W",
+    desc: "El transceptor SDR que va democratitzar la gamma alta. Waterfall en temps real, filtre DSP configurable. El model més venut a tot el món en la seva categoria. Referència absoluta per a la relació qualitat-preu.",
+    tag: "Més venut"
+  },
+  {
+    ref: "IC-705",
+    nom: "Icom IC-705",
+    tipus: "Portàtil QRP SDR",
+    preu: "¥85,000",
+    euros: "~€515",
+    europa: "~€900",
+    estalvi: "~43%",
+    freq: "HF/VHF/UHF · 10W",
+    desc: "El portàtil SDR que ho canvia tot. Tot el que té l'IC-7300 en format portàtil de 10W. Bateria integrada, GPS, Bluetooth. Per a SOTA, POTA i expedicions. El preferit dels radioaficionats actius al camp.",
+    tag: "SOTA/POTA"
+  },
+  {
+    ref: "IC-9700",
+    nom: "Icom IC-9700",
+    tipus: "Transceptor VHF/UHF/SHF",
+    preu: "¥155,000",
+    euros: "~€940",
+    europa: "~€1,700",
+    estalvi: "~45%",
+    freq: "144/430/1200 MHz · 100W",
+    desc: "Especialista en bandes altes. SDR de primer nivell per a 2m, 70cm i 23cm. DX, EME (lluna), satèl·lit, meteor scatter. L'equip que no trobaràs a molt pocs llocs i a Europa costa el doble.",
+    tag: "VHF/UHF"
+  },
+  {
+    ref: "IC-7610",
+    nom: "Icom IC-7610",
+    tipus: "Transceptor HF dual",
+    preu: "¥250,000",
+    euros: "~€1,515",
+    europa: "~€2,800",
+    estalvi: "~46%",
+    freq: "HF/50 MHz · 100W · DUAL",
+    desc: "Doble receptor SDR independent. Permet escoltar dues freqüències simultàniament. RTTY, contestos SO2R. El pas cap a la gamma professional sense arribar al preu del 7851. Molt difícil trobar-lo a Europa.",
+    tag: "Dual RX"
+  },
+];
+
+const kenwood = [
+  {
+    ref: "TS-890S",
+    nom: "Kenwood TS-890S",
+    tipus: "Transceptor HF",
+    preu: "¥310,000",
+    euros: "~€1,880",
+    europa: "~€3,200",
+    estalvi: "~41%",
+    freq: "HF/50 MHz · 100W",
+    desc: "El flagship de Kenwood. Receptor de referència, filtratge DSP superb, AGC precís. El preferit dels operadors DX exigents. Kenwood ha tornat al mercat d'alta gamma amb força amb aquest model.",
+    tag: "DX"
+  },
+  {
+    ref: "TH-D74",
+    nom: "Kenwood TH-D74A",
+    tipus: "Portàtil tribanda",
+    preu: "¥52,000",
+    euros: "~€315",
+    europa: "~€550",
+    estalvi: "~43%",
+    freq: "HF/VHF/UHF · 5W · D-STAR",
+    desc: "El portàtil més complet del mercat. Receptor HF integrat, D-STAR digital, APRS, GPS, pantalla color. Únic portàtil al món amb recepció HF. Una joia tecnològica que costa el doble a Europa quan es troba.",
+    tag: "Únic"
+  },
+];
+
+const consells = [
+  { titol: "Tax-free", desc: "Yodobashi Camera, Bic Camera i botigues especialitzades apliquen tax-free a partir de ¥5,000. Porta el passaport. L'estalvi addicional del 10% es suma al diferencial de preu base." },
+  { titol: "Tensió i freqüències", desc: "Els equips japonesos funcionen a 100V/50-60Hz. Necessites transformador. Les freqüències de HF son les mateixes; VHF/UHF pot tenir algunes diferències de bandes menors." },
+  { titol: "Garantia", desc: "La garantia japonesa no és vàlida a Espanya. Compra equips nous amb la documentació. Icom i Yaesu tenen servei tècnic europeu però la garantia de fàbrica és local." },
+  { titol: "Certificació CE", desc: "Els equips japonesos no porten marcatge CE. Legalment, per a transmissió a Espanya necessites equip certificat. L'ús en recepció és lliure. Consulta la normativa vigent." },
+  { titol: "On comprar", desc: "Yodobashi Camera Akihabara (planta superior: radio i comunicacions). CQ Ham Radio Shop a Akihabara. HobbyLink Japan per a comandes. Mercats de segon mà: Yahoo Auctions JP." },
+];
+---
+<Layout title="Radioaficionat al Japó — Yaesu, Icom, Kenwood" description="Emissores japoneses: preus Yaesu, Icom, Kenwood al Japó vs Europa i on comprar" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Radioaficionat</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Tecnologia · Radioaficionat</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Radioaficionat</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 600px; margin-bottom: 1.5rem; line-height: 1.75;">
+      El Japó és el bressol de la radioafició moderna. Yaesu, Icom i Kenwood dominen el mercat mundial des de fa 60 anys, i els seus equips costen entre un 35 i un 46% menys al país d'origen que a Europa, abans d'aplicar el tax-free del 10%.
+    </p>
+    <div style="display: inline-flex; gap: 2rem; padding: 1rem 1.5rem; background: var(--color-subtle); border: 1px solid var(--color-border); margin-bottom: 3rem;">
+      <div>
+        <p style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted); margin-bottom: 0.25rem;">ESTALVI MIG</p>
+        <p style="font-size: 1.5rem; font-weight: 800; color: var(--color-accent);">40–46%</p>
+      </div>
+      <div style="width: 1px; background: var(--color-border);"></div>
+      <div>
+        <p style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted); margin-bottom: 0.25rem;">TAX-FREE ADDICIONAL</p>
+        <p style="font-size: 1.5rem; font-weight: 800; color: var(--color-fg);">+10%</p>
+      </div>
+      <div style="width: 1px; background: var(--color-border);"></div>
+      <div>
+        <p style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted); margin-bottom: 0.25rem;">CANVI REFERÈNCIA</p>
+        <p style="font-size: 1.5rem; font-weight: 800; color: var(--color-fg);">165 ¥/€</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.75rem;">
+        <h2 style="font-size: 1.75rem;">Yaesu</h2>
+        <span class="label">Vertex Standard · C4FM digital</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 640px; line-height: 1.7;">
+        Fundada el 1959 a Tokyo. El sistema digital C4FM (Wires-X) és propi de Yaesu i molt popular a Àsia. La gamma FT-DX representa el cim de la seva oferta HF. Fabricació japonesa en la major part de la gamma professional.
+      </p>
+
+      <div style="border: 1px solid var(--color-border);">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; padding: 0.5rem 1.25rem; border-bottom: 1px solid var(--color-border); background: var(--color-subtle);">
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted);">MODEL</span>
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted);">PREU JAPÓ</span>
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted);">PREU EUROPA</span>
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-accent);">ESTALVI</span>
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted);">BANDES</span>
+        </div>
+        {yaesu.map((e, i) => (
+          <div style={`display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === yaesu.length - 1 ? 'border-bottom: none;' : ''}`}>
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.25rem;">
+                <span style="font-size: 0.9375rem; font-weight: 700;">{e.nom}</span>
+                <span class:list={['tag', { accent: e.tag === 'Referència' || e.tag === 'Més venut' }]}>{e.tag}</span>
+              </div>
+              <p style="font-size: 0.75rem; color: var(--color-muted); line-height: 1.5;">{e.desc}</p>
+            </div>
+            <span style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent); padding-top: 0.125rem;">{e.euros}<br/><span style="font-size: 0.7rem; color: var(--color-muted); font-weight: 400;">{e.preu}</span></span>
+            <span style="font-size: 0.875rem; color: var(--color-muted); padding-top: 0.125rem;">{e.europa}</span>
+            <span style="font-size: 0.9375rem; font-weight: 800; color: var(--color-accent); padding-top: 0.125rem;">{e.estalvi}</span>
+            <span style="font-size: 0.75rem; color: var(--color-muted); padding-top: 0.125rem;">{e.freq}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.75rem;">
+        <h2 style="font-size: 1.75rem;">Icom</h2>
+        <span class="label">D-STAR · SDR de referència</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 640px; line-height: 1.7;">
+        Fundada el 1954 a Osaka. El sistema D-STAR va ser pioner en la digitalització de la radioafició. L'IC-7300 va revolucionar el mercat el 2016 portant l'SDR de qualitat a un preu assequible. L'IC-705 és el portàtil de referència mundial.
+      </p>
+
+      <div style="border: 1px solid var(--color-border);">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; padding: 0.5rem 1.25rem; border-bottom: 1px solid var(--color-border); background: var(--color-subtle);">
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted);">MODEL</span>
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted);">PREU JAPÓ</span>
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted);">PREU EUROPA</span>
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-accent);">ESTALVI</span>
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted);">BANDES</span>
+        </div>
+        {icom.map((e, i) => (
+          <div style={`display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === icom.length - 1 ? 'border-bottom: none;' : ''}`}>
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.25rem;">
+                <span style="font-size: 0.9375rem; font-weight: 700;">{e.nom}</span>
+                <span class:list={['tag', { accent: e.tag === 'Referència' || e.tag === 'Més venut' }]}>{e.tag}</span>
+              </div>
+              <p style="font-size: 0.75rem; color: var(--color-muted); line-height: 1.5;">{e.desc}</p>
+            </div>
+            <span style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent); padding-top: 0.125rem;">{e.euros}<br/><span style="font-size: 0.7rem; color: var(--color-muted); font-weight: 400;">{e.preu}</span></span>
+            <span style="font-size: 0.875rem; color: var(--color-muted); padding-top: 0.125rem;">{e.europa}</span>
+            <span style="font-size: 0.9375rem; font-weight: 800; color: var(--color-accent); padding-top: 0.125rem;">{e.estalvi}</span>
+            <span style="font-size: 0.75rem; color: var(--color-muted); padding-top: 0.125rem;">{e.freq}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 0.75rem;">
+        <h2 style="font-size: 1.75rem;">Kenwood</h2>
+        <span class="label">TS-890S · TH-D74</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 640px; line-height: 1.7;">
+        La marca d'Osaka amb el receptor HF més aclamat per la comunitat DX. El TS-890S és considerat per molts el millor receptor en la seva gamma de preu. El TH-D74 és l'únic portàtil del mercat amb recepció HF integrada.
+      </p>
+
+      <div style="border: 1px solid var(--color-border);">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; padding: 0.5rem 1.25rem; border-bottom: 1px solid var(--color-border); background: var(--color-subtle);">
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted);">MODEL</span>
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted);">PREU JAPÓ</span>
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted);">PREU EUROPA</span>
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-accent);">ESTALVI</span>
+          <span style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-muted);">BANDES</span>
+        </div>
+        {kenwood.map((e, i) => (
+          <div style={`display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; ${i === kenwood.length - 1 ? 'border-bottom: none;' : ''}`}>
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.25rem;">
+                <span style="font-size: 0.9375rem; font-weight: 700;">{e.nom}</span>
+                <span class:list={['tag', { accent: e.tag === 'Únic' }]}>{e.tag}</span>
+              </div>
+              <p style="font-size: 0.75rem; color: var(--color-muted); line-height: 1.5;">{e.desc}</p>
+            </div>
+            <span style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent); padding-top: 0.125rem;">{e.euros}<br/><span style="font-size: 0.7rem; color: var(--color-muted); font-weight: 400;">{e.preu}</span></span>
+            <span style="font-size: 0.875rem; color: var(--color-muted); padding-top: 0.125rem;">{e.europa}</span>
+            <span style="font-size: 0.9375rem; font-weight: 800; color: var(--color-accent); padding-top: 0.125rem;">{e.estalvi}</span>
+            <span style="font-size: 0.75rem; color: var(--color-muted); padding-top: 0.125rem;">{e.freq}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Abans de comprar</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {consells.map(c => (
+          <div style="background: var(--color-bg); padding: 1.5rem;">
+            <p style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-accent); margin-bottom: 0.5rem;">{c.titol.toUpperCase()}</p>
+            <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.65;">{c.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <div style="padding: 1.5rem; background: var(--color-subtle); border: 1px solid var(--color-border);">
+        <p class="label" style="margin-bottom: 0.75rem;">On comprar a Akihabara</p>
+        <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.75; max-width: 700px;">
+          <strong>Yodobashi Camera Akihabara</strong> (plantes 6–7): la major selecció sota un mateix sostre. Tax-free aplicat a caixa. <strong>CQ Ham Radio</strong> (Akihabara): botiga especialitzada amb assessorament tècnic en anglès. <strong>Tandy/Radio Kaikan</strong>: mercat de segon mà a l'edifici Radio Kaikan. <strong>Yahoo Auctions JP</strong> via Buyee: per als que volen negociar i saben el que busquen.
+        </p>
+      </div>
+    </section>
+
+  </div>
+</Layout>
