@@ -1,0 +1,470 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const yonexRaquetes = [
+  {
+    model: "VCORE Pro 97",
+    codi: "VCP97",
+    cap: "97 in²",
+    pes: "310 g",
+    desc: "La raqueta dels jugadors agressius. Perfil prim (22mm) per a màxim control i rotació. Usada per Carlo Alcaraz i múltiples ATP Top-50. La versió japones inclou colors i customitzacions exclusives. Millor compra si ets jugador tècnic de nivell avançat.",
+    preu: "¥33,000–42,000",
+    euros: "~€200–€255",
+    img: "/img/tennis/yonex-vcore-pro97.jpg",
+    tag: "Control",
+    nivell: "Avançat",
+  },
+  {
+    model: "EZONE 98",
+    codi: "EZ98",
+    cap: "98 in²",
+    pes: "305 g",
+    desc: "La raqueta més venuda de Yonex. Equilibri perfecte entre potència i confort. Isogetic Frame absorbeix vibracions. Ideal per a jugadors de nivell mig-avançat que volen potència sense sacrificar control. La més popular a les clubs japonesos.",
+    preu: "¥30,000–38,000",
+    euros: "~€182–€230",
+    img: "/img/tennis/yonex-ezone98.jpg",
+    tag: "Equilibri",
+    nivell: "Mig–Avançat",
+  },
+  {
+    model: "VCORE 95",
+    codi: "VC95",
+    cap: "95 in²",
+    pes: "310 g",
+    desc: "Perfil ultra-prim (20mm), el més prim de la gamma. Per a jugadors que busquen control quirúrgic. La raqueta dels especialistes. Exigeix una tècnica consistent: amplifica tant els encerts com els errors. Col·leccionada pels entusiastes del joc clàssic.",
+    preu: "¥35,000–43,000",
+    euros: "~€212–€261",
+    img: "/img/tennis/yonex-vcore95.jpg",
+    tag: "Control màxim",
+    nivell: "Expert",
+  },
+  {
+    model: "Percept 97",
+    codi: "PCP97",
+    cap: "97 in²",
+    pes: "310 g",
+    desc: "La generació més recent de Yonex (2023). Tecnologia Elastic Ti que millora la sensació de la pilota en impacte. Combina el confort de l'EZONE amb el control del VCORE Pro. Molt difícil de trobar a Europa; la versió japonesa porta colorways exclusius.",
+    preu: "¥38,000–46,000",
+    euros: "~€230–€279",
+    img: "/img/tennis/yonex-percept97.jpg",
+    tag: "Ultima generació",
+    nivell: "Mig–Avançat",
+  },
+  {
+    model: "EZONE 100",
+    codi: "EZ100",
+    cap: "100 in²",
+    pes: "300 g",
+    desc: "La versió més lleugera i perdurable de la gamma EZONE. El marc més gran absorbeix errors de timing i amplia el sweet spot. Excel·lent per a jugadors de club, veterans o qui juga menys d'un cop per setmana. Molt popular entre jugadors japonesos de club.",
+    preu: "¥27,000–34,000",
+    euros: "~€164–€206",
+    img: "/img/tennis/yonex-ezone100.jpg",
+    tag: "Comoditat",
+    nivell: "Intermedi",
+  },
+  {
+    model: "ASTREL 105",
+    codi: "AST105",
+    cap: "105 in²",
+    pes: "255 g",
+    desc: "La gamma lleugera per a principiants, seniors i jugadors recreacionals. Màxim sweet spot, mínim esforç al braç. Sovint ignorada fora del Japó però molt valorada localment per la seva construcció sòlida a preu assequible.",
+    preu: "¥22,000–28,000",
+    euros: "~€133–€170",
+    img: "/img/tennis/yonex-astrel.jpg",
+    tag: "Recreacional",
+    nivell: "Principiant–Intermedi",
+  },
+];
+
+const altresRaquetes = [
+  {
+    nom: "Dunlop Japan",
+    nom_ja: "ダンロップ",
+    empresa: "Sumitomo Rubber Industries",
+    desc: "Surpresa: Dunlop és avui una empresa japonesa. Sumitomo Rubber Industries va adquirir la divisió esportiva global de Dunlop el 2017. Els seus esquemes de R+D es fan al Japó; els models CX i FX del mercat domèstic tenen colorways i especificacions exclusives. La CX 400 Tour és considerada una de les millors raquetes per a jugadors de club al Japó.",
+    models: "CX 400 Tour, CX 200, FX 700",
+    preu: "¥22,000–38,000",
+    euros: "~€133–€230",
+    img: "/img/tennis/dunlop-cx400.jpg",
+    tag: "Japonesa (sorpresa)",
+  },
+  {
+    nom: "Mizuno",
+    nom_ja: "ミズノ",
+    empresa: "Mizuno Corporation · Osaka 1906",
+    desc: "La marca esportiva japonesa per excel·lència té una gamma de raquetes (sèrie F Tour) molt popular entre jugadors de competició japonesa però gairebé invisible a Europa. La construcció és excel·lent. Si trobes una F Tour 310 o una F Tour 300 a la secció de tennis d'un Alpen Sports, val la pena provar-la.",
+    models: "F Tour 310, F Tour 300, F Tour 285",
+    preu: "¥18,000–30,000",
+    euros: "~€109–€182",
+    img: "/img/tennis/mizuno-f-tour.jpg",
+    tag: "JDM · Poc conegut",
+  },
+  {
+    nom: "Wilson Japan",
+    nom_ja: "ウィルソン",
+    empresa: "Distribució Japó: Descente",
+    desc: "Wilson al Japó la distribueix Descente (sí, la mateixa marca d'esquí). El catàleg japonès de Wilson inclou colorways exclusius per al mercat local, sobretot a la línia Ultra i Blade. Preus similars als europeus però amb el 10% de tax-free per sobre.",
+    models: "Blade 98 v8, Ultra 100, Pro Staff",
+    preu: "¥30,000–55,000",
+    euros: "~€182–€333",
+    img: "/img/tennis/wilson-blade.jpg",
+    tag: "Internacional + JDM",
+  },
+  {
+    nom: "Babolat Japan",
+    nom_ja: "バボラ",
+    empresa: "Distribució Japó: Toray",
+    desc: "Babolat al Japó la distribueix Toray Industries (empresa química japonesa, fabricant del carboni Toray que Babolat usa en les seves raquetes). Ironia perfecta. El catàleg japonès inclou models limitats i colorways exclusius. La Pure Aero Rafa Edition es va vendre al Japó amb grip especial per mides petites.",
+    models: "Pure Aero, Pure Drive, Pure Strike",
+    preu: "¥28,000–48,000",
+    euros: "~€170–€291",
+    img: "/img/tennis/babolat-pure-aero.jpg",
+    tag: "Internacional",
+  },
+];
+
+const roba = [
+  {
+    nom: "Yonex · Roba de tenis",
+    nom_ja: "ヨネックス",
+    desc: "La línia tèxtil de Yonex (camises, pantalons, faldilles) s'usa en circuits ATP/WTA i als clubs japonesos. El teixit COOL DRY i la tecnologia d'absorció de suor estan molt treballats. Al Japó hi ha colorways i peces exclusives de cada estació. Qualitat clarament superior a Lacoste o Nike per a ús esportiu real.",
+    preu: "¥4,400–9,900",
+    euros: "~€27–€60",
+    img: "/img/tennis/yonex-roba.jpg",
+    tag: "Especialitzat",
+  },
+  {
+    nom: "Uniqlo · Col·lecció tenis",
+    nom_ja: "ユニクロ",
+    desc: "Uniqlo és patrocinador de Kei Nishikori i va ser patrocinador de Roger Federer fins a la seva retirada. La col·lecció Roger Federer Edition i la Kei Nishikori Line es venen al Japó a preus 25–35% inferiors als europeus. Les peces AIRism i el polo de tenis Federer Edition amb acabat de polofluorocarbon són icònics.",
+    preu: "¥3,990–6,990",
+    euros: "~€24–€42",
+    img: "/img/tennis/uniqlo-tennis.jpg",
+    tag: "Preu–qualitat",
+  },
+  {
+    nom: "Asics · Roba esportiva",
+    nom_ja: "アシックス",
+    desc: "Asics fa roba tècnica de tenis amb el teixit VENTILATE i sistemes de gestió de calor adaptats a l'estiu japonès (molt humit). Les col·leccions estacionals japoneses inclouen peces que no arriben a Europa. Preu intermedi.",
+    preu: "¥4,000–8,000",
+    euros: "~€24–€49",
+    img: "/img/tennis/asics-roba.jpg",
+    tag: "Tècnic",
+  },
+  {
+    nom: "Le Coq Sportif Japan",
+    nom_ja: "ルコック スポルティフ",
+    desc: "Marca francesa que al Japó porta dècades amb col·leccions independents. La seva línia de tenis japonesa (polo, faldilla, jaqueta) és molt popular a clubs tradicionals. Colors i talls clàssics, qualitat francesa-japonesa. Distribuïda per Descente al Japó.",
+    preu: "¥5,000–12,000",
+    euros: "~€30–€73",
+    img: "/img/tennis/lecoq-japan.jpg",
+    tag: "Clàssic · JDM",
+  },
+];
+
+const sabates = [
+  {
+    nom: "Asics Gel-Resolution 9",
+    nom_ja: "アシックス ゲルレゾリューション",
+    desc: "La sabata de tenis d'Asics per a jugadors de competició. Estabilitat lateral, sola Solyte OrthoLite. La versió japonesa (suffix J o sense) inclou colorways exclusius i a vegades especificacions de last (forma de la sola) adaptades al peu asiàtic, més ample a la part davantera. Considera triar mig número menys.",
+    preu: "¥15,400–19,800",
+    euros: "~€93–€120",
+    img: "/img/tennis/asics-gel-resolution.jpg",
+    tag: "Competició",
+  },
+  {
+    nom: "Yonex Power Cushion Eclipsion 5",
+    nom_ja: "パワークッション エクリプション",
+    desc: "La sabata insígnia de Yonex. La tecnologia Power Cushion és la millor absorció d'impactes del mercat de tenis. Molt popular al Japó per a jugadors amb problemes de genolls o turmells. La sola Omni Guard resisteix l'abrasió de tots els tipus de pista. Poc present a Europa.",
+    preu: "¥13,200–18,700",
+    euros: "~€80–€113",
+    img: "/img/tennis/yonex-power-cushion.jpg",
+    tag: "Comoditat · Yonex",
+  },
+  {
+    nom: "Mizuno Wave Enforce Tour",
+    nom_ja: "ミズノ ウェーブエンフォース",
+    desc: "La sabata de competició de Mizuno. La plataforma Wave Plate actua com a amortidor dinàmic. Molt valorada en competicions japoneses regionals. Gairebé absent a Europa; els jugadors europeus que la troben al Japó solen quedar-se sorpresos de la relació preu-prestació.",
+    preu: "¥14,300–18,700",
+    euros: "~€87–€113",
+    img: "/img/tennis/mizuno-wave-enforce.jpg",
+    tag: "Japonesa · Poc coneguda",
+  },
+];
+
+const preusComparatius = [
+  { producte: "Raqueta Yonex VCORE Pro 97",     japo: "¥33,000–42,000",  euros: "~€200–€255", europa: "€230–€300", estalvi: "~15–25%", nota: "Colorways exclusius japonesos. Possibilitat de personalització a botigues especialitzades." },
+  { producte: "Raqueta Yonex EZONE 98",         japo: "¥30,000–38,000",  euros: "~€182–€230", europa: "€200–€260", estalvi: "~15–20%", nota: "La més venuda a Japan. Stock ampli a totes les cadenes esportives." },
+  { producte: "Raqueta Yonex Percept 97",       japo: "¥38,000–46,000",  euros: "~€230–€279", europa: "€240–€320", estalvi: "~15–25%", nota: "Model recent. Molt difícil de trobar a Europa; aquí disponible a catàleg complet." },
+  { producte: "Raqueta Dunlop CX 400 Tour",     japo: "¥25,000–35,000",  euros: "~€152–€212", europa: "€180–€250", estalvi: "~15–20%", nota: "Dunlop és ara japonesa (Sumitomo). El catàleg domèstic és el més complet del món." },
+  { producte: "Sabates Asics Gel-Resolution 9", japo: "¥15,400–19,800",  euros: "~€93–€120",  europa: "€130–€160", estalvi: "~25–35%", nota: "Colorways JDM. Mig número menys que la talla europea habitual." },
+  { producte: "Sabates Yonex Power Cushion",    japo: "¥13,200–18,700",  euros: "~€80–€113",  europa: "€130–€170", estalvi: "~30–40%", nota: "Gairebé absent a Europa. Al Japó, disponible a totes les cadenes esportives." },
+  { producte: "Roba Yonex (camisa de joc)",     japo: "¥4,400–8,800",    euros: "~€27–€53",   europa: "€50–€90",   estalvi: "~35–45%", nota: "La diferència és molt significativa. Colorways estacionals japonesos." },
+  { producte: "Polo Uniqlo Tennis (Federer Ed.)", japo: "¥4,990–6,990",  euros: "~€30–€42",   europa: "€50–€70",   estalvi: "~30–40%", nota: "Disponible globalment però 25–35% més car fora del Japó." },
+];
+
+const ontrobars = [
+  { nom: "Yonex Badminton & Tennis Center", barri: "Bunkyo · Tokyo", desc: "La botiga oficial de Yonex prop de les oficines centrals. Catàleg complet de raquetes, cordes, roba i sabates. Servei de cordatge (encordament) in situ. Possibilitat de provar raquetes amb cordatge propi.", nota: "Metro: Korakuen / Kasuga" },
+  { nom: "Alpen Sports (secció tenis)", barri: "Diverses ubicacions", desc: "La cadena multimarca japonesa més gran. Yonex, Wilson, Babolat, Head, Dunlop, Mizuno tots junts. Comparació real de productes. Descomptes importants al juliol per estoc de temporada anterior.", nota: "Sales de juliol fins al 40%" },
+  { nom: "Super Sports Xebio", barri: "Diverses ubicacions · Tokyo/Osaka", desc: "Cadena esportiva japonesa. Bona secció de tenis amb assessors. Preus lleugerament inferiors als d'Alpen en algunes marques. Servei de cordatge disponible a les botigues grans.", nota: "Tax-free a partir de ¥5,000" },
+  { nom: "Tennis Shop Lala Shinjuku", barri: "Shinjuku · Tokyo", desc: "Botiga especialitzada en tenis. Assessorament expert, tot el catàleg Yonex, possibilitat de provar raquetes. L'equivalent d'una botiga especialitzada de referència, amb l'amplitud de catàleg japonès.", nota: "Especialitzada en Yonex" },
+];
+---
+<Layout title="Tenis al Japó · Raquetes i roba" description="Yonex, Dunlop, Mizuno, Asics: raquetes de gamma alta, roba i sabates de tenis al Japó. Preus en euros i on comprar." section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <a href="/japo/compres/luxe" style="color: var(--color-muted);">Compres</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Tenis</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Compres · Esports · Tenis</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Tenis al Japó</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 640px; margin-bottom: 2rem; line-height: 1.75;">
+      Yonex és una empresa japonesa de Niigata que equipa els millors jugadors del circuit ATP/WTA. Comprar Yonex al Japó és comprar al fabricant: catàleg complet, colorways exclusius del mercat domèstic i preus entre un 15 i un 45% inferiors als europeus. I resulta que Dunlop, avui, també és japonesa.
+    </p>
+    <p style="font-size: 0.9375rem; color: var(--color-muted); max-width: 640px; margin-bottom: 3rem; line-height: 1.75;">
+      Les cadenes esportives japoneses fan rebaixes al juliol per liquidar estoc de temporada. No és el millor moment per a novetats, però per a models de temporada anterior el descompte arriba al 40%.
+    </p>
+
+    <a href="/japo/esqui" style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--color-muted); text-decoration: none; border: 1px solid var(--color-border); padding: 0.5rem 0.875rem; margin-bottom: 2.5rem;">
+      ← Roba d'esquí i material de neu · Descente, Phenix, Ogasaka
+    </a>
+
+    <div class="divider"></div>
+
+    <!-- YONEX RAQUETES -->
+    <section style="margin-bottom: 5rem;">
+      <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
+        <h2 style="font-size: 1.875rem;">Yonex · Raquetes</h2>
+        <span style="font-size: 1.25rem; color: var(--color-muted);">ヨネックス</span>
+        <span class="tag" style="margin-left: auto;">Fundada 1946 · Niigata</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1rem; max-width: 660px; line-height: 1.75;">
+        Yonex va néixer a Niigata fent flotadors de fusta per a pescar. Avui fabrica les raquetes amb la tecnologia d'isogètic (marc no circular) que redueix les vibracions no desjades en impacte. Fets amb carboni Toray (japonès) i fibra de vidre, construïts a les seves pròpies fàbriques. Al circuit professional: Stefanos Tsitsipas, Stan Wawrinka, Belinda Bencic.
+      </p>
+      <p style="font-size: 0.875rem; color: var(--color-muted); margin-bottom: 2.5rem; max-width: 660px; line-height: 1.7;">
+        Diferència de preu respecte a Europa: <strong style="color: var(--color-fg);">15–25%</strong> en raquetes, fins al <strong style="color: var(--color-fg);">40%</strong> en roba i sabates. Preus en euros a ~165 ¥/€ + tax-free del 10%.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {yonexRaquetes.map(r => (
+          <div style="background: var(--color-bg); display: flex; flex-direction: column;">
+            <div style="aspect-ratio: 4/3; background: var(--color-subtle); overflow: hidden; position: relative;">
+              <img
+                src={r.img}
+                alt={`Yonex ${r.model}`}
+                loading="lazy"
+                style="width: 100%; height: 100%; object-fit: cover;"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div style="display: none; position: absolute; inset: 0; align-items: center; justify-content: center; flex-direction: column; gap: 0.4rem; background: var(--color-subtle);">
+                <span style="font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; color: var(--color-muted);">YONEX</span>
+                <span style="font-size: 0.9375rem; font-weight: 800; color: var(--color-fg);">{r.model}</span>
+                <span style="font-size: 0.6875rem; color: var(--color-muted);">{r.cap} · {r.pes}</span>
+              </div>
+              <span class="tag" style="position: absolute; top: 0.75rem; left: 0.75rem;">{r.tag}</span>
+              <span style="position: absolute; bottom: 0.75rem; right: 0.75rem; font-size: 0.6875rem; font-weight: 700; padding: 0.2rem 0.45rem; background: var(--color-bg); color: var(--color-muted);">{r.nivell}</span>
+            </div>
+            <div style="padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.375rem;">
+              <div style="display: flex; align-items: baseline; gap: 0.5rem;">
+                <h3 style="font-size: 1rem; font-weight: 800;">{r.model}</h3>
+                <span style="font-size: 0.6875rem; font-family: var(--font-mono, monospace); color: var(--color-muted);">{r.codi}</span>
+              </div>
+              <p style="font-size: 0.6875rem; color: var(--color-muted);">{r.cap} · {r.pes}</p>
+              <div style="display: flex; gap: 0.75rem; align-items: baseline;">
+                <span style="font-size: 1rem; font-weight: 800; color: var(--color-accent);">{r.euros}</span>
+                <span style="font-size: 0.75rem; color: var(--color-muted);">{r.preu}</span>
+              </div>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65; flex: 1;">{r.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="info-block neutral" style="margin-top: 1.5rem;">
+        <p style="font-size: 0.875rem; line-height: 1.7; margin: 0;"><strong>Cordatge al Japó:</strong> Les raquetes es venen sense cordar (o amb el cordatge base). Les botigues especialitzades ofereixen servei de cordatge exprés en 30–60 min. Cordatge Yonex Poly Tour Pro o BG65 a ¥2,000–4,000 (€12–24) tot inclòs, molt per sota dels preus europeus.</p>
+      </div>
+    </section>
+
+    <!-- ALTRES RAQUETES -->
+    <section style="margin-bottom: 5rem;">
+      <h2 style="font-size: 1.875rem; margin-bottom: 0.5rem;">Altres raquetes · Dunlop, Mizuno, Wilson, Babolat</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2.5rem; max-width: 640px; line-height: 1.75;">
+        Més marques amb presència especial al mercat japonès — algunes per ser parcialment o totalment japoneses, d'altres per tenir distribució especial al país.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {altresRaquetes.map(m => (
+          <div style="background: var(--color-bg); display: flex; flex-direction: column;">
+            <div style="aspect-ratio: 4/3; background: var(--color-subtle); overflow: hidden; position: relative;">
+              <img
+                src={m.img}
+                alt={m.nom}
+                loading="lazy"
+                style="width: 100%; height: 100%; object-fit: cover;"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div style="display: none; position: absolute; inset: 0; align-items: center; justify-content: center; flex-direction: column; gap: 0.35rem; background: var(--color-subtle);">
+                <span style="font-size: 0.875rem; font-weight: 800; color: var(--color-fg);">{m.nom}</span>
+                <span style="font-size: 0.6875rem; color: var(--color-muted);">{m.empresa}</span>
+              </div>
+              <span class="tag" style="position: absolute; top: 0.75rem; left: 0.75rem;">{m.tag}</span>
+            </div>
+            <div style="padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.375rem;">
+              <div style="display: flex; align-items: baseline; gap: 0.75rem;">
+                <h3 style="font-size: 1rem; font-weight: 800;">{m.nom}</h3>
+                <span style="font-size: 0.8125rem; color: var(--color-muted);">{m.nom_ja}</span>
+              </div>
+              <p style="font-size: 0.6875rem; color: var(--color-muted);">{m.empresa}</p>
+              <div style="display: flex; gap: 0.75rem; align-items: baseline;">
+                <span style="font-size: 1rem; font-weight: 800; color: var(--color-accent);">{m.euros}</span>
+                <span style="font-size: 0.75rem; color: var(--color-muted);">{m.preu}</span>
+              </div>
+              <p style="font-size: 0.6875rem; color: var(--color-muted); margin-bottom: 0.25rem;"><strong style="color: var(--color-fg);">Models: </strong>{m.models}</p>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65; flex: 1;">{m.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ROBA -->
+    <section style="margin-bottom: 5rem;">
+      <h2 style="font-size: 1.875rem; margin-bottom: 0.5rem;">Roba de tenis</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2.5rem; max-width: 640px; line-height: 1.75;">
+        La roba esportiva japonesa per a tenis és tècnicament superior a la majoria d'alternatives europees, i molt més barata al Japó. Yonex, Uniqlo i Asics dominen el mercat local, cadascuna amb un angle diferent.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {roba.map(r => (
+          <div style="background: var(--color-bg); display: flex; flex-direction: column;">
+            <div style="aspect-ratio: 4/3; background: var(--color-subtle); overflow: hidden; position: relative;">
+              <img
+                src={r.img}
+                alt={r.nom}
+                loading="lazy"
+                style="width: 100%; height: 100%; object-fit: cover;"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div style="display: none; position: absolute; inset: 0; align-items: center; justify-content: center; flex-direction: column; gap: 0.35rem; background: var(--color-subtle);">
+                <span style="font-size: 0.75rem; color: var(--color-muted);">{r.nom_ja}</span>
+                <span style="font-size: 0.9375rem; font-weight: 800; color: var(--color-fg);">{r.nom.split('·')[0].trim()}</span>
+              </div>
+              <span class="tag" style="position: absolute; top: 0.75rem; left: 0.75rem;">{r.tag}</span>
+            </div>
+            <div style="padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.375rem;">
+              <h3 style="font-size: 1rem; font-weight: 800;">{r.nom}</h3>
+              <div style="display: flex; gap: 0.75rem; align-items: baseline;">
+                <span style="font-size: 1rem; font-weight: 800; color: var(--color-accent);">{r.euros}</span>
+                <span style="font-size: 0.75rem; color: var(--color-muted);">{r.preu}</span>
+              </div>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65; flex: 1;">{r.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- SABATES -->
+    <section style="margin-bottom: 5rem;">
+      <h2 style="font-size: 1.875rem; margin-bottom: 0.5rem;">Sabates de tenis</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 640px; line-height: 1.75;">
+        Asics és la marca de sabates de tenis japonesa per referència mundial, però Yonex i Mizuno també fan sabates especialitzades que rarament arriben a Europa — i quan ho fan, a preus molt superiors.
+      </p>
+
+      <div style="border: 1px solid var(--color-border);">
+        {sabates.map((s, i) => (
+          <div style={`display: flex; gap: 0; ${i < sabates.length - 1 ? 'border-bottom: 1px solid var(--color-border);' : ''}`}>
+            <div style="width: 160px; min-height: 160px; flex-shrink: 0; background: var(--color-subtle); overflow: hidden; position: relative;">
+              <img
+                src={s.img}
+                alt={s.nom}
+                loading="lazy"
+                style="width: 100%; height: 100%; object-fit: cover;"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div style="display: none; position: absolute; inset: 0; align-items: center; justify-content: center; padding: 0.75rem; text-align: center; flex-direction: column; gap: 0.25rem;">
+                <span style="font-size: 0.6875rem; font-weight: 800; color: var(--color-fg); line-height: 1.3;">{s.nom.split(' ').slice(0, 2).join(' ')}</span>
+              </div>
+              <span class="tag" style="position: absolute; top: 0.5rem; left: 0.5rem; font-size: 0.625rem;">{s.tag}</span>
+            </div>
+            <div style="padding: 1.25rem; flex: 1;">
+              <div style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.25rem; flex-wrap: wrap;">
+                <h3 style="font-size: 0.9375rem; font-weight: 800;">{s.nom}</h3>
+                <span style="font-size: 0.75rem; color: var(--color-muted);">{s.nom_ja}</span>
+              </div>
+              <div style="display: flex; gap: 0.75rem; align-items: baseline; margin-bottom: 0.625rem;">
+                <span style="font-size: 1rem; font-weight: 800; color: var(--color-accent);">{s.euros}</span>
+                <span style="font-size: 0.75rem; color: var(--color-muted);">{s.preu}</span>
+              </div>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65;">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- PREUS COMPARATIUS -->
+    <section style="margin-bottom: 5rem;">
+      <h2 style="font-size: 1.875rem; margin-bottom: 0.5rem;">Preus · Japó vs. Europa</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 640px; line-height: 1.75;">
+        Preus en euros a ~165 ¥/€ + tax-free del 10%. En raquetes l'estalvi és moderat (15–25%); en roba i sabates pot arribar al 40%.
+      </p>
+
+      <div style="border: 1px solid var(--color-border);">
+        <div style="display: grid; grid-template-columns: 1fr 130px 110px 110px 80px; padding: 0.875rem 1.5rem; border-bottom: 1px solid var(--color-border); background: var(--color-surface);">
+          <p style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted);">Producte</p>
+          <p style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); text-align: right;">Japó (¥)</p>
+          <p style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); text-align: right;">Japó (€)</p>
+          <p style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); text-align: right;">Europa</p>
+          <p style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); text-align: right;">Estalvi</p>
+        </div>
+        {preusComparatius.map((p, i) => (
+          <div style={`padding: 1rem 1.5rem; ${i < preusComparatius.length - 1 ? 'border-bottom: 1px solid var(--color-border);' : ''}`}>
+            <div style="display: grid; grid-template-columns: 1fr 130px 110px 110px 80px; align-items: baseline; margin-bottom: 0.3rem;">
+              <p style="font-size: 0.875rem; font-weight: 700;">{p.producte}</p>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); text-align: right;">{p.japo}</p>
+              <p style="font-size: 0.875rem; font-weight: 800; color: var(--color-accent); text-align: right;">{p.euros}</p>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); text-align: right;">{p.europa}</p>
+              <p style="font-size: 0.875rem; font-weight: 700; text-align: right;">{p.estalvi}</p>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--color-muted); line-height: 1.5;">{p.nota}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="info-block" style="margin-top: 1.5rem;">
+        <p style="font-size: 0.875rem; line-height: 1.7; margin: 0 0 0.5rem 0;"><strong>Tax-free (2026):</strong> El 10% d'IVA japonès (消費税) s'elimina per als turistes no residents des de ¥5,000 en un sol establiment. Porta el passaport. Les cadenes esportives grans gestionen el tax-free a caixa directament.</p>
+        <p style="font-size: 0.875rem; line-height: 1.7; margin: 0;"><strong>Canvi de referència:</strong> ~165 ¥/€. Comprova la cotització just abans del viatge.</p>
+      </div>
+    </section>
+
+    <!-- ON COMPRAR -->
+    <section>
+      <h2 style="font-size: 1.875rem; margin-bottom: 0.5rem;">On comprar</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 600px; line-height: 1.75;">
+        Al juliol, les cadenes esportives estaran liquidant estoc d'hivern i de temporada de primavera amb descomptes del 30–40%.
+      </p>
+
+      <div style="border: 1px solid var(--color-border);">
+        {ontrobars.map((l, i) => (
+          <div style={`padding: 1.5rem; ${i < ontrobars.length - 1 ? 'border-bottom: 1px solid var(--color-border);' : ''}`}>
+            <div style="display: grid; grid-template-columns: 200px 1fr auto; gap: 1.5rem; align-items: start;">
+              <div>
+                <p style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 0.35rem;">{l.barri}</p>
+                <h3 style="font-size: 0.9375rem; font-weight: 800;">{l.nom}</h3>
+              </div>
+              <p style="font-size: 0.8375rem; color: var(--color-muted); line-height: 1.65;">{l.desc}</p>
+              <span class="tag" style="white-space: nowrap; font-size: 0.6875rem;">{l.nota}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</Layout>
