@@ -1,0 +1,337 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const descente = [
+  {
+    linia: "DESCENTE ALLTERRAIN",
+    kanji: "オルテライン",
+    desc: "La línia tècnica premium de Descente. Roba dissenyada amb investigació aeronàutica: costums de descens olímpic, jaquetes de freeride amb DERMIZAX NX (impermeabilitat 20.000mm, transpirabilitat superior a GORE-TEX en condicions d'esforç intens). Equipa els equips nacionals del Japó, Canadà, Alemanya i Corea.",
+    preu: "¥80,000–200,000",
+    tag: "Tècnic"
+  },
+  {
+    linia: "DESCENTE S.I.O. (Ski In Outfit)",
+    kanji: "スキーインアウトフィット",
+    desc: "La família d'esquí clàssic. Jaquetes i pantalons amb tall japonès: molt més cenyit que les marques europees, disseny net sense logos excessius. Colors restringits, paleta mineral (blanc neu, carbó, beix mineral). Exclusiu del mercat japonès: no surt a Europa.",
+    preu: "¥50,000–120,000",
+    tag: "Japó exclusiu"
+  },
+  {
+    linia: "DESCENTE × TOMORROWLAND",
+    kanji: "デサント × トゥモローランド",
+    desc: "Col·laboració amb la cadena de moda japonesa Tomorrowland. Jaquetes d'esquí pensades per ser portades també a la ciutat. Talls minimalistes, sense butxaques de valona, sense elements tècnics visibles. Molt populars a les pistes de Hakuba i Niseko com a peces de moda.",
+    preu: "¥60,000–90,000",
+    tag: "Col·laboració"
+  },
+  {
+    linia: "DESCENTE × BEAMS",
+    kanji: "デサント × ビームス",
+    desc: "Col·laboració amb BEAMS (el multi-marca de referència del Japó). Paleta de colors expansiva, retro ski aesthetic anys 80–90 japonès. Molt difícil de trobar fora del Japó. Sol esgotar-se la primera setmana de llançament a les botigues BEAMS i al web.",
+    preu: "¥40,000–75,000",
+    tag: "Col·laboració"
+  },
+  {
+    linia: "MOVE SPORT by DESCENTE",
+    kanji: "ムーブスポーツ",
+    desc: "La línia accessible de Descente per a esports en general. Peces de midlayer, roba tèrmica, elements de base layer. Preu assequible, qualitat japonesa. Disponible a Descente Direct, Alpen Sports i grans superfícies esportives. No té distribució a Europa.",
+    preu: "¥5,000–25,000",
+    tag: "Accessible"
+  },
+];
+
+const altresMarques = [
+  {
+    nom: "Phenix",
+    nom_ja: "フェニックス",
+    fundacio: "1952",
+    desc: "La segona gran marca d'esquí japonesa. Va equipar l'equip olímpic japonès durant dècades. La seva especialitat: peces de competició per a esquí alpí i fons. Menys coneguda que Descente però considerada igual o superior en els cercles d'esquiadors tècnics. Les jaquetes de la gamma Outer Shell Jacket porten el teixit PHENIX DERMIZAX, propi de la marca.",
+    preu: "¥45,000–130,000",
+    on: "Phenix direct stores, Alpen Sports, Victoria Sports",
+    tag: "Alta tècnica"
+  },
+  {
+    nom: "Goldwin",
+    nom_ja: "ゴールドウィン",
+    fundacio: "1950",
+    desc: "Empresa matriu de The North Face Japó. Per al seu propi nom fa roba d'esquí de competició (equip olímpic de combinada alpina japonès) i peces de muntanya avançades. El paradox: al Japó fas servir The North Face (distribuïda per Goldwin) per a senderisme i la marca Goldwin per a esquí de competició. Fora del Japó, quasi invisible.",
+    preu: "¥60,000–180,000",
+    on: "Goldwin flagship Harajuku, botigues de muntanya especialitzades",
+    tag: "Competició"
+  },
+  {
+    nom: "Onyone",
+    nom_ja: "オンヨネ",
+    fundacio: "1967",
+    desc: "Especialistes en esquí de competició alpí i de fons. L'equip japonès de cross-country és Onyone. Les seves peces de velocitat (downhill, super-G) es fabriquen amb teixits funcionals de desenvolupament propi. No fan moda: fan rendiment. Difícil de trobar fora d'Hokkaido i els Alps japonesos. Preus més moderats que Descente per qualitat equivalent.",
+    preu: "¥25,000–80,000",
+    on: "Niseko, Hakuba, Sapporo – botigues d'esports especialitzades",
+    tag: "Competició"
+  },
+  {
+    nom: "The North Face (Japan edition)",
+    nom_ja: "ザ・ノース・フェイス",
+    fundacio: "1989 (JP)",
+    desc: "Goldwin gestiona TNF al Japó i fa col·leccions exclusives que no existeixen a Europa ni als EUA. La línia Purple Label (dissenyada per Nanamica) és moda de carrer pura; la Futurelight Japó és ski tècnic. Preus japonesos: 20–35% inferiors als europeus. Les peces amb etiqueta japonesa interior (kanji) estan fetes a Japan factories, qualitat notablement superior.",
+    preu: "¥15,000–80,000",
+    on: "TNF Harajuku, TNF Shibuya, Isetan Shinjuku",
+    tag: "Exclusiu JP"
+  },
+  {
+    nom: "Helly Hansen (Japan)",
+    nom_ja: "ヘリーハンセン",
+    fundacio: "1983 (JP)",
+    desc: "Al Japó, Helly Hansen porta 40 anys i és considerada marca local. Fan col·leccions Japan-only amb colors i talls que no surten mai a Escandinàvia ni Europa. La línia de ski és tècnicament sòlida; la de sailing i outdoor és icònica. Els anoraks de matelassé Helly Hansen amb col·laboracions japoneses (comme des garçons, SHIPS) assoleixen preus alts al mercat secundari.",
+    preu: "¥20,000–65,000",
+    on: "Helly Hansen Harajuku, Laforet Harajuku, Alpen Sports",
+    tag: "Exclusiu JP"
+  },
+  {
+    nom: "Karrimor Japan",
+    nom_ja: "カリマー",
+    fundacio: "1946 (JP dist. 1975)",
+    desc: "Marca britànica que al Japó té vida pròpia: col·leccions exclusives, gamma de peces d'esquí i muntanya que no existeixen a UK. El seu SF (Special Forces) jacket és un clàssic japonès. Preus accessibles per la qualitat tècnica que ofereixen.",
+    preu: "¥15,000–45,000",
+    on: "Karrimor Japan stores, botigues de muntanya Osaka i Tokyo",
+    tag: "Importat/adaptat"
+  },
+];
+
+const preusComparatius = [
+  {
+    producte: "Jaqueta d'esquí tècnica Descente ALLTERRAIN",
+    japo: "¥80,000–120,000",
+    europa: "€900–1,400",
+    estalvi: "~30–40%",
+    nota: "No disponible a Europa. Compra exclusiva al Japó o webs japoneses."
+  },
+  {
+    producte: "Jaqueta Phenix Outer Shell (GORE-TEX / DERMIZAX)",
+    japo: "¥55,000–90,000",
+    europa: "€600–1,000",
+    estalvi: "~25–35%",
+    nota: "Distribució molt limitada a Europa. El catàleg japonès és 3× més ampli."
+  },
+  {
+    producte: "Pantalons d'esquí tècnics (qualsevol marca japonesa)",
+    japo: "¥40,000–70,000",
+    europa: "€450–800",
+    estalvi: "~25–30%",
+    nota: "Tax-free aplicable si el total supera ¥5,000 en un sol establiment."
+  },
+  {
+    producte: "Base layer tèrmic Descente / Phenix",
+    japo: "¥8,000–18,000",
+    europa: "€90–200",
+    estalvi: "~20–25%",
+    nota: "La diferència és moderada però la varietat japonesa és molt superior."
+  },
+  {
+    producte: "Guants d'esquí tècnics (Goldwin, Descente, Black Diamond JP)",
+    japo: "¥12,000–35,000",
+    europa: "€130–380",
+    estalvi: "~20–30%",
+    nota: "Goldwin fabrica guants de competició que no arriben mai a Europa."
+  },
+];
+
+const ontrobars = [
+  {
+    nom: "Descente Tokyo Flagship",
+    barri: "Harajuku · Omotesando",
+    desc: "La botiga principal de Descente al Japó. Dues plantes amb tot el catàleg: ALLTERRAIN, Move Sport, col·laboracions actives. Personal especialitzat. Tax-free aplicable.",
+    temporada: "Obertura col·lecció esquí: setembre–octubre"
+  },
+  {
+    nom: "Alpen Sports",
+    barri: "Diverses ubicacions",
+    desc: "La cadena multimarca esportiva japonesa més gran. Descente, Phenix, Onyone, Mizuno, Head, Atomic tots junts. Comparació real de productes. Descomptes de final de temporada (febrer–març) del 30–50%.",
+    temporada: "Millors preus: febrer–març (fi de temporada)"
+  },
+  {
+    nom: "Victoria Sports",
+    barri: "Shinjuku · Tokyo",
+    desc: "Multi-marca esportiu clàssic de Tokyo. Bona selecció d'esquí japonès. El magatzem de Shinjuku té 6 plantes; la secció d'esquí és a les plantes superiors amb assessors especialitzats.",
+    temporada: "Ofertes: juliol (estoc d'hivern anterior)"
+  },
+  {
+    nom: "Niseko Village / Hakuba 47",
+    barri: "Hokkaido / Nagano",
+    desc: "A les mateixes estacions d'esquí japoneses hi ha botigues que venen les marques locals a preus de fàbrica. Si el viatge inclou esquí al Japó, les estacions de Niseko i Hakuba tenen botigues de Descente i Onyone amb preus nets sense marge turístic.",
+    temporada: "Temporada: desembre–abril"
+  },
+];
+---
+<Layout title="Roba d'esquí japonesa" description="Descente, Phenix, Goldwin, Onyone: marques japoneses d'esquí, preus i on comprar" section="japo">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+
+    <nav style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 3rem; font-size: 0.8125rem; color: var(--color-muted);">
+      <a href="/japo" style="color: var(--color-muted);">Japó</a>
+      <span>→</span>
+      <span style="color: var(--color-fg);">Roba d'esquí</span>
+    </nav>
+
+    <p class="label" style="margin-bottom: 1.25rem;">Compres · Roba tècnica</p>
+    <h1 style="font-size: clamp(2.5rem, 7vw, 4.5rem); margin-bottom: 1.5rem;">Roba d'esquí japonesa</h1>
+    <p style="font-size: 1.0625rem; color: var(--color-muted); max-width: 640px; margin-bottom: 2rem; line-height: 1.75;">
+      El Japó és un dels fabricants de roba d'esquí tècnica més avançats del món. Marques com Descente, Phenix o Goldwin equipes els equips olímpics de mitja dotzena de països i venen al Japó a preus entre un 25 i un 40% inferiors als europeus, amb col·leccions exclusives que no surten mai d'aquí.
+    </p>
+    <p style="font-size: 0.9375rem; color: var(--color-muted); max-width: 640px; margin-bottom: 3rem; line-height: 1.75;">
+      La finestra per comprar roba d'esquí és entre setembre (quan surten les col·leccions noves) i febrer (finals de temporada amb descomptes del 30–50%). Juliol és mal moment per a col·leccions noves, però poden quedar existències de la temporada anterior a preus reduïts.
+    </p>
+
+    <a href="/japo/moda" style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--color-muted); text-decoration: none; border: 1px solid var(--color-border); padding: 0.5rem 0.875rem; margin-bottom: 2.5rem;">
+      ← Moda al Japó · Yukata, dissenyadors, artesania tèxtil
+    </a>
+
+    <div class="info-block" style="margin-bottom: 3rem;">
+      <p style="font-size: 0.875rem; line-height: 1.7; margin: 0;"><strong>Logística important:</strong> Les jaquetes d'esquí tècniques ocupen molt espai a la maleta. Considera comprar-les els últims dies del viatge o usar el servei de transport de maletes (takkyubin) fins a l'aeroport. Yamato Transport recull al hotel. Alternativa: enviar per EMS/SAL directament a casa des d'una oficina de correus japonesa — més barat que el càrrec d'excés de pes de l'avió.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- DESCENTE -->
+    <section style="margin-bottom: 5rem;">
+      <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.75rem;">
+        <h2 style="font-size: 1.875rem;">Descente</h2>
+        <span style="font-size: 1.25rem; color: var(--color-muted);">デサント</span>
+        <span class="tag" style="margin-left: auto;">Fundada 1935 · Osaka</span>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 1rem; max-width: 660px; line-height: 1.75;">
+        La marca d'esquí japonesa per excel·lència. Fundada a Osaka el 1935, Descente va créixer equipant l'equip olímpic japonès i ara vesteix els equips alpins de Japó, Canadà, Suïssa, Alemanya, Corea i altres. La seva R+D tèxtil és considerada puntera: el teixit DERMIZAX NX supera GORE-TEX en escenaris d'esforç intens.
+      </p>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2.5rem; max-width: 660px; line-height: 1.75;">
+        A Europa, Descente té distribució molt limitada i cara. Al Japó, el catàleg complet és accessible, amb col·leccions exclusives per al mercat domèstic que mai surten fora. La diferència de preu respecte a Europa és del <strong style="color: var(--color-fg);">30–45%</strong> en peces equivalents.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {descente.map(item => (
+          <div style="background: var(--color-bg); padding: 1.75rem;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.875rem;">
+              <span class="tag">{item.tag}</span>
+              <span style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent);">{item.preu}</span>
+            </div>
+            <div style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.625rem;">
+              <h3 style="font-size: 1rem; font-weight: 800;">{item.linia}</h3>
+              <span style="font-size: 0.75rem; color: var(--color-muted);">{item.kanji}</span>
+            </div>
+            <p style="font-size: 0.8375rem; color: var(--color-muted); line-height: 1.7;">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="info-block neutral" style="margin-top: 1.5rem;">
+        <p style="font-size: 0.875rem; line-height: 1.7; margin: 0;"><strong>On comprar Descente al Japó:</strong> La flagship de Harajuku (prop de Meiji-dori) és la referència. Alternativament, les grans superfícies esportives Alpen Sports i Victoria Sports porten col·lecció completa. Tax-free sempre que el total superi ¥5,000 en una sola compra. Porta el passaport.</p>
+      </div>
+    </section>
+
+    <!-- ALTRES MARQUES -->
+    <section style="margin-bottom: 5rem;">
+      <h2 style="font-size: 1.875rem; margin-bottom: 0.5rem;">Altres marques japoneses</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2.5rem; max-width: 640px; line-height: 1.75;">
+        Descente no és l'única. El mercat japonès d'esquí tècnic és ric i variat, amb marques de competició i col·leccions exclusives que no arriben als mercats occidentals.
+      </p>
+
+      <div style="border: 1px solid var(--color-border);">
+        {altresMarques.map((m, i) => (
+          <div style={`padding: 1.75rem; ${i < altresMarques.length - 1 ? 'border-bottom: 1px solid var(--color-border);' : ''}`}>
+            <div style="display: grid; grid-template-columns: 240px 1fr; gap: 2rem;">
+              <div>
+                <div style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.4rem;">
+                  <h3 style="font-size: 1.125rem; font-weight: 800;">{m.nom}</h3>
+                  <span style="font-size: 0.875rem; color: var(--color-muted);">{m.nom_ja}</span>
+                </div>
+                <p style="font-size: 0.75rem; color: var(--color-muted); margin-bottom: 0.35rem;">Fundada {m.fundacio}</p>
+                <p style="font-size: 0.8125rem; font-weight: 700; color: var(--color-accent); margin-bottom: 0.5rem;">{m.preu}</p>
+                <span class="tag" style="font-size: 0.6875rem;">{m.tag}</span>
+                <p style="font-size: 0.75rem; color: var(--color-muted); margin-top: 0.75rem; line-height: 1.5;">{m.on}</p>
+              </div>
+              <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.72; align-self: center;">{m.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- PREUS COMPARATIUS -->
+    <section style="margin-bottom: 5rem;">
+      <h2 style="font-size: 1.875rem; margin-bottom: 0.5rem;">Preus comparatius · Japó vs. Europa</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 640px; line-height: 1.75;">
+        L'estalvi real combinant el canvi favorable del ien (al juliol 2025 ~165 ¥/€) i el tax-free japonès del 10%. Una jaqueta de ¥100,000 surt per uns €550–580 net, quan a Europa el mateix producte (si es troba) val €900+.
+      </p>
+
+      <div style="border: 1px solid var(--color-border);">
+        <div style="display: grid; grid-template-columns: 1fr 140px 140px 100px; gap: 0; padding: 0.875rem 1.5rem; border-bottom: 1px solid var(--color-border); background: var(--color-surface);">
+          <p style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted);">Producte</p>
+          <p style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); text-align: right;">Japó</p>
+          <p style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); text-align: right;">Europa</p>
+          <p style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); text-align: right;">Estalvi</p>
+        </div>
+        {preusComparatius.map((p, i) => (
+          <div style={`padding: 1.25rem 1.5rem; ${i < preusComparatius.length - 1 ? 'border-bottom: 1px solid var(--color-border);' : ''}`}>
+            <div style="display: grid; grid-template-columns: 1fr 140px 140px 100px; gap: 0; align-items: start; margin-bottom: 0.5rem;">
+              <p style="font-size: 0.9rem; font-weight: 700;">{p.producte}</p>
+              <p style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent); text-align: right;">{p.japo}</p>
+              <p style="font-size: 0.875rem; color: var(--color-muted); text-align: right;">{p.europa}</p>
+              <p style="font-size: 0.875rem; font-weight: 700; color: var(--color-fg); text-align: right;">{p.estalvi}</p>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--color-muted); line-height: 1.55;">{p.nota}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="info-block" style="margin-top: 1.5rem;">
+        <p style="font-size: 0.875rem; line-height: 1.7; margin: 0 0 0.625rem 0;"><strong>Tax-free al Japó (2026):</strong> El sistema tax-free japonès (消費税免除) permet als turistes no residents recuperar el 10% de l'IVA en compres de consum (roba inclosa) a partir de ¥5,000 en un sol establiment. Porta el passaport. Moltes botigues esportives grans el gestionen al mostrador de caixa directament.</p>
+        <p style="font-size: 0.875rem; line-height: 1.7; margin: 0;"><strong>Conversió orientativa juliol 2026:</strong> El ien ha perdut valor els últims anys. A ¥165/€, una jaqueta de ¥100,000 són €606 bruts; amb tax-free, uns €550 nets. Comprova la cotització real just abans del viatge — cada moviment del ±10 ¥/€ canvia el càlcul significativament.</p>
+      </div>
+    </section>
+
+    <!-- ON TROBAR -->
+    <section style="margin-bottom: 5rem;">
+      <h2 style="font-size: 1.875rem; margin-bottom: 0.5rem;">On comprar</h2>
+      <p style="font-size: 0.9375rem; color: var(--color-muted); margin-bottom: 2rem; max-width: 600px; line-height: 1.75;">
+        Cada canal té el seu avantatge: les flagship stores donen el catàleg complet; les cadenes multimarca permeten comparar; les botigues de les estacions ofereixen preus de fi de temporada.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border);">
+        {ontrobars.map(l => (
+          <div style="background: var(--color-bg); padding: 1.5rem;">
+            <p style="font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 0.35rem;">{l.barri}</p>
+            <h3 style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem;">{l.nom}</h3>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.65; margin-bottom: 0.625rem;">{l.desc}</p>
+            <p style="font-size: 0.75rem; color: var(--color-muted);"><span style="font-weight: 700; color: var(--color-fg);">Temporada:</span> {l.temporada}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- NOTA FINAL -->
+    <section>
+      <div class="info-block neutral">
+        <h3 style="font-size: 1rem; font-weight: 800; margin-bottom: 0.875rem;">Roba d'esquí japonesa vs. europees: diferències reals</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+          <div>
+            <p style="font-size: 0.8125rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-fg);">Avantatges del producte japonès</p>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.35rem;">
+              <li style="font-size: 0.8125rem; color: var(--color-muted);">· Talls ajustats, sense excés de material</li>
+              <li style="font-size: 0.8125rem; color: var(--color-muted);">· Teixits propietaris sovint superiors a GORE-TEX</li>
+              <li style="font-size: 0.8125rem; color: var(--color-muted);">· Colors i col·leccions exclusius del mercat japonès</li>
+              <li style="font-size: 0.8125rem; color: var(--color-muted);">· Jaquetes de competició olímpica accessibles al públic</li>
+              <li style="font-size: 0.8125rem; color: var(--color-muted);">· Disseny net, sense logos excessius</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-size: 0.8125rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-fg);">Consideracions</p>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.35rem;">
+              <li style="font-size: 0.8125rem; color: var(--color-muted);">· Talles japoneses: menors que les europees (suma +1 o +2 talla)</li>
+              <li style="font-size: 0.8125rem; color: var(--color-muted);">· Proves de talla imprescindibles: no comprar sense provar</li>
+              <li style="font-size: 0.8125rem; color: var(--color-muted);">· Les instruccions de neteja seran en japonès</li>
+              <li style="font-size: 0.8125rem; color: var(--color-muted);">· Servei post-venda impossible des d'Espanya</li>
+              <li style="font-size: 0.8125rem; color: var(--color-muted);">· La col·lecció esquí entra a les botigues a partir de setembre</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>
